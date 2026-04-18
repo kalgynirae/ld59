@@ -9,6 +9,7 @@ const TILE_HEIGHT: int = 16
 var current_map: Maps = Maps.Start
 var current_mode: Mode = Mode.Init
 var current_direction: String = ""
+var current_move_speed: int = 2
 
 enum Mode {
 	Init,
@@ -81,6 +82,10 @@ func _process(delta: float) -> void:
 		$Map/Snake.retract()
 	if Input.is_action_just_pressed("die"):
 		$Map/Snake.die()
+	if Input.is_action_just_pressed("speed_up"):
+		change_move_speed(1)
+	if Input.is_action_just_pressed("speed_down"):
+		change_move_speed(-1)
 
 func move_camera(position: Vector2) -> void:
 	if $Camera.position != position:
@@ -90,10 +95,24 @@ func move_camera(position: Vector2) -> void:
 func _ready() -> void:
 	$Map/Snake.init(Vector2i(8,4), "right", 6)
 	current_direction = "right"
+	change_move_speed(0)
 	set_mode(Mode.Running)
 
 func on_move_timer_timeout() -> void:
 	if current_mode == Mode.CameraMoving:
 		set_mode(Mode.Running)
-	elif current_direction != "":
+	elif current_direction != "" and current_move_speed > 0:
 		$Map.move_snake(current_direction)
+
+func change_move_speed(change: int) -> void:
+	if change > 0 and current_move_speed < 3 or change < 0 and current_move_speed > 0:
+		current_move_speed = current_move_speed + change
+	match current_move_speed:
+		0:
+			pass # handled in on_move_timer_timeout
+		1:
+			$MoveTimer.wait_time = 0.3
+		2:
+			$MoveTimer.wait_time = 0.18
+		3:
+			$MoveTimer.wait_time = 0.13
