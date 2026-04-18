@@ -54,3 +54,6 @@ func set_direction(dir: String, corner: bool = false, flip: bool = false) -> voi
 
 func move_to(loc: Vector2i) -> void:
 	position = loc * 16
+
+func show_dead() -> void:
+	$Dead.visible = true

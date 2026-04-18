@@ -27,3 +27,5 @@ func _process(delta: float) -> void:
 		$Snake.extend($Snake.head_direction())
 	if Input.is_action_just_pressed("retract"):
 		$Snake.retract()
+	if Input.is_action_just_pressed("die"):
+		$Snake.die()

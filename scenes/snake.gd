@@ -15,18 +15,20 @@ func start_at(loc: Vector2i, dir: String):
 	var head = SnakePartScene.instantiate()
 	parts.append(head)
 	add_child(head)
+	head.move_to(loc)
 	head.set_direction(dir)
 	head.set_part(Part.HEAD)
 
 func add_part():
 	assert(parts.size() > 0)
-	var newloc = GridLoc.move(gridlocs[-1], parts[-1].direction)
+	var dir = parts[-1].direction
+	var newloc = gridlocs[-1] - GridLoc.offset(dir)
 	gridlocs.append(newloc)
 	var new = SnakePartScene.instantiate()
 	parts.append(new)
 	add_child(new)
 	new.move_to(newloc)
-	new.set_direction(parts[-1].direction)
+	new.set_direction(dir)
 	new.set_part(Part.TAIL)
 	if parts.size() > 2:
 		parts[-2].set_part(Part.BODY_1)
@@ -36,14 +38,14 @@ func extend(direction: String):
 	move(direction)
 
 func retract():
-	if parts.size() > 3:
+	if parts.size() > 4:
 		gridlocs.pop_back()
 		parts.pop_back().queue_free()
 		update_tail()
 
 func move(direction: String):
 	assert(parts.size() > 0)
-	var newloc = GridLoc.move(gridlocs[0], direction)
+	var newloc = gridlocs[0] + GridLoc.offset(direction)
 	gridlocs.insert(0, newloc)
 	gridlocs.pop_back()
 	parts.insert(0, parts.pop_back())
@@ -101,7 +103,10 @@ func update_tail() -> void:
 	if parts.size() > 1:
 		parts[-1].set_part(Part.TAIL)
 
+func die() -> void:
+	parts[0].show_dead()
+
 func _ready() -> void:
-	start_at(Vector2i(4, 8), "right")
+	start_at(Vector2i(8, 4), "right")
 	for i in 5:
 		add_part()

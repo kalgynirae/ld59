@@ -14,6 +14,3 @@ static func offset(dir: String) -> Vector2i:
 		_:
 			assert(false, "Invalid direction")
 			return Vector2i(0, 0)
-
-static func move(loc: Vector2i, dir: String) -> Vector2i:
-	return loc + offset(dir)
