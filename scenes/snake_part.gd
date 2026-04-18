@@ -1,10 +1,12 @@
 extends Node2D
+class_name SnakePart
 
-enum PartShown {
+enum Part {
 	HEAD,
 	BODY_1,
 	BODY_2,
-	TAIL
+	TAIL,
+	CORNER
 }
 
 enum PowerLevel {
@@ -15,28 +17,24 @@ enum PowerLevel {
 	SUPERCHARGED
 }
 
-@export var current_part: PartShown = PartShown.HEAD
-@export var power_level: PowerLevel = PowerLevel.NORMAL
+var current_part: Part = Part.HEAD
+var power_level: PowerLevel = PowerLevel.NORMAL
+var direction: String = "up"
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	$Snakeparts.region_enabled = true
+func set_part(part: Part) -> void:
+	$Sprite.region_rect = Rect2(power_level * 16, part * 16, 16, 16)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var part_offset = 0;
-		
-	match current_part:
-		PartShown.HEAD:
-			part_offset = 0
-		PartShown.BODY_1:
-			part_offset = 16
-		PartShown.BODY_2:
-			part_offset = 32
-		PartShown.TAIL:
-			part_offset = 48
-
-	$Snakeparts.region_rect = Rect2(power_level * 16, part_offset, 16, 16)
+func set_direction(dir: String) -> void:
+	direction = dir
+	match dir:
+		"left":
+			$Sprite.rotation_degrees = -90
+		"right":
+			$Sprite.rotation_degrees = 90
+		"up":
+			$Sprite.rotation_degrees = 0
+		"down":
+			$Sprite.rotation_degrees = 180
 
 func move_to(loc: Vector2i) -> void:
 	position = loc * 16

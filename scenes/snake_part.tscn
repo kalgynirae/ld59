@@ -6,8 +6,9 @@
 [node name="snake_part" type="Node2D" unique_id=1027985]
 script = ExtResource("1_aaci8")
 
-[node name="Snakeparts" type="Sprite2D" parent="." unique_id=914922160]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=914922160]
 texture_filter = 1
+position = Vector2(8, 8)
 texture = ExtResource("1_5mst4")
-centered = false
+region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)

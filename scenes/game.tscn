@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://duxa8pgyfq7m" path="res://scenes/map.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://8qlcklp0mepa" path="res://scenes/game.gd" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://dn7eto5y41bf4" path="res://scenes/snake_part.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://ct6yoppgmyo12" path="res://images/tilesheet_complete.png" id="2_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=1500510972]
 texture_filter = 1
@@ -23,6 +23,3 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Hello! snake"
-
-[node name="snake_part" parent="." unique_id=1027985 instance=ExtResource("3_lnu2h")]
-position = Vector2(32, 80)
