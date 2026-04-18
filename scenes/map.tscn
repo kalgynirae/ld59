@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://duxa8pgyfq7m"]
+
+[ext_resource type="PackedScene" uid="uid://dxqrv0x4vgi4" path="res://scenes/power_source.tscn" id="1_4xfga"]
+
+[node name="Map" type="Node2D" unique_id=1460035702]
+
+[node name="power_source" parent="." unique_id=1100650769 instance=ExtResource("1_4xfga")]
+position = Vector2(169, 272)
+powered = true
+
+[node name="power_source2" parent="." unique_id=820795504 instance=ExtResource("1_4xfga")]
+position = Vector2(125, 98)
