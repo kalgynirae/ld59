@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dn7eto5y41bf4"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_d88kg"]
+size = Vector2(12, 12)
+
+[node name="snake_part" type="Node2D" unique_id=1027985]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1542359115]
+texture = SubResource("PlaceholderTexture2D_d88kg")
+centered = false
+offset = Vector2(2, 2)

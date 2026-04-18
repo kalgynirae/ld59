@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://duxa8pgyfq7m"]
 
 [ext_resource type="PackedScene" uid="uid://dxqrv0x4vgi4" path="res://scenes/power_source.tscn" id="1_4xfga"]
+[ext_resource type="Script" uid="uid://dfhyn057pafew" path="res://scenes/map.gd" id="1_gldc4"]
+[ext_resource type="PackedScene" uid="uid://b5wxtotml1f30" path="res://scenes/snake.tscn" id="2_paxxb"]
 
-[node name="Map" type="Node2D" unique_id=1460035702]
+[node name="map" type="Node2D" unique_id=1460035702]
+script = ExtResource("1_gldc4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=799148246]
 
 [node name="power_source" parent="." unique_id=1100650769 instance=ExtResource("1_4xfga")]
-position = Vector2(169, 272)
+position = Vector2(32, 0)
 powered = true
 
 [node name="power_source2" parent="." unique_id=820795504 instance=ExtResource("1_4xfga")]
-position = Vector2(125, 98)
+
+[node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
