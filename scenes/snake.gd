@@ -7,6 +7,9 @@ var SnakePartScene = preload("res://scenes/snake_part.tscn")
 
 var Part = SnakePart.Part
 
+func head_direction() -> String:
+	return parts[0].direction
+
 func start_at(loc: Vector2i, dir: String):
 	gridlocs.append(loc)
 	var head = SnakePartScene.instantiate()
@@ -17,7 +20,6 @@ func start_at(loc: Vector2i, dir: String):
 
 func add_part():
 	assert(parts.size() > 0)
-	var old_tail = parts[-1]
 	var newloc = GridLoc.move(gridlocs[-1], parts[-1].direction)
 	gridlocs.append(newloc)
 	var new = SnakePartScene.instantiate()
@@ -26,12 +28,18 @@ func add_part():
 	new.move_to(newloc)
 	new.set_direction(parts[-1].direction)
 	new.set_part(Part.TAIL)
-
 	if parts.size() > 2:
-		if parts[-3].current_part == Part.BODY_1:
-			parts[-2].set_part(Part.BODY_2)
-		else:
-			parts[-2].set_part(Part.BODY_1)
+		parts[-2].set_part(Part.BODY_1)
+
+func extend(direction: String):
+	add_part()
+	move(direction)
+
+func retract():
+	if parts.size() > 3:
+		gridlocs.pop_back()
+		parts.pop_back().queue_free()
+		update_tail()
 
 func move(direction: String):
 	assert(parts.size() > 0)
@@ -88,9 +96,9 @@ func move(direction: String):
 				part.set_part(Part.CORNER, true)
 			elif loc.x > after.x:
 				part.set_part(Part.CORNER, false)
-
-
-	# parts[-1] is now the tail
+	update_tail()
+	
+func update_tail() -> void:
 	if parts.size() > 1:
 		parts[-1].set_part(Part.TAIL)
 

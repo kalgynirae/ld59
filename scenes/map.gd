@@ -23,3 +23,7 @@ func _process(delta: float) -> void:
 		$Snake.move("down")
 	if Input.is_action_just_pressed("move_up"):
 		$Snake.move("up")
+	if Input.is_action_just_pressed("extend"):
+		$Snake.extend($Snake.head_direction())
+	if Input.is_action_just_pressed("retract"):
+		$Snake.retract()
