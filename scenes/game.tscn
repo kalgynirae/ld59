@@ -7,9 +7,6 @@
 texture_filter = 1
 script = ExtResource("1_yqjtg")
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1453900181]
-offset = Vector2(192, 144)
-
 [node name="Map" parent="." unique_id=1460035702 instance=ExtResource("1_uwrxv")]
 
 [node name="Panel" type="Panel" parent="." unique_id=894262728]
@@ -22,3 +19,8 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Hello! snake"
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1453900181]
+anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
