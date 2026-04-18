@@ -8,7 +8,7 @@
 texture_filter = 1
 script = ExtResource("1_yqjtg")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1453900181]
+[node name="Camera" type="Camera2D" parent="." unique_id=1453900181]
 offset = Vector2(192, 144)
 
 [node name="Map" parent="." unique_id=1460035702 instance=ExtResource("1_uwrxv")]
