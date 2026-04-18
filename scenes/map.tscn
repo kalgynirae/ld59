@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dfhyn057pafew" path="res://scenes/map.gd" id="1_gldc4"]
 [ext_resource type="Texture2D" uid="uid://ct6yoppgmyo12" path="res://images/tilesheet_complete.png" id="2_0cso3"]
 [ext_resource type="PackedScene" uid="uid://b5wxtotml1f30" path="res://scenes/snake.tscn" id="2_paxxb"]
+[ext_resource type="PackedScene" uid="uid://bpl1ddc2eyhyd" path="res://scenes/switch.tscn" id="5_2klcf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2klcf"]
 texture = ExtResource("2_0cso3")
@@ -525,3 +526,45 @@ powered = true
 [node name="power_source2" parent="." unique_id=820795504 instance=ExtResource("1_4xfga")]
 
 [node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
+
+[node name="UpperSwitches" type="Node" parent="." unique_id=1140846646]
+
+[node name="switch1" parent="UpperSwitches" unique_id=1728679507 instance=ExtResource("5_2klcf")]
+position = Vector2(32, -240)
+color2 = true
+
+[node name="switch2" parent="UpperSwitches" unique_id=343083034 instance=ExtResource("5_2klcf")]
+position = Vector2(48, -240)
+color2 = true
+
+[node name="switch3" parent="UpperSwitches" unique_id=1998492327 instance=ExtResource("5_2klcf")]
+position = Vector2(64, -240)
+color2 = true
+
+[node name="switch4" parent="UpperSwitches" unique_id=352498928 instance=ExtResource("5_2klcf")]
+position = Vector2(80, -240)
+color2 = true
+
+[node name="switch5" parent="UpperSwitches" unique_id=1006095443 instance=ExtResource("5_2klcf")]
+position = Vector2(96, -240)
+color2 = true
+
+[node name="switch6" parent="UpperSwitches" unique_id=524845073 instance=ExtResource("5_2klcf")]
+position = Vector2(112, -240)
+color2 = true
+
+[node name="switch7" parent="UpperSwitches" unique_id=753627397 instance=ExtResource("5_2klcf")]
+position = Vector2(128, -240)
+color2 = true
+
+[node name="switch8" parent="UpperSwitches" unique_id=1615783024 instance=ExtResource("5_2klcf")]
+position = Vector2(144, -240)
+color2 = true
+
+[node name="switch9" parent="UpperSwitches" unique_id=1551827481 instance=ExtResource("5_2klcf")]
+position = Vector2(160, -240)
+color2 = true
+
+[node name="switch10" parent="UpperSwitches" unique_id=1255781472 instance=ExtResource("5_2klcf")]
+position = Vector2(176, -240)
+color2 = true

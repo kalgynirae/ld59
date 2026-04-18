@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bpl1ddc2eyhyd"]
+
+[ext_resource type="Texture2D" uid="uid://boki0q8ya5ovi" path="res://images/switch.png" id="1_1i7pn"]
+[ext_resource type="Script" uid="uid://cgd8j8jae0kto" path="res://scenes/switch.gd" id="1_e08h5"]
+
+[node name="switch" type="Node2D" unique_id=1728679507]
+texture_filter = 1
+script = ExtResource("1_e08h5")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1412175007]
+texture = ExtResource("1_1i7pn")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
