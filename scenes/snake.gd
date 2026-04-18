@@ -65,7 +65,6 @@ func move(direction: String):
 				# TODO: body alternation
 				part.set_part(Part.BODY_1)
 			elif loc.y < after.y:
-				print("LEFT TO DOWN")
 				part.set_part(Part.CORNER, true)
 			elif loc.y > after.y:
 				part.set_part(Part.CORNER, false)
