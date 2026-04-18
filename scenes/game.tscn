@@ -24,3 +24,8 @@ text = "Hello! snake"
 anchor_mode = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=2062584357]
+wait_time = 0.2
+
+[connection signal="timeout" from="MoveTimer" to="." method="on_move_timer_timeout"]

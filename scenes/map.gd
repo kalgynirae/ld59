@@ -14,18 +14,5 @@ func is_touching(obj: Objects) -> bool:
 	
 	return false
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("move_right"):
-		$Snake.move("right")
-	if Input.is_action_just_pressed("move_left"):
-		$Snake.move("left")
-	if Input.is_action_just_pressed("move_down"):
-		$Snake.move("down")
-	if Input.is_action_just_pressed("move_up"):
-		$Snake.move("up")
-	if Input.is_action_just_pressed("extend"):
-		$Snake.extend($Snake.head_direction())
-	if Input.is_action_just_pressed("retract"):
-		$Snake.retract()
-	if Input.is_action_just_pressed("die"):
-		$Snake.die()
+func move_snake(direction: String) -> void:
+	$Snake.move(direction)

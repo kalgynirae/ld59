@@ -1,4 +1,5 @@
 extends Node2D
+class_name Snake
 
 var gridlocs: Array[Vector2i] = []
 var parts: Array[SnakePart] = []
@@ -6,6 +7,13 @@ var parts: Array[SnakePart] = []
 var SnakePartScene = preload("res://scenes/snake_part.tscn")
 
 var Part = SnakePart.Part
+
+enum Shape {
+	NONE,
+	SQUARE,
+	WAVE,
+	CLOUD,
+}
 
 func head_direction() -> String:
 	return parts[0].direction
@@ -106,7 +114,10 @@ func update_tail() -> void:
 func die() -> void:
 	parts[0].show_dead()
 
-func _ready() -> void:
-	start_at(Vector2i(8, 4), "right")
-	for i in 5:
+func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
+	start_at(startloc, direction)
+	for i in length - 1:
 		add_part()
+
+func detect_shape() -> Shape:
+	return Shape.NONE
