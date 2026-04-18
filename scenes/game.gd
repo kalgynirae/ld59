@@ -29,10 +29,6 @@ func _process(delta: float) -> void:
 		current_map = Maps.Dessert
 	elif snake_pos.x >= TILE_WIDTH && snake_pos.x < TILE_WIDTH * 2:
 		current_map = Maps.Rain
-	
-	print("Current map")
-	print(current_map)
-	print(snake_pos)
 
 	match current_map:
 		Maps.Start:
