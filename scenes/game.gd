@@ -13,7 +13,6 @@ enum Maps {
 func _process(delta: float) -> void:
 	var snake_pos: Vector2i = $Map/Snake.gridlocs[0]
 	
-	print(snake_pos)
 	if snake_pos.x > 0 && snake_pos.x < VIEWPORT_WIDTH:
 		current_map = Maps.Start
 	if snake_pos.x > -VIEWPORT_WIDTH && snake_pos.x < 0:
