@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dn7eto5y41bf4"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_d88kg"]
-size = Vector2(12, 12)
+[ext_resource type="Texture2D" uid="uid://c10b3yhvl543y" path="res://images/snakeparts.png" id="1_5mst4"]
+[ext_resource type="Script" uid="uid://cvu2ls6vdlm05" path="res://scenes/snake_part.gd" id="1_aaci8"]
 
 [node name="snake_part" type="Node2D" unique_id=1027985]
+script = ExtResource("1_aaci8")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1542359115]
-texture = SubResource("PlaceholderTexture2D_d88kg")
+[node name="Snakeparts" type="Sprite2D" parent="." unique_id=914922160]
+texture_filter = 1
+texture = ExtResource("1_5mst4")
 centered = false
-offset = Vector2(2, 2)
+region_rect = Rect2(0, 0, 16, 16)
