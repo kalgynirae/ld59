@@ -37,3 +37,6 @@ func _process(delta: float) -> void:
 			part_offset = 48
 
 	$Snakeparts.region_rect = Rect2(power_level * 16, part_offset, 16, 16)
+
+func move_to(loc: Vector2i) -> void:
+	position = loc * 16
