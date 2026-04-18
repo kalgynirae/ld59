@@ -57,44 +57,37 @@ func move(direction: String):
 				# TODO: body alternation
 				part.set_part(Part.BODY_1)
 			elif loc.y < after.y:
-				# TODO: corner left to down
-				part.set_part(Part.CORNER)
+				print("LEFT TO DOWN")
+				part.set_part(Part.CORNER, true)
 			elif loc.y > after.y:
-				# TODO: corner left to up
-				part.set_part(Part.CORNER)
+				part.set_part(Part.CORNER, false)
 		elif head.x > loc.x:
 			part.set_direction("right")
 			if loc.x > after.x:
 				# TODO: body alternation
 				part.set_part(Part.BODY_1)
 			elif loc.y < after.y:
-				# TODO: corner right to down
-				part.set_part(Part.CORNER)
+				part.set_part(Part.CORNER, false)
 			elif loc.y > after.y:
-				# TODO: corner right to up
-				part.set_part(Part.CORNER)
+				part.set_part(Part.CORNER, true)
 		elif head.y < loc.y:
 			part.set_direction("up")
 			if loc.y < after.y:
 				# TODO: body alternation
 				part.set_part(Part.BODY_1)
 			elif loc.x < after.x:
-				# TODO: corner up to left
-				part.set_part(Part.CORNER)
+				part.set_part(Part.CORNER, false)
 			elif loc.x > after.x:
-				# TODO: corner up to right
-				part.set_part(Part.CORNER)
+				part.set_part(Part.CORNER, true)
 		elif head.y > loc.y:
 			part.set_direction("down")
 			if loc.y > after.y:
 				# TODO: body alternation
 				part.set_part(Part.BODY_1)
 			elif loc.x < after.x:
-				# TODO: corner down to left
-				part.set_part(Part.CORNER)
+				part.set_part(Part.CORNER, true)
 			elif loc.x > after.x:
-				# TODO: corner down to right
-				part.set_part(Part.CORNER)
+				part.set_part(Part.CORNER, false)
 
 
 	# parts[-1] is now the tail
