@@ -109,7 +109,11 @@ func move(direction: String):
 			elif loc.x > after.x:
 				part.set_part(Part.CORNER, false)
 	update_tail()
-	
+
+func set_power_level(level: SnakePart.PowerLevel):
+	for part in parts:
+		part.set_power_level(level)
+
 func update_tail() -> void:
 	if parts.size() > 1:
 		parts[-1].set_part(Part.TAIL)

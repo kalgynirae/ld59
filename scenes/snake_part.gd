@@ -21,8 +21,15 @@ var current_part: Part = Part.HEAD
 var power_level: PowerLevel = PowerLevel.NORMAL
 var direction: String = "up"
 
+# Helper method to separate out the logic that chooses what sprite to show
+func set_current_sprite(part: Part, level: PowerLevel):
+	$Sprite.region_rect = Rect2(level * 16, part * 16, 16, 16)
+
+func set_power_level(level: PowerLevel):
+	set_current_sprite(current_part, level)
+
 func set_part(part: Part, flip: bool = false) -> void:
-	$Sprite.region_rect = Rect2(power_level * 16, part * 16, 16, 16)
+	set_current_sprite(part, power_level)
 	if part == Part.CORNER or current_part == Part.CORNER:
 		# Fix rotation
 		set_direction(direction, part == Part.CORNER, flip)

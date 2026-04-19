@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://duxa8pgyfq7m"]
 
-[ext_resource type="PackedScene" uid="uid://dxqrv0x4vgi4" path="res://scenes/power_source.tscn" id="1_4xfga"]
 [ext_resource type="Script" uid="uid://dfhyn057pafew" path="res://scenes/map.gd" id="1_gldc4"]
 [ext_resource type="PackedScene" uid="uid://b5wxtotml1f30" path="res://scenes/snake.tscn" id="2_paxxb"]
 [ext_resource type="Texture2D" uid="uid://boki0q8ya5ovi" path="res://images/switch.png" id="3_2lpho"]
@@ -12,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://cht3ukdk58jjt" path="res://images/box.png" id="6_be0no"]
 [ext_resource type="Texture2D" uid="uid://dwxy00xgbwsr" path="res://images/box_flower_patch.png" id="6_mlgqr"]
 [ext_resource type="Texture2D" uid="uid://biivv32u0fc2l" path="res://images/desert_border.png" id="7_wslke"]
+[ext_resource type="Texture2D" uid="uid://k57wa603v43" path="res://images/power.png" id="10_gw3fx"]
+[ext_resource type="Script" uid="uid://n5w2hjh7hl24" path="res://scenes/desert_boxes.gd" id="12_c00ee"]
 [ext_resource type="PackedScene" uid="uid://c4dmib44m0oh2" path="res://scenes/plant.tscn" id="13_gw3fx"]
+[ext_resource type="PackedScene" uid="uid://bohr8wq4hdmoo" path="res://scenes/box.tscn" id="13_p7tei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be0no"]
 texture = ExtResource("3_nakos")
@@ -287,6 +289,14 @@ texture = ExtResource("5_mlgqr")
 3:10/0 = 0
 4:10/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo32q"]
+texture = ExtResource("10_gw3fx")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/custom_data_0 = 2
+0:1/0 = 0
+1:1/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_jh32y"]
 custom_data_layer_0/name = "interact"
 custom_data_layer_0/type = 2
@@ -294,6 +304,7 @@ sources/1 = SubResource("TileSetAtlasSource_jh32y")
 sources/2 = SubResource("TileSetAtlasSource_mlgqr")
 sources/3 = SubResource("TileSetAtlasSource_wslke")
 sources/4 = SubResource("TileSetAtlasSource_c00ee")
+sources/5 = SubResource("TileSetAtlasSource_mo32q")
 
 [node name="map" type="Node2D" unique_id=1460035702]
 script = ExtResource("1_gldc4")
@@ -303,12 +314,8 @@ tile_map_data = PackedByteArray("AADs/wAAAQABAAEAAADs/wEAAQABAAEAAADs/wIAAQABAAE
 tile_set = SubResource("TileSet_2lpho")
 
 [node name="Decorations" type="TileMapLayer" parent="Ground" unique_id=347407571]
-tile_map_data = PackedByteArray("AADv/wAAAwADAAAAAADv/wEAAwACAAEAAADv/wIAAwACAAEAAADv/wMAAwACAAEAAADv/wQAAwACAAEAAADv/wUAAwACAAEAAADv/wYAAwACAAAAAADv/wcAAwACAAEAAADv/wgAAwACAAEAAADv/wkAAwACAAAAAADv/woAAwACAAEAAADv/wsAAwACAAEAAADv/wwAAwACAAEAAADw/wAAAwADAAAAAADw/wEAAwACAAEAAADw/wIAAwACAAEAAADw/wMAAwACAAAAAADw/wQAAwACAAEAAADw/wUAAwACAAEAAADw/wYAAwACAAEAAADw/wcAAwACAAEAAADw/wgAAwACAAEAAADw/wkAAwACAAEAAADw/woAAwACAAEAAADw/wsAAwACAAEAAADw/wwAAwACAAEAAADz/wMAAwACAAEAAADz/wQAAwACAAEAAADz/wUAAwACAAEAAADz/wYAAwACAAEAAADz/wcAAwACAAAAAADz/wgAAwACAAEAAADz/wkAAwACAAEAAADz/woAAwACAAEAAADz/wsAAwACAAEAAADz/wwAAwACAAEAAADz/w0AAwACAAAAAADz/w4AAwACAAEAAADz/w8AAwADAAEAAAD0/wMAAwACAAEAAAD0/wQAAwACAAEAAAD0/wUAAwACAAAAAAD0/wYAAwACAAEAAAD0/wcAAwACAAEAAAD0/wgAAwACAAEAAAD0/wkAAwACAAEAAAD0/woAAwACAAAAAAD0/wsAAwACAAEAAAD0/wwAAwACAAEAAAD0/w0AAwACAAEAAAD0/w4AAwACAAEAAAD0/w8AAwADAAEAAADs/wAAAwADAAAAAADt/wAAAwADAAAAAADu/wAAAwADAAAAAADx/wAAAwADAAAAAADy/wAAAwADAAAAAADz/wAAAwADAAAAAAD0/wAAAwADAAAAAAD1/wAAAwADAAAAAAD2/wAAAwADAAAAAAD3/wAAAwADAAAAAAD4/wAAAwADAAAAAAD5/wAAAwADAAAAAAD6/wAAAwADAAAAAAD7/wAAAwADAAAAAAD8/wAAAwADAAAAAAD9/wAAAwADAAAAAAD+/wAAAwADAAAAAAD//wAAAwADAAAAAADs/w8AAwADAAEAAADt/w8AAwADAAEAAADu/w8AAwADAAEAAADv/w8AAwADAAEAAADw/w8AAwADAAEAAADx/w8AAwADAAEAAADy/w8AAwADAAEAAAD1/w8AAwADAAEAAAD2/w8AAwADAAEAAAD3/w8AAwADAAEAAAD4/w8AAwADAAEAAAD5/w8AAwADAAEAAAD6/w8AAwADAAEAAAD7/w8AAwADAAEAAAD8/w8AAwADAAEAAAD9/w8AAwADAAEAAAD+/w8AAwADAAEAAAD//w8AAwADAAEAAAAfAAgABAAAAAAAAAAgAAgABAABAAAAAAAhAAgABAACAAAAAAAiAAgABAADAAAAAAAjAAgABAAEAAAAAAAfAAoABAAAAAAAACAgAAoABAABAAAAACAiAAoABAADAAAAACAhAAoABAACAAAAACAjAAoABAAEAAAAACA=")
+tile_map_data = PackedByteArray("AADv/wAAAwADAAAAAADv/wEAAwACAAEAAADv/wIAAwACAAEAAADv/wMAAwACAAEAAADv/wQAAwACAAEAAADv/wUAAwACAAEAAADv/wYAAwACAAAAAADv/wcAAwACAAEAAADv/wgAAwACAAEAAADv/wkAAwACAAAAAADv/woAAwACAAEAAADv/wsAAwACAAEAAADv/wwAAwACAAEAAADw/wAAAwADAAAAAADw/wEAAwACAAEAAADw/wIAAwACAAEAAADw/wMAAwACAAAAAADw/wQAAwACAAEAAADw/wUAAwACAAEAAADw/wYAAwACAAEAAADw/wcAAwACAAEAAADw/wgAAwACAAEAAADw/wkAAwACAAEAAADw/woAAwACAAEAAADw/wsAAwACAAEAAADw/wwAAwACAAEAAADz/wMAAwACAAEAAADz/wQAAwACAAEAAADz/wUAAwACAAEAAADz/wYAAwACAAEAAADz/wcAAwACAAAAAADz/wgAAwACAAEAAADz/wkAAwACAAEAAADz/woAAwACAAEAAADz/wsAAwACAAEAAADz/wwAAwACAAEAAADz/w0AAwACAAAAAADz/w4AAwACAAEAAADz/w8AAwADAAEAAAD0/wMAAwACAAEAAAD0/wQAAwACAAEAAAD0/wUAAwACAAAAAAD0/wYAAwACAAEAAAD0/wcAAwACAAEAAAD0/wgAAwACAAEAAAD0/wkAAwACAAEAAAD0/woAAwACAAAAAAD0/wsAAwACAAEAAAD0/wwAAwACAAEAAAD0/w0AAwACAAEAAAD0/w4AAwACAAEAAAD0/w8AAwADAAEAAADs/wAAAwADAAAAAADt/wAAAwADAAAAAADu/wAAAwADAAAAAADx/wAAAwADAAAAAADy/wAAAwADAAAAAADz/wAAAwADAAAAAAD0/wAAAwADAAAAAAD1/wAAAwADAAAAAAD2/wAAAwADAAAAAAD3/wAAAwADAAAAAAD4/wAAAwADAAAAAAD5/wAAAwADAAAAAAD6/wAAAwADAAAAAAD7/wAAAwADAAAAAAD8/wAAAwADAAAAAAD9/wAAAwADAAAAAAD+/wAAAwADAAAAAAD//wAAAwADAAAAAADs/w8AAwADAAEAAADt/w8AAwADAAEAAADu/w8AAwADAAEAAADv/w8AAwADAAEAAADw/w8AAwADAAEAAADx/w8AAwADAAEAAADy/w8AAwADAAEAAAD1/w8AAwADAAEAAAD2/w8AAwADAAEAAAD3/w8AAwADAAEAAAD4/w8AAwADAAEAAAD5/w8AAwADAAEAAAD6/w8AAwADAAEAAAD7/w8AAwADAAEAAAD8/w8AAwADAAEAAAD9/w8AAwADAAEAAAD+/w8AAwADAAEAAAD//w8AAwADAAEAAAAfAAgABAAAAAAAAAAgAAgABAABAAAAAAAhAAgABAACAAAAAAAiAAgABAADAAAAAAAjAAgABAAEAAAAAAAfAAoABAAAAAAAACAgAAoABAABAAAAACAiAAoABAADAAAAACAhAAoABAACAAAAACAjAAoABAAEAAAAACADAAQABQABAAAAAAAIAAIABQABAAAAAAANAAQABQABAAAAAAANAAoABQABAAAAAAADAAoABQABAAAAAAA=")
 tile_set = SubResource("TileSet_jh32y")
-
-[node name="power_source" parent="." unique_id=1100650769 instance=ExtResource("1_4xfga")]
-position = Vector2(192, 112)
-powered = true
 
 [node name="river_plants" type="Node" parent="." unique_id=475039774]
 
@@ -689,6 +696,36 @@ growth_stage = 0
 [node name="Plant99" parent="river_plants" unique_id=1561345083 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 176)
 growth_stage = 0
+
+[node name="desert_boxes" type="Node" parent="." unique_id=397512299]
+script = ExtResource("12_c00ee")
+
+[node name="Box" parent="desert_boxes" unique_id=470225223 instance=ExtResource("13_p7tei")]
+position = Vector2(-208, 16)
+
+[node name="Box2" parent="desert_boxes" unique_id=1310750831 instance=ExtResource("13_p7tei")]
+position = Vector2(-192, 16)
+
+[node name="Box3" parent="desert_boxes" unique_id=1610262772 instance=ExtResource("13_p7tei")]
+position = Vector2(-208, 32)
+
+[node name="Box4" parent="desert_boxes" unique_id=1020363108 instance=ExtResource("13_p7tei")]
+position = Vector2(-192, 32)
+
+[node name="Box5" parent="desert_boxes" unique_id=1753544412 instance=ExtResource("13_p7tei")]
+position = Vector2(-272, 208)
+
+[node name="Box6" parent="desert_boxes" unique_id=202926449 instance=ExtResource("13_p7tei")]
+position = Vector2(-256, 208)
+
+[node name="Box7" parent="desert_boxes" unique_id=763342871 instance=ExtResource("13_p7tei")]
+position = Vector2(-272, 224)
+
+[node name="Box8" parent="desert_boxes" unique_id=517818503 instance=ExtResource("13_p7tei")]
+position = Vector2(-256, 224)
+
+[node name="Box9" parent="desert_boxes" unique_id=1202951632 instance=ExtResource("13_p7tei")]
+position = Vector2(-256, 224)
 
 [node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
 z_index = 1
