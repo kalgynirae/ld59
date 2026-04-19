@@ -14,6 +14,7 @@ enum Shape {
 	Square,
 	Wave,
 	Cloud,
+	Tower,
 }
 
 func head_direction() -> String:
@@ -120,7 +121,7 @@ func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 	for i in length - 1:
 		add_part()
 
-func detect_shape(debug: bool = false) -> Shape:
+func detect_shape(debug: bool = true) -> Shape:
 	var segments = [["s", 1]];
 	for i in range(1, parts.size()):
 		match parts[i].turn():
@@ -134,9 +135,12 @@ func detect_shape(debug: bool = false) -> Shape:
 			Turn.Left:
 				segments.append(["l", 1])
 
-	if segments_match(segments, SQUARE, debug):
+	if false and segments_match(segments, SQUARE, debug):
 		print("SQUARE!!!")
 		return Shape.Square
+	elif segments_match(segments, CLOUD, debug):
+		print("CLOUD!!!")
+		return Shape.Cloud
 	else:
 		return Shape.None
 
@@ -148,17 +152,25 @@ const SQUARE = [
 	[["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 3]],
 	[["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 4]],
 ]
+const CLOUD = [
+	[["r", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["r", 1], ["s", 5]],
+	[["l", 1], ["r", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["l", 1], ["s", 5]],
+	[["s", 5], ["r", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["l", 1], ["r", 1]],
+	[["s", 5], ["l", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1], ["l", 1]],
+]
 
 func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 	var min_segment_count = patterns[0].size()
 	if segments.size() < min_segment_count:
 		return false
 
+	print("segments=%s" % [segments])
+
 	if debug: print("Trying to match any of %s patterns" % patterns.size())
 	var matched = false
 	for p in patterns.size():
 		var pattern = patterns[p]
-		if debug: print("  pattern %s" % p)
+		if debug: print("  pattern %s: %s" % [p, pattern])
 		if pattern.size() > segments.size():
 			if debug: print("    oh wait, too small")
 			continue
@@ -172,6 +184,8 @@ func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 					# Straight at the beginning or end of a pattern only fails against shorter segments
 					if seg[1] < pat[1]:
 						if debug: print("      fail at %s: segment=%s too short (pattern=%s)" % [i, seg, pat])
+						pattern_matched = false
+						break
 				elif seg != pat:
 					if debug: print("      fail at %s: segment=%s != pattern=%s" % [i, seg, pat])
 					pattern_matched = false

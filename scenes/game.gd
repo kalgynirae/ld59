@@ -114,8 +114,8 @@ func change_move_speed(change: int) -> void:
 		0:
 			pass # handled in on_move_timer_timeout
 		1:
-			$MoveTimer.wait_time = 0.3
+			$MoveTimer.wait_time = 0.35
 		2:
-			$MoveTimer.wait_time = 0.18
+			$MoveTimer.wait_time = 0.2
 		3:
 			$MoveTimer.wait_time = 0.13
