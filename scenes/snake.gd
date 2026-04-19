@@ -120,7 +120,7 @@ func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 	for i in length - 1:
 		add_part()
 
-func detect_shape() -> Shape:
+func detect_shape(debug: bool = false) -> Shape:
 	var segments = [["s", 1]];
 	for i in range(1, parts.size()):
 		match parts[i].turn():
@@ -133,29 +133,52 @@ func detect_shape() -> Shape:
 				segments.append(["r", 1])
 			Turn.Left:
 				segments.append(["l", 1])
-	print(segments)
 
-	if segments_match(segments, SQUARE):
+	if segments_match(segments, SQUARE, debug):
+		print("SQUARE!!!")
 		return Shape.Square
 	else:
 		return Shape.None
 
 const SQUARE = [
-	[["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1]],
-	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2]],
-	[["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3]],
-	[["s", 4], ["r", 1], ["s", 4], ["r", 1], ["s", 4], ["r", 1], ["s", 4]],
-	[["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 1]],
-	[["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 2]],
-	[["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 3]],
-	[["s", 4], ["l", 1], ["s", 4], ["l", 1], ["s", 4], ["l", 1], ["s", 4]],
+	[["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 2]],
+	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 3]],
+	[["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 4]],
+	[["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 2]],
+	[["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 3]],
+	[["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 4]],
 ]
 
-func segments_match(segments: Array, patterns: Array) -> bool:
-	for pattern in patterns:
+func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
+	var min_segment_count = patterns[0].size()
+	if segments.size() < min_segment_count:
+		return false
+
+	if debug: print("Trying to match any of %s patterns" % patterns.size())
+	var matched = false
+	for p in patterns.size():
+		var pattern = patterns[p]
+		if debug: print("  pattern %s" % p)
 		if pattern.size() > segments.size():
+			if debug: print("    oh wait, too small")
 			continue
-		for offset in segments.size() - pattern.size():
+		for offset in (segments.size() - pattern.size()) + 1:
+			if debug: print("    offset %s" % offset)
+			var pattern_matched = true
 			for i in pattern.size():
-				pass  # TODO
-	return false
+				var seg = segments[offset + i]
+				var pat = pattern[i]
+				if (i == 0 or i == (pattern.size() - 1)) and seg[0] == "s" and pat[0] == "s":
+					# Straight at the beginning or end of a pattern only fails against shorter segments
+					if seg[1] < pat[1]:
+						if debug: print("      fail at %s: segment=%s too short (pattern=%s)" % [i, seg, pat])
+				elif seg != pat:
+					if debug: print("      fail at %s: segment=%s != pattern=%s" % [i, seg, pat])
+					pattern_matched = false
+					break
+			if pattern_matched:
+				matched = true
+				break
+		if matched:
+			break
+	return matched

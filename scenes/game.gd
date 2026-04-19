@@ -16,6 +16,7 @@ enum Mode {
 	Menu,
 	Running,
 	CameraMoving,
+	Shape,
 }
 
 func set_mode(mode: Mode) -> bool:
@@ -79,7 +80,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_up"):
 		current_direction = "up"
 	if Input.is_action_just_pressed("extend"):
-		$Map/Snake.extend($Snake.head_direction())
+		$Map/Snake.extend($Map/Snake.head_direction())
 	if Input.is_action_just_pressed("retract"):
 		$Map/Snake.retract()
 	if Input.is_action_just_pressed("die"):

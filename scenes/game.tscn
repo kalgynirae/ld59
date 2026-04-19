@@ -10,9 +10,10 @@ script = ExtResource("1_yqjtg")
 [node name="Map" parent="." unique_id=1460035702 instance=ExtResource("1_uwrxv")]
 
 [node name="Panel" type="Panel" parent="." unique_id=894262728]
-offset_left = 288.0
-offset_right = 376.0
-offset_bottom = 48.0
+offset_left = 16.0
+offset_top = 192.0
+offset_right = 104.0
+offset_bottom = 240.0
 
 [node name="Label" type="Label" parent="Panel" unique_id=1294002607]
 layout_mode = 0
