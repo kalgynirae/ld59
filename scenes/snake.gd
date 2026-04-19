@@ -1,6 +1,9 @@
 extends Node2D
 class_name Snake
 
+# How long the snake will display a "hurt" animation for
+@export_range(0, 10, 0.25) var hurt_time: float = 0.5
+
 var active_shape: Shape = Shape.None
 var gridlocs: Array[Vector2i] = []
 var parts: Array[SnakePart] = []
@@ -117,6 +120,16 @@ func set_power_level(level: SnakePart.PowerLevel):
 func update_tail() -> void:
 	if parts.size() > 1:
 		parts[-1].set_part(Part.TAIL)
+
+# Modulates the color a bit and
+func hurt():
+	for part in parts:
+		part.modulate_hurt()
+		
+	await get_tree().create_timer(hurt_time).timeout
+	
+	for part in parts:
+		part.modulate_reset()
 
 func die() -> void:
 	parts[0].show_dead()

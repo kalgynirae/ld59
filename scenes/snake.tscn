@@ -4,3 +4,5 @@
 
 [node name="snake" type="Node2D" unique_id=272715040]
 script = ExtResource("1_a5f6l")
+
+[node name="hurt_timer" type="Timer" parent="." unique_id=1202301047]

@@ -29,4 +29,7 @@ position_smoothing_speed = 15.0
 [node name="MoveTimer" type="Timer" parent="." unique_id=2062584357]
 wait_time = 0.2
 
+[node name="HurtTimer" type="Timer" parent="." unique_id=1507968008]
+
 [connection signal="timeout" from="MoveTimer" to="." method="on_move_timer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="on_hurt_timer_timeout"]

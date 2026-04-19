@@ -25,6 +25,7 @@ func set_mode(mode: Mode) -> bool:
 		[Mode.Init, Mode.Running]:
 			allowed = true
 			$MoveTimer.start()
+			$HurtTimer.start()
 		[Mode.Running, Mode.CameraMoving]:
 			allowed = true
 		[Mode.CameraMoving, Mode.Running]:
@@ -106,6 +107,10 @@ func on_move_timer_timeout() -> void:
 		set_mode(Mode.Running)
 	elif current_direction != "" and current_move_speed > 0:
 		$Map.move_snake(current_direction)
+
+func on_hurt_timer_timeout() -> void:
+	if current_map == Maps.Desert:
+			$Map/Snake.hurt()
 
 func change_move_speed(change: int) -> void:
 	if change > 0 and current_move_speed < 3 or change < 0 and current_move_speed > 0:

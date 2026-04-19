@@ -28,6 +28,14 @@ func set_current_sprite(part: Part, level: PowerLevel):
 func set_power_level(level: PowerLevel):
 	set_current_sprite(current_part, level)
 
+# Resets the color shift on the sprite part
+func modulate_reset():
+	$Sprite.modulate = Color(1, 1, 1)
+
+# Modulates the color shift on the snake to mimic a "hurt" color
+func modulate_hurt():
+	$Sprite.modulate = Color(1, 0, 0)
+
 func set_part(part: Part, flip: bool = false) -> void:
 	set_current_sprite(part, power_level)
 	if part == Part.CORNER or current_part == Part.CORNER:
