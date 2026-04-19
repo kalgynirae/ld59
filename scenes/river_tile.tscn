@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cmrmeaha1n732"]
+
+[ext_resource type="Script" uid="uid://b7jhqc8wn5lmv" path="res://scenes/river_tile.gd" id="1_o7t8f"]
+[ext_resource type="Texture2D" uid="uid://dq8ivcknrwlrv" path="res://images/river.png" id="1_o42of"]
+
+[node name="RiverTile" type="Node2D" unique_id=1072026978]
+script = ExtResource("1_o7t8f")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1581640385]
+texture_filter = 1
+texture = ExtResource("1_o42of")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
