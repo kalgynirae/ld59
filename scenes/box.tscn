@@ -10,3 +10,6 @@ script = ExtResource("1_ks2v0")
 texture_filter = 1
 texture = ExtResource("1_3inec")
 centered = false
+offset = Vector2(0, -2)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 18)
