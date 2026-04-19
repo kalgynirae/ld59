@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bohr8wq4hdmoo" path="res://scenes/box.tscn" id="13_p7tei"]
 [ext_resource type="Texture2D" uid="uid://7lqw5vtr25d2" path="res://images/house_doorway.png" id="17_6k6j1"]
 [ext_resource type="PackedScene" uid="uid://b7ipbbt85jft6" path="res://scenes/food.tscn" id="17_c70he"]
+[ext_resource type="Script" uid="uid://bstvrhb5dd184" path="res://scenes/river.gd" id="18_m335s"]
 [ext_resource type="PackedScene" uid="uid://cmrmeaha1n732" path="res://scenes/river_tile.tscn" id="19_6k6j1"]
 [ext_resource type="Texture2D" uid="uid://bkmwemf648t5b" path="res://images/house.png" id="19_m335s"]
 
@@ -1246,15 +1247,8 @@ texture = ExtResource("17_6k6j1")
 centered = false
 offset = Vector2(0, 1)
 
-[node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
-
-[node name="House" type="Sprite2D" parent="." unique_id=849834734]
-position = Vector2(128, 64)
-texture = ExtResource("19_m335s")
-centered = false
-offset = Vector2(0, 1)
-
-[node name="river" type="Node" parent="." unique_id=599441098]
+[node name="river" type="Node2D" parent="." unique_id=704935125]
+script = ExtResource("18_m335s")
 
 [node name="RiverTile" parent="river" unique_id=1072026978 instance=ExtResource("19_6k6j1")]
 position = Vector2(528, 0)
@@ -1437,3 +1431,10 @@ river_pos = 0
 [node name="RiverTile50" parent="river" unique_id=384705517 instance=ExtResource("19_6k6j1")]
 position = Vector2(512, 240)
 river_pos = 0
+
+[node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
+
+[node name="House" type="Sprite2D" parent="." unique_id=849834734]
+position = Vector2(128, 64)
+centered = false
+offset = Vector2(0, 1)

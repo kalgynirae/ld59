@@ -171,6 +171,8 @@ func move_snake(direction: String) -> void:
 				flip_switches()
 			Snake.Shape.Square:
 				$desert_boxes.break_all()
+			Snake.Shape.Cloud:
+				$Map/river.set_water_level(RiverTile.WaterLevel.FULL)
 
 	var touching_sources = num_touching(Objects.POWER_SOURCE)
 	$Map/Snake.set_power_level(touching_sources)
