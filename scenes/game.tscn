@@ -28,6 +28,7 @@ script = ExtResource("1_yqjtg")
 
 [node name="Map" parent="." unique_id=1460035702 instance=ExtResource("1_uwrxv")]
 script = SubResource("GDScript_lnu2h")
+metadata/_edit_horizontal_guides_ = [-240.0, 512.0]
 
 [node name="Panel" type="Panel" parent="." unique_id=894262728]
 offset_left = 16.0
