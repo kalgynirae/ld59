@@ -773,9 +773,6 @@ position = Vector2(592, 192)
 [node name="Food6" parent="food_nodes" unique_id=1372955525 instance=ExtResource("17_c70he")]
 position = Vector2(592, 208)
 
-[node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
-z_index = 1
-
 [node name="UpperSwitches" type="Node" parent="." unique_id=1140846646]
 
 [node name="switch1" parent="UpperSwitches" unique_id=1728679507 instance=ExtResource("5_2klcf")]
@@ -1125,3 +1122,6 @@ color2 = true
 [node name="switch98" parent="UpperSwitches" unique_id=669109363 instance=ExtResource("5_2klcf")]
 position = Vector2(288, -80)
 color2 = true
+
+[node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
+z_index = 1
