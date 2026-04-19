@@ -53,7 +53,6 @@ func update_camera() -> void:
 		floor(float(snake_loc.x) / SCREEN_TILE_WIDTH),
 		floor(float(snake_loc.y) / SCREEN_TILE_HEIGHT),
 	)
-	print(snake_screen_coords)
 	if snake_screen_coords != current_screen_coords:
 		current_screen_coords = snake_screen_coords
 		move_camera(current_screen_coords * VIEWPORT_PIXELS)
@@ -128,32 +127,23 @@ enum Objects {
 	FENCE = 3,
 }
 
-func get_decoration_from_tilemap(pos: Vector2i):
-	var data = $Map/Ground/Decorations.get_cell_tile_data(pos)
-	
-	if data == null:
-		return null
-	
-	return data.get_custom_data("interact")
+func get_tilemap_data(pos: Vector2i):
+	var decorations_data = $Map/Decorations.get_cell_tile_data(pos)
+	if decorations_data:
+		return decorations_data.get_custom_data("interact")
+	var ground_data = $Map/Ground.get_cell_tile_data(pos)
+	if ground_data:
+		return ground_data.get_custom_data("interact")
 
 func is_touching(obj: Objects) -> bool:
 	var head_pos = $Map/Snake.gridlocs[0]
-	
-	var data = get_decoration_from_tilemap(head_pos)
-	
-	if data != null:
-		return data == obj
-	
-	return false
+	return get_tilemap_data(head_pos) == obj
 
 func num_touching(obj: Objects) -> int:
 	var count: int = 0
-	
 	for pos in $Map/Snake.gridlocs:
-		var data = get_decoration_from_tilemap(pos)
-		if data != null && data == obj:
+		if get_tilemap_data(pos) == obj:
 			count += 1
-		
 	return count
 
 func handle_touching_food():
@@ -165,6 +155,10 @@ func handle_touching_food():
 
 func move_snake(direction: String) -> void:
 	$Map/Snake.move(direction)
+	if $Map/Snake.detect_self_collision() or is_touching(Objects.FENCE):
+		set_mode(Mode.Dead)
+		return
+
 	if $Map/Snake.detect_shape():
 		match $Map/Snake.active_shape:
 			Snake.Shape.Wave:
