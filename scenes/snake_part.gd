@@ -57,3 +57,17 @@ func move_to(loc: Vector2i) -> void:
 
 func show_dead() -> void:
 	$Dead.visible = true
+
+enum Turn {
+	None,
+	Right,
+	Left,
+}
+
+func turn() -> Turn:
+	if current_part == Part.CORNER:
+		if $Sprite.flip_h:
+			return Turn.Right
+		else:
+			return Turn.Left
+	return Turn.None

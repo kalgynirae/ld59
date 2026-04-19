@@ -30,6 +30,8 @@ func set_mode(mode: Mode) -> bool:
 			allowed = true
 	if allowed:
 		current_mode = mode
+	else:
+		print("Mode transition blocked: %s -> %s" % [current_mode, mode])
 	return allowed
 
 enum Maps {

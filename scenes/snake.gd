@@ -7,12 +7,13 @@ var parts: Array[SnakePart] = []
 var SnakePartScene = preload("res://scenes/snake_part.tscn")
 
 var Part = SnakePart.Part
+var Turn = SnakePart.Turn
 
 enum Shape {
-	NONE,
-	SQUARE,
-	WAVE,
-	CLOUD,
+	None,
+	Square,
+	Wave,
+	Cloud,
 }
 
 func head_direction() -> String:
@@ -120,4 +121,41 @@ func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 		add_part()
 
 func detect_shape() -> Shape:
-	return Shape.NONE
+	var segments = [["s", 1]];
+	for i in range(1, parts.size()):
+		match parts[i].turn():
+			Turn.None:
+				if segments[-1][0] == "s":
+					segments[-1][1] = segments[-1][1] + 1
+				else:
+					segments.append(["s", 1])
+			Turn.Right:
+				segments.append(["r", 1])
+			Turn.Left:
+				segments.append(["l", 1])
+	print(segments)
+
+	if segments_match(segments, SQUARE):
+		return Shape.Square
+	else:
+		return Shape.None
+
+const SQUARE = [
+	[["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1]],
+	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2]],
+	[["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3]],
+	[["s", 4], ["r", 1], ["s", 4], ["r", 1], ["s", 4], ["r", 1], ["s", 4]],
+	[["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 1]],
+	[["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 2]],
+	[["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 3]],
+	[["s", 4], ["l", 1], ["s", 4], ["l", 1], ["s", 4], ["l", 1], ["s", 4]],
+]
+
+func segments_match(segments: Array, patterns: Array) -> bool:
+	for pattern in patterns:
+		if pattern.size() > segments.size():
+			continue
+		for offset in segments.size() - pattern.size():
+			for i in pattern.size():
+				pass  # TODO
+	return false

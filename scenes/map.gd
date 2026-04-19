@@ -16,3 +16,12 @@ func is_touching(obj: Objects) -> bool:
 
 func move_snake(direction: String) -> void:
 	$Snake.move(direction)
+	# TODO: detect if the snake ran into something
+	
+	match $Snake.detect_shape():
+		Snake.Shape.Wave:
+			flip_switches()
+
+func flip_switches():
+	for switch in find_children("switch*"):
+		switch.toggle()
