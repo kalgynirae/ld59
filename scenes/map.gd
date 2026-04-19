@@ -36,6 +36,14 @@ func num_touching(obj: Objects) -> int:
 		
 	return count
 
+func handle_touching_food():
+	var snake_head: Vector2i = $Snake.gridlocs[0]
+	
+	for food_node in $food_nodes.get_children():
+		# Convert from snake space into world space
+		if Vector2i(food_node.position) / 16 == snake_head:
+			food_node.eat()
+
 func move_snake(direction: String) -> void:
 	$Snake.move(direction)
 	# TODO: detect if the snake ran into something
@@ -48,6 +56,8 @@ func move_snake(direction: String) -> void:
 	
 	var touching_sources = num_touching(Objects.POWER_SOURCE)
 	$Snake.set_power_level(touching_sources)
+	
+	handle_touching_food()
 
 func flip_switches():
 	for switch in find_children("switch*"):

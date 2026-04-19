@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b7ipbbt85jft6"]
+
+[ext_resource type="Script" uid="uid://xv3cmuifgfnp" path="res://scenes/food.gd" id="1_af40f"]
+[ext_resource type="Texture2D" uid="uid://dfrlooipka8fl" path="res://images/banana.png" id="1_xven1"]
+
+[node name="Food" type="Node2D" unique_id=848746391]
+script = ExtResource("1_af40f")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1057595601]
+texture_filter = 1
+texture = ExtResource("1_xven1")
+centered = false

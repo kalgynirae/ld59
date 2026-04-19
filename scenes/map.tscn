@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://n5w2hjh7hl24" path="res://scenes/desert_boxes.gd" id="12_c00ee"]
 [ext_resource type="PackedScene" uid="uid://c4dmib44m0oh2" path="res://scenes/plant.tscn" id="13_gw3fx"]
 [ext_resource type="PackedScene" uid="uid://bohr8wq4hdmoo" path="res://scenes/box.tscn" id="13_p7tei"]
+[ext_resource type="PackedScene" uid="uid://b7ipbbt85jft6" path="res://scenes/food.tscn" id="17_c70he"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be0no"]
 texture = ExtResource("3_nakos")
@@ -305,6 +306,10 @@ sources/2 = SubResource("TileSetAtlasSource_mlgqr")
 sources/3 = SubResource("TileSetAtlasSource_wslke")
 sources/4 = SubResource("TileSetAtlasSource_c00ee")
 sources/5 = SubResource("TileSetAtlasSource_mo32q")
+
+[sub_resource type="GDScript" id="GDScript_p7tei"]
+script/source = "extends Node
+"
 
 [node name="map" type="Node2D" unique_id=1460035702]
 script = ExtResource("1_gldc4")
@@ -726,6 +731,27 @@ position = Vector2(-256, 224)
 
 [node name="Box9" parent="desert_boxes" unique_id=1202951632 instance=ExtResource("13_p7tei")]
 position = Vector2(-256, 224)
+
+[node name="food_nodes" type="Node" parent="." unique_id=1497404000]
+script = SubResource("GDScript_p7tei")
+
+[node name="Food" parent="food_nodes" unique_id=848746391 instance=ExtResource("17_c70he")]
+position = Vector2(592, 48)
+
+[node name="Food2" parent="food_nodes" unique_id=1344537515 instance=ExtResource("17_c70he")]
+position = Vector2(592, 64)
+
+[node name="Food3" parent="food_nodes" unique_id=399046075 instance=ExtResource("17_c70he")]
+position = Vector2(592, 80)
+
+[node name="Food4" parent="food_nodes" unique_id=1210885538 instance=ExtResource("17_c70he")]
+position = Vector2(592, 176)
+
+[node name="Food5" parent="food_nodes" unique_id=855596940 instance=ExtResource("17_c70he")]
+position = Vector2(592, 192)
+
+[node name="Food6" parent="food_nodes" unique_id=1372955525 instance=ExtResource("17_c70he")]
+position = Vector2(592, 208)
 
 [node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
 z_index = 1
