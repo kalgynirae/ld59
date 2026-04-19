@@ -173,7 +173,6 @@ func num_touching(obj: Objects) -> int:
 
 func handle_touching_food():
 	var snake_head: Vector2i = $Map/Snake.gridlocs[0]
-	
 	for food_node in $Map/food_nodes.get_children():
 		# Convert from snake space into world space
 		if Vector2i(food_node.position) / 16 == snake_head:

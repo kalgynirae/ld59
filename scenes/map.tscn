@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://n5w2hjh7hl24" path="res://scenes/desert_boxes.gd" id="12_c00ee"]
 [ext_resource type="PackedScene" uid="uid://c4dmib44m0oh2" path="res://scenes/plant.tscn" id="13_gw3fx"]
 [ext_resource type="PackedScene" uid="uid://bohr8wq4hdmoo" path="res://scenes/box.tscn" id="13_p7tei"]
+[ext_resource type="Texture2D" uid="uid://7lqw5vtr25d2" path="res://images/house_doorway.png" id="17_6k6j1"]
 [ext_resource type="PackedScene" uid="uid://b7ipbbt85jft6" path="res://scenes/food.tscn" id="17_c70he"]
 [ext_resource type="Texture2D" uid="uid://bkmwemf648t5b" path="res://images/house.png" id="19_6k6j1"]
 
@@ -1237,6 +1238,12 @@ position = Vector2(224, 304)
 
 [node name="Food4" parent="flowerpatch_food" unique_id=921627449 instance=ExtResource("17_c70he")]
 position = Vector2(224, 320)
+
+[node name="HouseDoorway" type="Sprite2D" parent="." unique_id=784486344]
+position = Vector2(128, 64)
+texture = ExtResource("17_6k6j1")
+centered = false
+offset = Vector2(0, 1)
 
 [node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
 
