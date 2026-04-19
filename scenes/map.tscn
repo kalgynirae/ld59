@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cht3ukdk58jjt" path="res://images/box.png" id="6_be0no"]
 [ext_resource type="Texture2D" uid="uid://dwxy00xgbwsr" path="res://images/box_flower_patch.png" id="6_mlgqr"]
 [ext_resource type="Texture2D" uid="uid://biivv32u0fc2l" path="res://images/desert_border.png" id="7_wslke"]
-[ext_resource type="Texture2D" uid="uid://dywgjcq3s2ukr" path="res://images/fence-final-last-one.png" id="9_mo32q"]
+[ext_resource type="Texture2D" uid="uid://dywgjcq3s2ukr" path="res://images/fence_final_last_one.png" id="9_mo32q"]
 [ext_resource type="Texture2D" uid="uid://k57wa603v43" path="res://images/power.png" id="10_gw3fx"]
 [ext_resource type="Script" uid="uid://n5w2hjh7hl24" path="res://scenes/desert_boxes.gd" id="12_c00ee"]
 [ext_resource type="PackedScene" uid="uid://c4dmib44m0oh2" path="res://scenes/plant.tscn" id="13_gw3fx"]
