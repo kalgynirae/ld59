@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c4dmib44m0oh2"]
+
+[ext_resource type="Texture2D" uid="uid://du4ujtx0213bh" path="res://images/garden_flowers.png" id="1_fi0kw"]
+[ext_resource type="Script" uid="uid://8pmq5nhhmwaj" path="res://scenes/plant.gd" id="1_odjdt"]
+
+[node name="Plant" type="Node2D" unique_id=688351892]
+script = ExtResource("1_odjdt")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=568292698]
+texture_filter = 1
+texture = ExtResource("1_fi0kw")
+centered = false
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)

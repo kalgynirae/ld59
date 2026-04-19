@@ -1,16 +1,21 @@
 [gd_scene format=3 uid="uid://dxqrv0x4vgi4"]
 
-[ext_resource type="Texture2D" uid="uid://bykxd6r1eksuo" path="res://images/power_source.png" id="1_00ly7"]
 [ext_resource type="Script" uid="uid://cyra1kdgh3mq5" path="res://scenes/power_source.gd" id="1_5kvrx"]
+[ext_resource type="Texture2D" uid="uid://k57wa603v43" path="res://images/power.png" id="2_aa43d"]
 
 [node name="power_source" type="Node2D" unique_id=1100650769]
 script = ExtResource("1_5kvrx")
 
 [node name="off" type="Sprite2D" parent="." unique_id=1270638977]
 modulate = Color(0.23529412, 0.27058825, 0.36078432, 1)
-texture = ExtResource("1_00ly7")
+texture = ExtResource("2_aa43d")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="on" type="Sprite2D" parent="." unique_id=1597537846]
-texture = ExtResource("1_00ly7")
+visible = false
+texture = ExtResource("2_aa43d")
 centered = false
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
