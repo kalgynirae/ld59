@@ -1,15 +1,13 @@
 extends Node2D
 
-const VIEWPORT_WIDTH: int = 320
-const VIEWPORT_HEIGHT: int = 256
+const SCREEN_TILE_WIDTH = 20
+const SCREEN_TILE_HEIGHT = 16
+const VIEWPORT_PIXELS: Vector2i = Vector2(320, 256)
 
-const TILE_WIDTH: int = 20
-const TILE_HEIGHT: int = 16
-
-var current_map: Maps = Maps.Start
 var current_mode: Mode = Mode.Init
 var current_direction: String = ""
 var current_move_speed: int = 2
+var current_screen_coords: Vector2i = Vector2i(0, 0)
 
 enum Mode {
 	Init,
@@ -49,30 +47,16 @@ enum Maps {
 }
 
 func update_camera() -> void:
-	var snake_pos: Vector2i = $Map/Snake.gridlocs[0]
-
-	if snake_pos.y >= -TILE_HEIGHT && snake_pos.y < 0:
-		current_map = Maps.Switch
-	elif snake_pos.y >= TILE_HEIGHT && snake_pos.y < TILE_HEIGHT * 2:
-		current_map = Maps.Box
-	elif snake_pos.x >= 0 && snake_pos.x < TILE_WIDTH:
-		current_map = Maps.Start
-	elif snake_pos.x >= -TILE_WIDTH && snake_pos.x < 0:
-		current_map = Maps.Desert
-	elif snake_pos.x >= TILE_WIDTH && snake_pos.x < TILE_WIDTH * 2:
-		current_map = Maps.Rain
-
-	match current_map:
-		Maps.Start:
-			move_camera(Vector2(0, 0))
-		Maps.Desert:
-			move_camera(Vector2(-VIEWPORT_WIDTH, 0))
-		Maps.Rain:
-			move_camera(Vector2(VIEWPORT_WIDTH, 0))
-		Maps.Switch:
-			move_camera(Vector2(0, -VIEWPORT_HEIGHT))
-		Maps.Box:
-			move_camera(Vector2(0, VIEWPORT_HEIGHT))
+	var snake_loc: Vector2i = $Map/Snake.gridlocs[0]
+	# Note: Integer division rounds toward 0, so we can't use it here
+	var snake_screen_coords = Vector2i(
+		floor(float(snake_loc.x) / SCREEN_TILE_WIDTH),
+		floor(float(snake_loc.y) / SCREEN_TILE_HEIGHT),
+	)
+	print(snake_screen_coords)
+	if snake_screen_coords != current_screen_coords:
+		current_screen_coords = snake_screen_coords
+		move_camera(current_screen_coords * VIEWPORT_PIXELS)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_right"):
@@ -118,8 +102,9 @@ func on_move_timer_timeout() -> void:
 		update_camera()
 
 func on_hurt_timer_timeout() -> void:
-	if current_map == Maps.Desert:
-			$Map/Snake.hurt()
+	# TODO: fix the desert
+	if false:
+		$Map/Snake.hurt()
 
 func change_move_speed(change: int) -> void:
 	if change > 0 and current_move_speed < 3 or change < 0 and current_move_speed > 0:
