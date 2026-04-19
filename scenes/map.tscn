@@ -18,8 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://bohr8wq4hdmoo" path="res://scenes/box.tscn" id="13_p7tei"]
 [ext_resource type="Texture2D" uid="uid://7lqw5vtr25d2" path="res://images/house_doorway.png" id="17_6k6j1"]
 [ext_resource type="PackedScene" uid="uid://b7ipbbt85jft6" path="res://scenes/food.tscn" id="17_c70he"]
-[ext_resource type="Texture2D" uid="uid://bkmwemf648t5b" path="res://images/house.png" id="19_6k6j1"]
 [ext_resource type="PackedScene" uid="uid://cmrmeaha1n732" path="res://scenes/river_tile.tscn" id="19_6k6j1"]
+[ext_resource type="Texture2D" uid="uid://bkmwemf648t5b" path="res://images/house.png" id="19_m335s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6k6j1"]
 texture = ExtResource("2_c70he")
@@ -1250,7 +1250,7 @@ offset = Vector2(0, 1)
 
 [node name="House" type="Sprite2D" parent="." unique_id=849834734]
 position = Vector2(128, 64)
-texture = ExtResource("19_6k6j1")
+texture = ExtResource("19_m335s")
 centered = false
 offset = Vector2(0, 1)
 
