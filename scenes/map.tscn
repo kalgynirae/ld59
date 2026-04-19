@@ -1253,7 +1253,7 @@ position = Vector2(128, 64)
 texture = ExtResource("19_6k6j1")
 centered = false
 offset = Vector2(0, 1)
-=======
+
 [node name="river" type="Node" parent="." unique_id=599441098]
 
 [node name="RiverTile" parent="river" unique_id=1072026978 instance=ExtResource("19_6k6j1")]
