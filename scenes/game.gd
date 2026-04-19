@@ -73,13 +73,17 @@ func update_camera() -> void:
 func _process(delta: float) -> void:
 	update_camera()
 	if Input.is_action_just_pressed("move_right"):
-		current_direction = "right"
+		if current_direction != "left":
+			current_direction = "right"
 	if Input.is_action_just_pressed("move_left"):
-		current_direction = "left"
+		if current_direction != "right":
+			current_direction = "left"
 	if Input.is_action_just_pressed("move_down"):
-		current_direction = "down"
+		if current_direction != "up":
+			current_direction = "down"
 	if Input.is_action_just_pressed("move_up"):
-		current_direction = "up"
+		if current_direction != "down":
+			current_direction = "up"
 	if Input.is_action_just_pressed("extend"):
 		$Map/Snake.extend($Map/Snake.head_direction())
 	if Input.is_action_just_pressed("retract"):

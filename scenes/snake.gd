@@ -134,6 +134,12 @@ func hurt():
 func die() -> void:
 	parts[0].show_dead()
 
+func detect_self_collision() -> bool:
+	var locs = {}
+	for loc in gridlocs:
+		locs[loc] = null
+	return locs.size() < gridlocs.size()
+
 func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 	start_at(startloc, direction)
 	for i in length - 1:
