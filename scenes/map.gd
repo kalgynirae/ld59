@@ -53,7 +53,7 @@ func move_snake(direction: String) -> void:
 				flip_switches()
 			Snake.Shape.Square:
 				$desert_boxes.break_all()
-	
+
 	var touching_sources = num_touching(Objects.POWER_SOURCE)
 	$Snake.set_power_level(touching_sources)
 	
