@@ -17,6 +17,7 @@ enum Mode {
 	Running,
 	CameraMoving,
 	Shape,
+	Dead,
 }
 
 func set_mode(mode: Mode) -> bool:
@@ -25,11 +26,14 @@ func set_mode(mode: Mode) -> bool:
 		[Mode.Init, Mode.Running]:
 			allowed = true
 			$MoveTimer.start()
-			$HurtTimer.start()
 		[Mode.Running, Mode.CameraMoving]:
 			allowed = true
 		[Mode.CameraMoving, Mode.Running]:
 			allowed = true
+		[Mode.Running, Mode.Dead]:
+			allowed = true
+			$MoveTimer.stop()
+			$Map/Snake.die()
 	if allowed:
 		current_mode = mode
 	else:
@@ -71,25 +75,25 @@ func update_camera() -> void:
 			move_camera(Vector2(0, VIEWPORT_HEIGHT))
 
 func _process(delta: float) -> void:
-	update_camera()
 	if Input.is_action_just_pressed("move_right"):
-		if current_direction != "left":
+		if $Map/Snake.head_direction() != "left":
 			current_direction = "right"
 	if Input.is_action_just_pressed("move_left"):
-		if current_direction != "right":
+		if $Map/Snake.head_direction() != "right":
 			current_direction = "left"
 	if Input.is_action_just_pressed("move_down"):
-		if current_direction != "up":
+		if $Map/Snake.head_direction() != "up":
 			current_direction = "down"
 	if Input.is_action_just_pressed("move_up"):
-		if current_direction != "down":
+		if $Map/Snake.head_direction() != "down":
 			current_direction = "up"
 	if Input.is_action_just_pressed("extend"):
 		$Map/Snake.extend($Map/Snake.head_direction())
+		update_camera()
 	if Input.is_action_just_pressed("retract"):
 		$Map/Snake.retract()
 	if Input.is_action_just_pressed("die"):
-		$Map/Snake.die()
+		set_mode(Mode.Dead)
 	if Input.is_action_just_pressed("speed_up"):
 		change_move_speed(1)
 	if Input.is_action_just_pressed("speed_down"):
@@ -110,7 +114,8 @@ func on_move_timer_timeout() -> void:
 	if current_mode == Mode.CameraMoving:
 		set_mode(Mode.Running)
 	elif current_direction != "" and current_move_speed > 0:
-		$Map.move_snake(current_direction)
+		move_snake(current_direction)
+		update_camera()
 
 func on_hurt_timer_timeout() -> void:
 	if current_map == Maps.Desert:
@@ -123,8 +128,71 @@ func change_move_speed(change: int) -> void:
 		0:
 			pass # handled in on_move_timer_timeout
 		1:
-			$MoveTimer.wait_time = 0.35
+			$MoveTimer.wait_time = 0.36
 		2:
-			$MoveTimer.wait_time = 0.2
+			$MoveTimer.wait_time = 0.25
 		3:
-			$MoveTimer.wait_time = 0.13
+			$MoveTimer.wait_time = 0.15
+
+# These values are defined as a custom data layer on the individual tiles of the tilemap
+#
+# e.g. The sprite for the power source has a manually set value of "2"
+enum Objects {
+	PLANT = 1,
+	POWER_SOURCE = 2,
+	FENCE = 3,
+}
+
+func get_decoration_from_tilemap(pos: Vector2i):
+	var data = $Map/Ground/Decorations.get_cell_tile_data(pos)
+	
+	if data == null:
+		return null
+	
+	return data.get_custom_data("interact")
+
+func is_touching(obj: Objects) -> bool:
+	var head_pos = $Map/Snake.gridlocs[0]
+	
+	var data = get_decoration_from_tilemap(head_pos)
+	
+	if data != null:
+		return data == obj
+	
+	return false
+
+func num_touching(obj: Objects) -> int:
+	var count: int = 0
+	
+	for pos in $Map/Snake.gridlocs:
+		var data = get_decoration_from_tilemap(pos)
+		if data != null && data == obj:
+			count += 1
+		
+	return count
+
+func handle_touching_food():
+	var snake_head: Vector2i = $Map/Snake.gridlocs[0]
+	
+	for food_node in $Map/food_nodes.get_children():
+		# Convert from snake space into world space
+		if Vector2i(food_node.position) / 16 == snake_head:
+			food_node.eat()
+
+func move_snake(direction: String) -> void:
+	$Map/Snake.move(direction)
+	if $Map/Snake.detect_shape():
+		match $Map/Snake.active_shape:
+			Snake.Shape.Wave:
+				flip_switches()
+			Snake.Shape.Square:
+				$desert_boxes.break_all()
+
+	var touching_sources = num_touching(Objects.POWER_SOURCE)
+	$Map/Snake.set_power_level(touching_sources)
+	
+	handle_touching_food()
+
+func flip_switches():
+	for switch in find_children("switch*"):
+		switch.toggle()

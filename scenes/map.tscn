@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://duxa8pgyfq7m"]
 
-[ext_resource type="Script" uid="uid://dfhyn057pafew" path="res://scenes/map.gd" id="1_gldc4"]
 [ext_resource type="Texture2D" uid="uid://dcicmow7uppce" path="res://images/fence_corner_for_box_screen.png" id="2_c70he"]
 [ext_resource type="PackedScene" uid="uid://b5wxtotml1f30" path="res://scenes/snake.tscn" id="2_paxxb"]
 [ext_resource type="Texture2D" uid="uid://boki0q8ya5ovi" path="res://images/switch.png" id="3_2lpho"]
@@ -362,7 +361,6 @@ script/source = "extends Node
 
 [node name="map" type="Node2D" unique_id=1460035702]
 texture_filter = 1
-script = ExtResource("1_gldc4")
 metadata/_edit_vertical_guides_ = [656.0, -320.0, -640.0]
 metadata/_edit_horizontal_guides_ = [-240.0, 512.0]
 
@@ -1152,9 +1150,6 @@ color2 = true
 position = Vector2(288, -80)
 color2 = true
 
-[node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
-z_index = 1
-
 [node name="flowerpatch_boxes" type="Node" parent="." unique_id=220968898]
 
 [node name="Box" parent="flowerpatch_boxes" unique_id=811830094 instance=ExtResource("13_p7tei")]
@@ -1243,7 +1238,10 @@ position = Vector2(224, 304)
 [node name="Food4" parent="flowerpatch_food" unique_id=921627449 instance=ExtResource("17_c70he")]
 position = Vector2(224, 320)
 
+[node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
+
 [node name="House" type="Sprite2D" parent="." unique_id=849834734]
 position = Vector2(128, 64)
 texture = ExtResource("19_6k6j1")
 centered = false
+offset = Vector2(0, 1)

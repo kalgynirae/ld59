@@ -46,6 +46,7 @@ wait_time = 0.2
 
 [node name="HurtTimer" type="Timer" parent="." unique_id=1507968008]
 wait_time = 4.0
+autostart = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1693132144]
 position = Vector2(-192, 0)
