@@ -1,6 +1,7 @@
 extends Node2D
 class_name Snake
 
+var active_shape: Shape = Shape.None
 var gridlocs: Array[Vector2i] = []
 var parts: Array[SnakePart] = []
 
@@ -121,7 +122,7 @@ func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 	for i in length - 1:
 		add_part()
 
-func detect_shape(debug: bool = false) -> Shape:
+func detect_shape(debug: bool = false) -> bool:
 	var segments = [["s", 1]];
 	for i in range(1, parts.size()):
 		match parts[i].turn():
@@ -135,22 +136,29 @@ func detect_shape(debug: bool = false) -> Shape:
 			Turn.Left:
 				segments.append(["l", 1])
 
-	if false and segments_match(segments, SQUARE, debug):
-		print("SQUARE!!!")
-		return Shape.Square
+	var detected_shape
+	if segments_match(segments, SQUARE, debug):
+		detected_shape = Shape.Square
 	elif segments_match(segments, CLOUD, debug):
-		print("CLOUD!!!")
-		return Shape.Cloud
+		detected_shape = Shape.Cloud
 	elif segments_match(segments, WAVE, debug):
-		print("WAVE!!!")
-		return Shape.Wave
+		detected_shape = Shape.Wave
 	else:
-		return Shape.None
+		detected_shape = Shape.None
+
+	if detected_shape != active_shape:
+		active_shape = detected_shape
+		print("active_shape: %s" % Shape.keys()[active_shape])
+		return true
+	return false
 
 var SQUARE = reverse_and_mirror([
 	[["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 2]],
-	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 3]],
-	[["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 4]],
+	[["s", 1], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 3]],
+	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2]],
+	[["s", 2], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 4]],
+	[["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3]],
+	[["s", 1], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 1]],
 ])
 
 var CLOUD = reverse_and_mirror([
@@ -202,13 +210,13 @@ func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 static func reverse_and_mirror(patterns: Array) -> Array:
 	var out = []
 	for pattern in patterns:
-		var mirrored = pattern.duplicate()
+		var mirrored = pattern.duplicate(true)
 		for item in mirrored:
 			if item[0] == "l":
 				item[0] = "r"
 			elif item[0] == "r":
 				item[0] = "l"
-				
+
 		var reversed = pattern.duplicate()
 		reversed.reverse()
 		var mirrored_reversed = mirrored.duplicate()
