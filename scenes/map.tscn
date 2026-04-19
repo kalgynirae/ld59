@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://biivv32u0fc2l" path="res://images/desert_border.png" id="7_wslke"]
 [ext_resource type="Texture2D" uid="uid://dywgjcq3s2ukr" path="res://images/fence_final_last_one.png" id="9_mo32q"]
 [ext_resource type="Texture2D" uid="uid://k57wa603v43" path="res://images/power.png" id="10_gw3fx"]
-[ext_resource type="Script" uid="uid://n5w2hjh7hl24" path="res://scenes/desert_boxes.gd" id="12_c00ee"]
 [ext_resource type="PackedScene" uid="uid://c4dmib44m0oh2" path="res://scenes/plant.tscn" id="13_gw3fx"]
 [ext_resource type="PackedScene" uid="uid://bohr8wq4hdmoo" path="res://scenes/box.tscn" id="13_p7tei"]
 [ext_resource type="Texture2D" uid="uid://7lqw5vtr25d2" path="res://images/house_doorway.png" id="17_6k6j1"]
@@ -760,31 +759,38 @@ position = Vector2(480, 176)
 growth_stage = 0
 
 [node name="desert_boxes" type="Node2D" parent="." unique_id=756684892]
-script = ExtResource("12_c00ee")
 
 [node name="Box" parent="desert_boxes" unique_id=470225223 instance=ExtResource("13_p7tei")]
 position = Vector2(-208, 16)
+desert = true
 
 [node name="Box2" parent="desert_boxes" unique_id=1310750831 instance=ExtResource("13_p7tei")]
 position = Vector2(-192, 16)
+desert = true
 
 [node name="Box3" parent="desert_boxes" unique_id=1610262772 instance=ExtResource("13_p7tei")]
 position = Vector2(-208, 32)
+desert = true
 
 [node name="Box4" parent="desert_boxes" unique_id=1020363108 instance=ExtResource("13_p7tei")]
 position = Vector2(-192, 32)
+desert = true
 
 [node name="Box5" parent="desert_boxes" unique_id=1753544412 instance=ExtResource("13_p7tei")]
 position = Vector2(-272, 208)
+desert = true
 
 [node name="Box6" parent="desert_boxes" unique_id=202926449 instance=ExtResource("13_p7tei")]
 position = Vector2(-256, 208)
+desert = true
 
 [node name="Box7" parent="desert_boxes" unique_id=763342871 instance=ExtResource("13_p7tei")]
 position = Vector2(-272, 224)
+desert = true
 
 [node name="Box8" parent="desert_boxes" unique_id=517818503 instance=ExtResource("13_p7tei")]
 position = Vector2(-256, 224)
+desert = true
 
 [node name="food_nodes" type="Node2D" parent="." unique_id=1012694226]
 script = SubResource("GDScript_p7tei")

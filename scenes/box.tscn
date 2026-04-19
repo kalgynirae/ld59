@@ -2,13 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://cht3ukdk58jjt" path="res://images/box.png" id="1_3inec"]
 [ext_resource type="Script" uid="uid://mr6ohr42xlfi" path="res://scenes/box.gd" id="1_ks2v0"]
+[ext_resource type="Texture2D" uid="uid://pncmkdgch4lp" path="res://images/desert_box.png" id="3_c2ln5"]
 
 [node name="Box" type="Node2D" unique_id=470225223]
+texture_filter = 1
 script = ExtResource("1_ks2v0")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1233165570]
-texture_filter = 1
+[node name="Regular" type="Sprite2D" parent="." unique_id=1233165570]
 texture = ExtResource("1_3inec")
 centered = false
 offset = Vector2(0, -2)
 region_rect = Rect2(0, 0, 16, 18)
+
+[node name="Desert" type="Sprite2D" parent="." unique_id=1207792513]
+visible = false
+texture = ExtResource("3_c2ln5")
+centered = false
+offset = Vector2(0, -2)

@@ -1,7 +1,8 @@
 extends Node2D
 
-@export var active: bool = true
+@export var desert: bool = false
 
-func breaks():
-	active = false
-	$Sprite.visible = false
+func _ready() -> void:
+	if desert:
+		$Regular.visible = false
+		$Desert.visible = true

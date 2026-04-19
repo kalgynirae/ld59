@@ -164,7 +164,8 @@ func move_snake(direction: String) -> void:
 			Snake.Shape.Wave:
 				flip_switches()
 			Snake.Shape.Square:
-				$desert_boxes.break_all()
+				for box in $Map/desert_boxes.get_children():
+					box.visible = false
 			Snake.Shape.Cloud:
 				$Map/river.set_water_level(RiverTile.WaterLevel.FULL)
 
