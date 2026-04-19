@@ -1131,3 +1131,91 @@ color2 = true
 
 [node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
 z_index = 1
+
+[node name="flowerpatch_boxes" type="Node" parent="." unique_id=220968898]
+
+[node name="Box" parent="flowerpatch_boxes" unique_id=811830094 instance=ExtResource("13_p7tei")]
+position = Vector2(112, 416)
+
+[node name="Box12" parent="flowerpatch_boxes" unique_id=948551708 instance=ExtResource("13_p7tei")]
+position = Vector2(112, 432)
+
+[node name="Box11" parent="flowerpatch_boxes" unique_id=1020650423 instance=ExtResource("13_p7tei")]
+position = Vector2(112, 448)
+
+[node name="Box2" parent="flowerpatch_boxes" unique_id=633933745 instance=ExtResource("13_p7tei")]
+position = Vector2(96, 416)
+
+[node name="Box3" parent="flowerpatch_boxes" unique_id=1703357816 instance=ExtResource("13_p7tei")]
+position = Vector2(80, 416)
+
+[node name="Box4" parent="flowerpatch_boxes" unique_id=1441605920 instance=ExtResource("13_p7tei")]
+position = Vector2(64, 416)
+
+[node name="Box5" parent="flowerpatch_boxes" unique_id=858571823 instance=ExtResource("13_p7tei")]
+position = Vector2(64, 432)
+
+[node name="Box6" parent="flowerpatch_boxes" unique_id=1058914511 instance=ExtResource("13_p7tei")]
+position = Vector2(64, 448)
+
+[node name="Box7" parent="flowerpatch_boxes" unique_id=1491442975 instance=ExtResource("13_p7tei")]
+position = Vector2(64, 464)
+
+[node name="Box8" parent="flowerpatch_boxes" unique_id=1204766161 instance=ExtResource("13_p7tei")]
+position = Vector2(80, 464)
+
+[node name="Box9" parent="flowerpatch_boxes" unique_id=313889437 instance=ExtResource("13_p7tei")]
+position = Vector2(96, 464)
+
+[node name="Box10" parent="flowerpatch_boxes" unique_id=80850875 instance=ExtResource("13_p7tei")]
+position = Vector2(112, 464)
+
+[node name="Box13" parent="flowerpatch_boxes" unique_id=1586971792 instance=ExtResource("13_p7tei")]
+position = Vector2(240, 288)
+
+[node name="Box14" parent="flowerpatch_boxes" unique_id=652025914 instance=ExtResource("13_p7tei")]
+position = Vector2(240, 304)
+
+[node name="Box15" parent="flowerpatch_boxes" unique_id=122358839 instance=ExtResource("13_p7tei")]
+position = Vector2(240, 320)
+
+[node name="Box16" parent="flowerpatch_boxes" unique_id=306276156 instance=ExtResource("13_p7tei")]
+position = Vector2(224, 288)
+
+[node name="Box17" parent="flowerpatch_boxes" unique_id=873472092 instance=ExtResource("13_p7tei")]
+position = Vector2(208, 288)
+
+[node name="Box18" parent="flowerpatch_boxes" unique_id=923278046 instance=ExtResource("13_p7tei")]
+position = Vector2(192, 288)
+
+[node name="Box19" parent="flowerpatch_boxes" unique_id=225125769 instance=ExtResource("13_p7tei")]
+position = Vector2(192, 304)
+
+[node name="Box20" parent="flowerpatch_boxes" unique_id=1498803004 instance=ExtResource("13_p7tei")]
+position = Vector2(192, 320)
+
+[node name="Box21" parent="flowerpatch_boxes" unique_id=1996785313 instance=ExtResource("13_p7tei")]
+position = Vector2(192, 336)
+
+[node name="Box22" parent="flowerpatch_boxes" unique_id=694520872 instance=ExtResource("13_p7tei")]
+position = Vector2(208, 336)
+
+[node name="Box23" parent="flowerpatch_boxes" unique_id=951320985 instance=ExtResource("13_p7tei")]
+position = Vector2(224, 336)
+
+[node name="Box24" parent="flowerpatch_boxes" unique_id=1620917177 instance=ExtResource("13_p7tei")]
+position = Vector2(240, 336)
+
+[node name="flowerpatch_food" type="Node" parent="." unique_id=981249626]
+
+[node name="Food" parent="flowerpatch_food" unique_id=270560177 instance=ExtResource("17_c70he")]
+position = Vector2(96, 432)
+
+[node name="Food2" parent="flowerpatch_food" unique_id=1715658580 instance=ExtResource("17_c70he")]
+position = Vector2(96, 448)
+
+[node name="Food3" parent="flowerpatch_food" unique_id=1839779420 instance=ExtResource("17_c70he")]
+position = Vector2(224, 304)
+
+[node name="Food4" parent="flowerpatch_food" unique_id=921627449 instance=ExtResource("17_c70he")]
+position = Vector2(224, 320)
