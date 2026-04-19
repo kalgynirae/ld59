@@ -121,7 +121,7 @@ func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 	for i in length - 1:
 		add_part()
 
-func detect_shape(debug: bool = true) -> Shape:
+func detect_shape(debug: bool = false) -> Shape:
 	var segments = [["s", 1]];
 	for i in range(1, parts.size()):
 		match parts[i].turn():
@@ -141,30 +141,32 @@ func detect_shape(debug: bool = true) -> Shape:
 	elif segments_match(segments, CLOUD, debug):
 		print("CLOUD!!!")
 		return Shape.Cloud
+	elif segments_match(segments, WAVE, debug):
+		print("WAVE!!!")
+		return Shape.Wave
 	else:
 		return Shape.None
 
-const SQUARE = [
+var SQUARE = reverse_and_mirror([
 	[["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 2]],
 	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 3]],
 	[["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 4]],
-	[["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["s", 2]],
-	[["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 2], ["l", 1], ["s", 3]],
-	[["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 3], ["l", 1], ["s", 4]],
-]
-const CLOUD = [
+])
+
+var CLOUD = reverse_and_mirror([
 	[["r", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["r", 1], ["s", 5]],
-	[["l", 1], ["r", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["l", 1], ["s", 5]],
-	[["s", 5], ["r", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["l", 1], ["r", 1]],
-	[["s", 5], ["l", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1], ["l", 1]],
-]
+])
+
+var WAVE = reverse_and_mirror([
+	[["s", 1], ["l", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 3], ["l", 1], ["s", 1], ["l", 1], ["s", 1], ["r", 1]],
+])
 
 func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 	var min_segment_count = patterns[0].size()
 	if segments.size() < min_segment_count:
 		return false
 
-	print("segments=%s" % [segments])
+	if debug: print("segments=%s" % [segments])
 
 	if debug: print("Trying to match any of %s patterns" % patterns.size())
 	var matched = false
@@ -196,3 +198,24 @@ func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 		if matched:
 			break
 	return matched
+
+static func reverse_and_mirror(patterns: Array) -> Array:
+	var out = []
+	for pattern in patterns:
+		var mirrored = pattern.duplicate()
+		for item in mirrored:
+			if item[0] == "l":
+				item[0] = "r"
+			elif item[0] == "r":
+				item[0] = "l"
+				
+		var reversed = pattern.duplicate()
+		reversed.reverse()
+		var mirrored_reversed = mirrored.duplicate()
+		mirrored_reversed.reverse()
+
+		out.append(pattern)
+		out.append(mirrored)
+		out.append(reversed)
+		out.append(mirrored_reversed)
+	return out
