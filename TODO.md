@@ -24,6 +24,7 @@ EVERYWHERE
 ✔️Require power source for shapes.
 * Shape effect.
 ✔️Banana eating while eating banana.
+* Sound effects!
 
 DESERT
 ✔️Desert kill you.
