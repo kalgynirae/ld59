@@ -100,6 +100,13 @@ func change_screen() -> bool:
 		var new_position = current_screen_coords * VIEWPORT_PIXELS
 		$Camera.position = new_position
 		set_mode(Mode.CameraMoving)
+		
+		if current_screen_coords == DESERT and desert_harmful:
+			$Music.stream_paused = true
+			$SoundWind.play()
+		else:
+			$SoundWind.stop()
+			$Music.stream_paused = false
 		return true
 	return false
 
@@ -285,9 +292,11 @@ func rain() -> void:
 			resurrect_plants($Map/river_plants.get_children())
 			await get_tree().create_timer(4.0).timeout
 		DESERT:
+			$SoundWind.stop()
 			desert_harmful = false
 			%Heat.emitting = false
 			await get_tree().create_timer(3.0).timeout
+			$Music.paused = false
 	%Rain.emitting = false
 	set_mode(Mode.Running)
 
@@ -361,3 +370,6 @@ func wing_snake() -> void:
 	for i in 100:
 		await get_tree().create_timer(0.02).timeout
 		%Curtain.color.a += 0.01
+
+func _on_sound_wind_finished() -> void:
+	$SoundWind.play(1.15)

@@ -13,7 +13,7 @@ HOME
 ✔️Finish final puzzle.
 ✔️Fix house fence squarishness.
 ✔️House collision.
-* Make the snake have wings.
+✔️Make the snake have wings.
 
 TOWER
 ✔️Implement tower-powered power source.
@@ -26,7 +26,8 @@ EVERYWHERE
 = Shape effect.
 ✔️Banana eating while eating banana.
 ✔️Respawn snake in a collapsed form.
-* Sound effects!
+✔️Sound effects!
+  * Except for electricity
 * Music!
 
 DESERT

@@ -131,6 +131,7 @@ region_rect = Rect2(0, 0, 204, 256)
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=320226715]
 volume_db = -12.0
+autoplay = true
 
 [node name="SoundEat" type="AudioStreamPlayer" parent="." unique_id=1304794641]
 stream = ExtResource("6_vtaks")
@@ -150,3 +151,4 @@ stream = ExtResource("10_trtic")
 [connection signal="timeout" from="MoveTimer" to="." method="on_move_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="on_hurt_timer_timeout"]
 [connection signal="timeout" from="ResurrectTimer" to="." method="on_resurrect_timer_timeout"]
+[connection signal="finished" from="SoundWind" to="." method="_on_sound_wind_finished"]
