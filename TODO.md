@@ -26,4 +26,4 @@ DESERT
 * Desert kill you.
 * Box explosion.
 * Rain.
-* Shrink desert (to make room for cloud).
+✔️Shrink desert (to make room for cloud).

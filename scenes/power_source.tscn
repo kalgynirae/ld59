@@ -6,15 +6,8 @@
 [node name="power_source" type="Node2D" unique_id=1100650769]
 script = ExtResource("1_5kvrx")
 
-[node name="off" type="Sprite2D" parent="." unique_id=1270638977]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1270638977]
 texture = ExtResource("2_aa43d")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
-
-[node name="on" type="Sprite2D" parent="." unique_id=1597537846]
-visible = false
-texture = ExtResource("2_aa43d")
-centered = false
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
