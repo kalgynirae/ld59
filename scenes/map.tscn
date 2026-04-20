@@ -747,15 +747,18 @@ position = Vector2(592, 192)
 position = Vector2(592, 208)
 
 [node name="Food7" parent="food" unique_id=2087248251 instance=ExtResource("17_c70he")]
-position = Vector2(224, -160)
+position = Vector2(208, -160)
 
 [node name="Food8" parent="food" unique_id=940243539 instance=ExtResource("17_c70he")]
-position = Vector2(241, -160)
+position = Vector2(225, -160)
 
 [node name="Food9" parent="food" unique_id=511800015 instance=ExtResource("17_c70he")]
-position = Vector2(240, -160)
+position = Vector2(224, -160)
 
 [node name="Food10" parent="food" unique_id=1089518837 instance=ExtResource("17_c70he")]
+position = Vector2(240, -160)
+
+[node name="Food15" parent="food" unique_id=823259300 instance=ExtResource("17_c70he")]
 position = Vector2(256, -160)
 
 [node name="Food11" parent="food" unique_id=270560177 instance=ExtResource("17_c70he")]
@@ -917,28 +920,31 @@ position = Vector2(288, -224)
 color2 = true
 
 [node name="switch37" parent="UpperSwitches" unique_id=401484375 instance=ExtResource("5_2klcf")]
-position = Vector2(64, -208)
+position = Vector2(48, -208)
 
 [node name="switch38" parent="UpperSwitches" unique_id=700122237 instance=ExtResource("5_2klcf")]
-position = Vector2(80, -208)
+position = Vector2(64, -208)
 
 [node name="switch39" parent="UpperSwitches" unique_id=1821490339 instance=ExtResource("5_2klcf")]
-position = Vector2(96, -208)
+position = Vector2(80, -208)
 
 [node name="switch40" parent="UpperSwitches" unique_id=1881007851 instance=ExtResource("5_2klcf")]
-position = Vector2(112, -208)
+position = Vector2(96, -208)
 
 [node name="switch41" parent="UpperSwitches" unique_id=1245836543 instance=ExtResource("5_2klcf")]
-position = Vector2(128, -208)
+position = Vector2(112, -208)
 
 [node name="switch42" parent="UpperSwitches" unique_id=1481975482 instance=ExtResource("5_2klcf")]
-position = Vector2(144, -208)
+position = Vector2(128, -208)
 
 [node name="switch43" parent="UpperSwitches" unique_id=1399709965 instance=ExtResource("5_2klcf")]
-position = Vector2(160, -208)
+position = Vector2(144, -208)
 
 [node name="switch44" parent="UpperSwitches" unique_id=106407304 instance=ExtResource("5_2klcf")]
 position = Vector2(176, -208)
+
+[node name="switch99" parent="UpperSwitches" unique_id=571783585 instance=ExtResource("5_2klcf")]
+position = Vector2(160, -208)
 
 [node name="switch45" parent="UpperSwitches" unique_id=997845779 instance=ExtResource("5_2klcf")]
 position = Vector2(192, -208)
@@ -962,70 +968,73 @@ position = Vector2(272, -208)
 position = Vector2(288, -208)
 
 [node name="switch52" parent="UpperSwitches" unique_id=86799583 instance=ExtResource("5_2klcf")]
-position = Vector2(64, -192)
+position = Vector2(48, -192)
 
 [node name="switch53" parent="UpperSwitches" unique_id=311629957 instance=ExtResource("5_2klcf")]
-position = Vector2(64, -176)
+position = Vector2(48, -176)
 
 [node name="switch54" parent="UpperSwitches" unique_id=305439947 instance=ExtResource("5_2klcf")]
-position = Vector2(128, -192)
+position = Vector2(112, -192)
 
 [node name="switch55" parent="UpperSwitches" unique_id=458060413 instance=ExtResource("5_2klcf")]
-position = Vector2(128, -176)
+position = Vector2(112, -176)
 
 [node name="switch56" parent="UpperSwitches" unique_id=1214545544 instance=ExtResource("5_2klcf")]
-position = Vector2(128, -160)
+position = Vector2(112, -160)
 
 [node name="switch57" parent="UpperSwitches" unique_id=1423020858 instance=ExtResource("5_2klcf")]
-position = Vector2(128, -144)
+position = Vector2(112, -144)
 
 [node name="switch58" parent="UpperSwitches" unique_id=1749808733 instance=ExtResource("5_2klcf")]
-position = Vector2(144, -176)
+position = Vector2(128, -176)
 
 [node name="switch59" parent="UpperSwitches" unique_id=1799447006 instance=ExtResource("5_2klcf")]
-position = Vector2(160, -176)
+position = Vector2(144, -176)
 
 [node name="switch60" parent="UpperSwitches" unique_id=1635548885 instance=ExtResource("5_2klcf")]
-position = Vector2(96, -176)
+position = Vector2(80, -176)
 
 [node name="switch61" parent="UpperSwitches" unique_id=1641692033 instance=ExtResource("5_2klcf")]
-position = Vector2(96, -160)
+position = Vector2(80, -160)
 
 [node name="switch62" parent="UpperSwitches" unique_id=1941900982 instance=ExtResource("5_2klcf")]
-position = Vector2(96, -144)
-
-[node name="switch63" parent="UpperSwitches" unique_id=1137561233 instance=ExtResource("5_2klcf")]
-position = Vector2(96, -128)
-
-[node name="switch64" parent="UpperSwitches" unique_id=273815156 instance=ExtResource("5_2klcf")]
 position = Vector2(80, -144)
 
-[node name="switch65" parent="UpperSwitches" unique_id=1900179120 instance=ExtResource("5_2klcf")]
+[node name="switch63" parent="UpperSwitches" unique_id=1137561233 instance=ExtResource("5_2klcf")]
+position = Vector2(80, -128)
+
+[node name="switch64" parent="UpperSwitches" unique_id=273815156 instance=ExtResource("5_2klcf")]
 position = Vector2(64, -144)
 
+[node name="switch65" parent="UpperSwitches" unique_id=1900179120 instance=ExtResource("5_2klcf")]
+position = Vector2(48, -144)
+
 [node name="switch66" parent="UpperSwitches" unique_id=1345839086 instance=ExtResource("5_2klcf")]
-position = Vector2(160, -144)
+position = Vector2(144, -144)
 
 [node name="switch67" parent="UpperSwitches" unique_id=1287032995 instance=ExtResource("5_2klcf")]
-position = Vector2(160, -128)
+position = Vector2(144, -128)
 
 [node name="switch68" parent="UpperSwitches" unique_id=1676139442 instance=ExtResource("5_2klcf")]
-position = Vector2(96, -112)
+position = Vector2(80, -112)
 
 [node name="switch69" parent="UpperSwitches" unique_id=1628187557 instance=ExtResource("5_2klcf")]
-position = Vector2(112, -112)
+position = Vector2(96, -112)
 
 [node name="switch70" parent="UpperSwitches" unique_id=130152119 instance=ExtResource("5_2klcf")]
-position = Vector2(128, -112)
+position = Vector2(112, -112)
 
 [node name="switch71" parent="UpperSwitches" unique_id=1474926120 instance=ExtResource("5_2klcf")]
-position = Vector2(144, -112)
+position = Vector2(128, -112)
 
 [node name="switch72" parent="UpperSwitches" unique_id=456019786 instance=ExtResource("5_2klcf")]
-position = Vector2(160, -112)
+position = Vector2(144, -112)
 
 [node name="switch73" parent="UpperSwitches" unique_id=1508464480 instance=ExtResource("5_2klcf")]
 position = Vector2(176, -112)
+
+[node name="switch100" parent="UpperSwitches" unique_id=65515358 instance=ExtResource("5_2klcf")]
+position = Vector2(160, -112)
 
 [node name="switch74" parent="UpperSwitches" unique_id=2144640187 instance=ExtResource("5_2klcf")]
 position = Vector2(192, -112)
@@ -1406,3 +1415,6 @@ position = Vector2(128, 80)
 texture = ExtResource("19_m335s")
 centered = false
 offset = Vector2(0, 1)
+
+[node name="power_source" parent="." unique_id=1316962820 instance=ExtResource("17_m335s")]
+position = Vector2(144, -160)
