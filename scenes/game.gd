@@ -102,8 +102,7 @@ func on_move_timer_timeout() -> void:
 		update_camera()
 
 func on_hurt_timer_timeout() -> void:
-	# TODO: fix the desert
-	if false:
+	if detect_desert():
 		$Map/Snake.hurt()
 
 func change_move_speed(change: int) -> void:
@@ -123,6 +122,11 @@ func detect_obstacles() -> bool:
 	var loc = $Map/Snake.gridlocs[0]
 	var tile_data = $Map/Ground.get_cell_tile_data(loc)
 	return tile_data and tile_data.get_custom_data("obstacle")
+
+func detect_desert() -> bool:
+	var loc = $Map/Snake.gridlocs[0]
+	var tile_data = $Map/Ground.get_cell_tile_data(loc)
+	return tile_data and tile_data.get_custom_data("desert")
 
 func count_power_sources() -> int:
 	var count = 0
