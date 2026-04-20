@@ -89,8 +89,8 @@ func move_camera(position: Vector2) -> void:
 		set_mode(Mode.CameraMoving)
 
 func _ready() -> void:
-	$Map/Snake.init(Vector2i(8,4), "right", 6)
-	current_direction = "right"
+	$Map/Snake.init(Vector2i(9, 7), "down", 3)
+	current_direction = "down"
 	change_move_speed(0)
 	set_mode(Mode.Running)
 
