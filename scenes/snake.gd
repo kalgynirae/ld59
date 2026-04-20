@@ -5,6 +5,7 @@ class_name Snake
 @export_range(0, 10, 0.25) var hurt_time: float = 0.5
 
 var active_shape: Shape = Shape.None
+var current_power_level: SnakePart.PowerLevel = SnakePart.PowerLevel.NORMAL
 var gridlocs: Array[Vector2i] = []
 var parts: Array[SnakePart] = []
 
@@ -137,6 +138,7 @@ func sync_snake_parts(head_direction: String, full: bool):
 		tailpart.set_direction("down")
 
 func set_power_level(level: SnakePart.PowerLevel):
+	current_power_level = level
 	for part in parts:
 		part.set_power_level(level)
 
@@ -172,28 +174,31 @@ func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 		add_part(startloc - GridLoc.offset(direction))
 
 func detect_shape(debug: bool = false) -> bool:
-	var segments = [["s", 1]];
-	for i in range(1, parts.size()):
-		match parts[i].turn():
-			Turn.None:
-				if segments[-1][0] == "s":
-					segments[-1][1] = segments[-1][1] + 1
-				else:
-					segments.append(["s", 1])
-			Turn.Right:
-				segments.append(["r", 1])
-			Turn.Left:
-				segments.append(["l", 1])
-
 	var detected_shape
-	if segments_match(segments, SQUARE, debug):
-		detected_shape = Shape.Square
-	elif segments_match(segments, CLOUD, debug):
-		detected_shape = Shape.Cloud
-	elif segments_match(segments, WAVE, debug):
-		detected_shape = Shape.Wave
-	else:
+	if current_power_level == SnakePart.PowerLevel.NORMAL:
 		detected_shape = Shape.None
+	else:
+		var segments = [["s", 1]];
+		for i in range(1, parts.size()):
+			match parts[i].turn():
+				Turn.None:
+					if segments[-1][0] == "s":
+						segments[-1][1] = segments[-1][1] + 1
+					else:
+						segments.append(["s", 1])
+				Turn.Right:
+					segments.append(["r", 1])
+				Turn.Left:
+					segments.append(["l", 1])
+
+		if segments_match(segments, SQUARE, debug):
+			detected_shape = Shape.Square
+		elif segments_match(segments, CLOUD, debug):
+			detected_shape = Shape.Cloud
+		elif segments_match(segments, WAVE, debug):
+			detected_shape = Shape.Wave
+		else:
+			detected_shape = Shape.None
 
 	if detected_shape != active_shape:
 		active_shape = detected_shape

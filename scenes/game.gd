@@ -15,7 +15,7 @@ const NORTH = Vector2i(0, -1)
 
 var current_mode: Mode = Mode.Init
 var current_direction: String = ""
-var current_move_speed: int = 2
+var current_move_speed: int = 1
 var current_screen_coords: Vector2i = Vector2i(0, 0)
 var saved_food_state: Dictionary[Node, bool] = {}
 var saved_snake_state = null
