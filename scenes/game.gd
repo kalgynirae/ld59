@@ -167,7 +167,7 @@ func move_snake(direction: String) -> void:
 				for box in $Map/desert_boxes.get_children():
 					box.visible = false
 			Snake.Shape.Cloud:
-				$Map/river.set_water_level(RiverTile.WaterLevel.FULL)
+				$Map/river.fill()
 
 	var touching_sources = num_touching(Objects.POWER_SOURCE)
 	$Map/Snake.set_power_level(touching_sources)

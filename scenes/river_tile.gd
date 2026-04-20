@@ -18,7 +18,8 @@ enum RiverPos {
 
 # Sets all the attributes associated with a river tile
 func set_water_level(level: WaterLevel) -> void:
-	$Sprite.region_rect = Rect2(river_pos * 16, level * 16, 16, 16)
+	# We have two variants for each fill level, so 16 * 2 instead
+	$Sprite.region_rect = Rect2(river_pos * 16, level * 32, 16, 16)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cetp8vlqg6p1p"]
+
+[ext_resource type="Script" uid="uid://c0m1e0nqm71rp" path="res://scenes/bridge.gd" id="1_im2sa"]
+[ext_resource type="Texture2D" uid="uid://dviuf5bw4y2nm" path="res://images/bridge.png" id="2_1q54l"]
+
+[node name="Bridge" type="Node2D" unique_id=1223995739]
+script = ExtResource("1_im2sa")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1079325695]
+texture_filter = 1
+texture = ExtResource("2_1q54l")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 80, 48)

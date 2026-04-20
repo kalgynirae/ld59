@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b7ipbbt85jft6" path="res://scenes/food.tscn" id="17_c70he"]
 [ext_resource type="Script" uid="uid://bstvrhb5dd184" path="res://scenes/river.gd" id="18_m335s"]
 [ext_resource type="PackedScene" uid="uid://cmrmeaha1n732" path="res://scenes/river_tile.tscn" id="19_6k6j1"]
-[ext_resource type="Texture2D" uid="uid://bkmwemf648t5b" path="res://images/house.png" id="19_m335s"]
+[ext_resource type="PackedScene" uid="uid://cetp8vlqg6p1p" path="res://scenes/bridge.tscn" id="20_sq6bu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6k6j1"]
 texture = ExtResource("2_c70he")
@@ -1441,6 +1441,9 @@ position = Vector2(128, 80)
 texture = ExtResource("17_6k6j1")
 centered = false
 offset = Vector2(0, 1)
+
+[node name="Bridge" parent="river" unique_id=1223995739 instance=ExtResource("20_sq6bu")]
+position = Vector2(496, 128)
 
 [node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
 
