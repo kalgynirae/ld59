@@ -1,6 +1,8 @@
 extends Node
 class_name GridLoc
 
+const TILE_PIXELS: int = 16
+
 static func offset(dir: String) -> Vector2i:
 	match dir:
 		"left":
@@ -14,3 +16,9 @@ static func offset(dir: String) -> Vector2i:
 		_:
 			assert(false, "Invalid direction")
 			return Vector2i(0, 0)
+
+static func from_position(position: Vector2) -> Vector2i:
+	return Vector2i(
+		floor(position.x / TILE_PIXELS),
+		floor(position.y / TILE_PIXELS),
+	)

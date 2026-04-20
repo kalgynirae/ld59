@@ -124,12 +124,14 @@ func detect_obstacles() -> bool:
 	var tile_data = $Map/Ground.get_cell_tile_data(loc)
 	return tile_data and tile_data.get_custom_data("obstacle")
 
-#func num_touching(obj: Objects) -> int:
-	#var count: int = 0
-	#for pos in $Map/Snake.gridlocs:
-		#if get_tilemap_data(pos) == obj:
-			#count += 1
-	#return count
+func count_power_sources() -> int:
+	var count = 0
+	for ps in find_children("power_source*"):
+		if not ps.powered:
+			continue
+		if $Map/Snake.gridlocs.has(GridLoc.from_position(ps.position)):
+			count += 1
+	return count
 
 func handle_touching_food():
 	var snake_head: Vector2i = $Map/Snake.gridlocs[0]
@@ -154,8 +156,7 @@ func move_snake(direction: String) -> void:
 			Snake.Shape.Cloud:
 				$Map/river.fill()
 
-	#var touching_sources = num_touching(Objects.POWER_SOURCE)
-	#$Map/Snake.set_power_level(touching_sources)
+	$Map/Snake.set_power_level(count_power_sources())
 
 	handle_touching_food()
 
