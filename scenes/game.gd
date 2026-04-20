@@ -109,6 +109,7 @@ func _ready() -> void:
 	$Map/Snake.init(Vector2i(9, 7), "down", 3)
 	current_direction = "down"
 	change_move_speed(0)
+	save_snake()
 	set_mode(Mode.Running)
 
 func save_snake() -> void:
