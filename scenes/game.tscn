@@ -10,6 +10,7 @@ script/source = "extends Node2D
 "
 
 [sub_resource type="SystemFont" id="SystemFont_lbhrr"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_iywne"]
 font = SubResource("SystemFont_lbhrr")

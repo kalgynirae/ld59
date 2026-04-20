@@ -15,7 +15,7 @@ func message_for(death_type: DeathType) -> String:
 				0:
 					return "Snake has perished"
 				1:
-					return "Snake has left from this mortal coil"
+					return "Snake has left this mortal coil"
 				_:
 					return "Snake has fallen out of world"
 
