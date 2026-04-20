@@ -245,15 +245,13 @@ func move_snake(direction: String) -> void:
 	$Map/Snake.set_power_level(count_power_sources())
 
 func transmit() -> void:
+	await $Map/Snake.transmit()
 	match active_shape:
 		Shape.Cloud:
-			await $Map/Snake.flash_n(2)
 			set_mode(Mode.Raining)
 		Shape.Wave:
-			await $Map/Snake.flash_n(2)
 			set_mode(Mode.FlippingSwitches)
 		Shape.Square:
-			await $Map/Snake.flash_n(2)
 			set_mode(Mode.BreakingBoxes)
 		_:
 			print("shape not handled yet: %s" % Shape.keys()[active_shape])

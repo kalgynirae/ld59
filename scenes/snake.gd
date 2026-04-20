@@ -142,16 +142,6 @@ func set_power_level(level: SnakePart.PowerLevel):
 	for part in parts:
 		part.set_power_level(level)
 
-## "flashes" or modulates the snake between two states of charge, n times
-## Please note that this function is asynchronus, i.e. treat this as if it runs as a background process
-## To wait for its completion instead, use `await`
-func flash_n(n: int) -> void:
-	for i in range(n):
-		set_power_level(SnakePart.PowerLevel.SLIGHTLY_CHARGED)
-		await get_tree().create_timer(0.25).timeout
-		set_power_level(SnakePart.PowerLevel.SUPERCHARGED)
-		await get_tree().create_timer(0.25).timeout
-
 # Modulates the color a bit and
 func hurt():
 	for part in parts:
@@ -223,6 +213,8 @@ var WAVE = reverse_and_mirror([
 	[["s", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1]],
 ])
 
+var match_info = null
+
 func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 	var min_segment_count = patterns[0].size()
 	if segments.size() < min_segment_count:
@@ -255,6 +247,7 @@ func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 					pattern_matched = false
 					break
 			if pattern_matched:
+				match_info = [pattern, offset]
 				matched = true
 				break
 		if matched:
@@ -281,3 +274,22 @@ static func reverse_and_mirror(patterns: Array) -> Array:
 		out.append(reversed)
 		out.append(mirrored_reversed)
 	return out
+
+func transmit() -> void:
+	if active_shape == Shape.None:
+		return
+	var pattern = match_info[0]
+	var offset = match_info[1]
+
+	var length = 0
+	for segment in pattern:
+		length += segment[1]
+
+	for d in 2:
+		for i in range(offset, min(parts.size(), length + offset)):
+			parts[i].set_power_level(SnakePart.PowerLevel.VERY_CHARGED)
+		await get_tree().create_timer(0.25).timeout
+		for i in range(offset, min(parts.size(), length + offset)):
+			parts[i].set_power_level(SnakePart.PowerLevel.SUPERCHARGED)
+		await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(0.5).timeout

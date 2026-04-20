@@ -25,6 +25,6 @@ EVERYWHERE
 
 DESERT
 ✔️Desert kill you.
-* Box explosion.
+✔️Box explosion.
 ✔️Rain.
 ✔️Shrink desert (to make room for cloud).
