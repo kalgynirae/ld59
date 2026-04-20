@@ -151,21 +151,13 @@ func on_resurrect_timer_timeout() -> void:
 
 func on_move_timer_timeout() -> void:
 	match current_mode:
-		Mode.RiverFilling:
-			return
-		Mode.SquareDrawn:
-			return
-		Mode.WaveDrawn:
-			return
-		Mode.CloudDrawn:
-			return
-	
-	if current_mode == Mode.CameraMoving:
-		set_mode(Mode.Running)
-	elif current_direction != "" and current_move_speed > 0:
-		move_snake(current_direction)
-		if change_screen():
-			save_state()
+		Mode.CameraMoving:
+			set_mode(Mode.Running)
+		Mode.Running:
+			if current_direction != "" and current_move_speed > 0:
+				move_snake(current_direction)
+				if change_screen():
+					save_state()
 
 func on_hurt_timer_timeout() -> void:
 	if detect_desert():
