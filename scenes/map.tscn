@@ -1731,6 +1731,21 @@ powered = true
 
 [node name="power_source2" parent="power" unique_id=2108972456 instance=ExtResource("17_m335s")]
 position = Vector2(64, 160)
+
+[node name="power_source3" parent="power" unique_id=1316962820 instance=ExtResource("17_m335s")]
+position = Vector2(144, -160)
+powered = true
+
+[node name="power_source4" parent="power" unique_id=1614362979 instance=ExtResource("17_m335s")]
+position = Vector2(-112, 160)
+powered = true
+
+[node name="power_source5" parent="power" unique_id=142168761 instance=ExtResource("17_m335s")]
+position = Vector2(128, 352)
+powered = true
+
+[node name="power_source6" parent="power" unique_id=1402195629 instance=ExtResource("17_m335s")]
+position = Vector2(384, 112)
 powered = true
 
 [node name="HouseDoorway" type="Sprite2D" parent="." unique_id=784486344]
@@ -1746,6 +1761,3 @@ position = Vector2(128, 80)
 texture = ExtResource("19_m335s")
 centered = false
 offset = Vector2(0, 1)
-
-[node name="power_source" parent="." unique_id=1316962820 instance=ExtResource("17_m335s")]
-position = Vector2(144, -160)
