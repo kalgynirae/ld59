@@ -9,3 +9,6 @@ func _ready() -> void:
 
 func break_() -> void:
 	visible = false
+
+func unbroken() -> bool:
+	return visible
