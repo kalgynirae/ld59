@@ -1129,10 +1129,10 @@ position = Vector2(592, 192)
 position = Vector2(592, 208)
 
 [node name="Food7" parent="food" unique_id=2087248251 instance=ExtResource("17_c70he")]
-position = Vector2(208, -176)
+position = Vector2(192, -176)
 
 [node name="Food8" parent="food" unique_id=940243539 instance=ExtResource("17_c70he")]
-position = Vector2(225, -176)
+position = Vector2(208, -176)
 
 [node name="Food9" parent="food" unique_id=511800015 instance=ExtResource("17_c70he")]
 position = Vector2(224, -176)

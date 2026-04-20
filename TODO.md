@@ -20,7 +20,7 @@ EVERYWHERE
 * Death skeleton.
 * Require power source for shapes.
 * Shape effect.
-* Banana eating while eating banana.
+✔️Banana eating while eating banana.
 
 DESERT
 * Desert kill you.
