@@ -17,81 +17,81 @@
 [ext_resource type="PackedScene" uid="uid://dxqrv0x4vgi4" path="res://scenes/power_source.tscn" id="17_m335s"]
 [ext_resource type="Script" uid="uid://bstvrhb5dd184" path="res://scenes/river.gd" id="18_m335s"]
 [ext_resource type="PackedScene" uid="uid://cmrmeaha1n732" path="res://scenes/river_tile.tscn" id="19_6k6j1"]
-[ext_resource type="PackedScene" uid="uid://cetp8vlqg6p1p" path="res://scenes/bridge.tscn" id="20_sq6bu"]
 [ext_resource type="Texture2D" uid="uid://bkmwemf648t5b" path="res://images/house.png" id="19_m335s"]
+[ext_resource type="PackedScene" uid="uid://cetp8vlqg6p1p" path="res://scenes/bridge.tscn" id="20_sq6bu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6k6j1"]
 texture = ExtResource("2_c70he")
 0:0/0 = 0
-0:0/0/custom_data_0 = 3
+0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be0no"]
 texture = ExtResource("3_nakos")
 0:0/next_alternative_id = 2
 0:0/0 = 0
-0:0/0/custom_data_0 = 3
+0:0/0/custom_data_0 = true
 1:1/0 = 0
 1:2/0 = 0
 1:3/0 = 0
 2:3/0 = 0
 2:2/0 = 0
 2:1/0 = 0
-2:1/0/custom_data_0 = 3
+2:1/0/custom_data_0 = true
 2:0/0 = 0
-2:0/0/custom_data_0 = 3
+2:0/0/custom_data_0 = true
 3:3/0 = 0
 3:2/0 = 0
 3:1/0 = 0
-3:1/0/custom_data_0 = 3
+3:1/0/custom_data_0 = true
 3:0/0 = 0
-3:0/0/custom_data_0 = 3
+3:0/0/custom_data_0 = true
 1:0/0 = 0
-1:0/0/custom_data_0 = 3
+1:0/0/custom_data_0 = true
 0:1/0 = 0
-0:1/0/custom_data_0 = 3
+0:1/0/custom_data_0 = true
 0:2/0 = 0
-0:2/0/custom_data_0 = 3
+0:2/0/custom_data_0 = true
 0:3/0 = 0
-0:3/0/custom_data_0 = 3
+0:3/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_blm8a"]
 texture = ExtResource("4_jh32y")
 0:0/0 = 0
-0:0/0/custom_data_0 = 3
+0:0/0/custom_data_0 = true
 1:0/0 = 0
-1:0/0/custom_data_0 = 3
+1:0/0/custom_data_0 = true
 2:0/0 = 0
-2:0/0/custom_data_0 = 3
+2:0/0/custom_data_0 = true
 3:0/0 = 0
-3:0/0/custom_data_0 = 3
+3:0/0/custom_data_0 = true
 4:0/0 = 0
-4:0/0/custom_data_0 = 3
+4:0/0/custom_data_0 = true
 5:0/0 = 0
-5:0/0/custom_data_0 = 3
+5:0/0/custom_data_0 = true
 6:0/0 = 0
 0:1/0 = 0
-0:1/0/custom_data_0 = 3
+0:1/0/custom_data_0 = true
 1:1/0 = 0
 2:1/0 = 0
-2:1/0/custom_data_0 = 3
+2:1/0/custom_data_0 = true
 3:1/0 = 0
-3:1/0/custom_data_0 = 3
+3:1/0/custom_data_0 = true
 4:1/0 = 0
 5:1/0 = 0
-5:1/0/custom_data_0 = 3
+5:1/0/custom_data_0 = true
 6:1/0 = 0
 0:2/0 = 0
-0:2/0/custom_data_0 = 3
+0:2/0/custom_data_0 = true
 1:2/0 = 0
-1:2/0/custom_data_0 = 3
+1:2/0/custom_data_0 = true
 2:2/0 = 0
-2:2/0/custom_data_0 = 3
+2:2/0/custom_data_0 = true
 3:2/0 = 0
-3:2/0/custom_data_0 = 3
+3:2/0/custom_data_0 = true
 4:2/0 = 0
-4:2/0/custom_data_0 = 3
+4:2/0/custom_data_0 = true
 5:2/0 = 0
-5:2/0/custom_data_0 = 3
+5:2/0/custom_data_0 = true
 6:2/0 = 0
 0:3/0 = 0
 1:3/0 = 0
@@ -100,16 +100,16 @@ texture = ExtResource("4_jh32y")
 4:3/0 = 0
 5:3/0 = 0
 6:3/0 = 0
-6:3/0/custom_data_0 = 3
+6:3/0/custom_data_0 = true
 0:4/0 = 0
 1:4/0 = 0
 2:4/0 = 0
 3:4/0 = 0
 4:4/0 = 0
 5:4/0 = 0
-5:4/0/custom_data_0 = 3
+5:4/0/custom_data_0 = true
 6:4/0 = 0
-6:4/0/custom_data_0 = 3
+6:4/0/custom_data_0 = true
 0:5/0 = 0
 1:5/0 = 0
 2:5/0 = 0
@@ -254,11 +254,11 @@ texture = ExtResource("7_wslke")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m335s"]
 texture = ExtResource("9_mo32q")
 0:0/0 = 0
-0:0/0/custom_data_0 = 3
+0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_2lpho"]
-custom_data_layer_0/name = "interact"
-custom_data_layer_0/type = 2
+custom_data_layer_0/name = "obstacle"
+custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_be0no")
 sources/2 = SubResource("TileSetAtlasSource_blm8a")
 sources/3 = SubResource("TileSetAtlasSource_gw3fx")
@@ -1339,6 +1339,9 @@ river_pos = 0
 position = Vector2(512, 240)
 river_pos = 0
 
+[node name="Bridge" parent="river" unique_id=1223995739 instance=ExtResource("20_sq6bu")]
+position = Vector2(496, 128)
+
 [node name="power" type="Node2D" parent="." unique_id=1881913633]
 
 [node name="power_source" parent="power" unique_id=1100650769 instance=ExtResource("17_m335s")]
@@ -1354,9 +1357,6 @@ position = Vector2(128, 80)
 texture = ExtResource("17_6k6j1")
 centered = false
 offset = Vector2(0, 1)
-
-[node name="Bridge" parent="river" unique_id=1223995739 instance=ExtResource("20_sq6bu")]
-position = Vector2(496, 128)
 
 [node name="Snake" parent="." unique_id=272715040 instance=ExtResource("2_paxxb")]
 

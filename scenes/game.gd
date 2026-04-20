@@ -118,30 +118,17 @@ func change_move_speed(change: int) -> void:
 		3:
 			$MoveTimer.wait_time = 0.15
 
-# These values are defined as a custom data layer on the individual tiles of the tilemap
-#
-# e.g. The sprite for the power source has a manually set value of "2"
-enum Objects {
-	PLANT = 1,
-	POWER_SOURCE = 2,
-	OBSTACLE = 3,
-}
+func detect_obstacles() -> bool:
+	var loc = $Map/Snake.gridlocs[0]
+	var tile_data = $Map/Ground.get_cell_tile_data(loc)
+	return tile_data and tile_data.get_custom_data("obstacle")
 
-func get_tilemap_data(pos: Vector2i):
-	var ground_data = $Map/Ground.get_cell_tile_data(pos)
-	if ground_data:
-		return ground_data.get_custom_data("interact")
-
-func is_touching(obj: Objects) -> bool:
-	var head_pos = $Map/Snake.gridlocs[0]
-	return get_tilemap_data(head_pos) == obj
-
-func num_touching(obj: Objects) -> int:
-	var count: int = 0
-	for pos in $Map/Snake.gridlocs:
-		if get_tilemap_data(pos) == obj:
-			count += 1
-	return count
+#func num_touching(obj: Objects) -> int:
+	#var count: int = 0
+	#for pos in $Map/Snake.gridlocs:
+		#if get_tilemap_data(pos) == obj:
+			#count += 1
+	#return count
 
 func handle_touching_food():
 	var snake_head: Vector2i = $Map/Snake.gridlocs[0]
@@ -152,7 +139,7 @@ func handle_touching_food():
 
 func move_snake(direction: String) -> void:
 	$Map/Snake.move(direction)
-	if $Map/Snake.detect_self_collision() or is_touching(Objects.OBSTACLE):
+	if $Map/Snake.detect_self_collision() or detect_obstacles():
 		set_mode(Mode.Dead)
 		return
 
@@ -166,9 +153,9 @@ func move_snake(direction: String) -> void:
 			Snake.Shape.Cloud:
 				$Map/river.fill()
 
-	var touching_sources = num_touching(Objects.POWER_SOURCE)
-	$Map/Snake.set_power_level(touching_sources)
-	
+	#var touching_sources = num_touching(Objects.POWER_SOURCE)
+	#$Map/Snake.set_power_level(touching_sources)
+
 	handle_touching_food()
 
 func flip_switches():
