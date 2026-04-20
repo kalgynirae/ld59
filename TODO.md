@@ -1,6 +1,7 @@
 NORTH
-* Switch collision.
+✔️Switch collision.
 ✔️Size of snake at start.
+* Switch reset issue (if you die in the middle)
 
 RIVER
 ✔️Fix bridge/snake collision.

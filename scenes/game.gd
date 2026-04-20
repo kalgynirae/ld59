@@ -196,6 +196,13 @@ func detect_boxes() -> bool:
 			return true
 	return false
 
+func detect_switches() -> bool:
+	var loc = $Map/Snake.gridlocs[0]
+	for switch in $Map/UpperSwitches.get_children():
+		if switch.is_raised() and loc == GridLoc.from_position(switch.position):
+			return true
+	return false
+
 func detect_desert() -> bool:
 	var loc = $Map/Snake.gridlocs[0]
 	var tile_data = $Map/Ground.get_cell_tile_data(loc)
@@ -230,7 +237,7 @@ func move_snake(direction: String) -> void:
 		$Map/Snake.extend(direction)
 	else:
 		$Map/Snake.move(direction)
-	if $Map/Snake.detect_self_collision() or detect_obstacles() or has_collided_with_bridge() or detect_boxes():
+	if $Map/Snake.detect_self_collision() or detect_obstacles() or has_collided_with_bridge() or detect_boxes() or detect_switches():
 		set_mode(Mode.Dead)
 		return
 
