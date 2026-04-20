@@ -20,6 +20,7 @@ enum Shape {
 	Wave,
 	Cloud,
 	Tower,
+	Wings,
 }
 
 func head_direction() -> String:
@@ -191,6 +192,8 @@ func detect_shape(debug: bool = false) -> bool:
 			detected_shape = Shape.Wave
 		elif segments_match(segments, TOWER, debug):
 			detected_shape = Shape.Tower
+		elif segments_match(segments, WINGS, debug):
+			detected_shape = Shape.Wings
 		else:
 			detected_shape = Shape.None
 
@@ -206,7 +209,7 @@ var SQUARE = reverse_and_mirror([
 	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2]],
 	[["s", 2], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 4]],
 	[["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3]],
-	[["s", 1], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 1]],
+	[["s", 1], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1]],
 ])
 
 var CLOUD = reverse_and_mirror([
@@ -223,6 +226,16 @@ var TOWER = reverse_and_mirror([
 	[["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2]],
 	[["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["s", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2]],
 ])
+
+var WINGS = reverse_and_mirror([
+	[["s", 1], ["l", 1], ["s", 2], ["r", 1], ["l", 1], ["s", 3], ["l", 1],
+	 ["r", 1], ["l", 1], ["r", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1],
+	 ["s", 1],
+	 ["r", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1], ["l", 1], ["r", 1],
+	 ["l", 1], ["s", 3], ["l", 1], ["r", 1], ["s", 2], ["l", 1], ["s", 1],
+	]
+])
+
 var match_info = null
 
 func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:

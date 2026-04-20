@@ -196,6 +196,9 @@ func detect_boxes() -> bool:
 	for box in $Map/flowerpatch_boxes.get_children():
 		if box.unbroken() and loc == GridLoc.from_position(box.position):
 			return true
+	for box in $Map/home_boxes.get_children():
+		if box.unbroken() and loc == GridLoc.from_position(box.position):
+			return true
 	return false
 
 func detect_switches() -> bool:
@@ -293,6 +296,9 @@ func break_boxes():
 				box.explode()
 		SOUTH:
 			for box in $Map/flowerpatch_boxes.get_children():
+				box.explode()
+		HOME:
+			for box in $Map/home_boxes.get_children():
 				box.explode()
 	await get_tree().create_timer(1.0).timeout
 	set_mode(Mode.Running)
