@@ -218,7 +218,7 @@ var CLOUD = reverse_and_mirror([
 ])
 
 var WAVE = reverse_and_mirror([
-	[["s", 1], ["l", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 3], ["l", 1], ["s", 1], ["l", 1], ["s", 1], ["r", 1]],
+	[["s", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1]],
 ])
 
 func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:

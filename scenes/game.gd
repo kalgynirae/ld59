@@ -232,7 +232,7 @@ func has_collided_with_bridge() -> bool:
 	
 	# Account for the bridge being three tiles long
 	# I don't know why the snake is one less
-	return !safe_water_level and (loc.y - 1) == bridge_pos.y and loc.x > bridge_pos.x and loc.x <= bridge_pos.x + 2
+	return !safe_water_level and loc.y == bridge_pos.y and loc.x == bridge_pos.x + 1
 
 func move_snake(direction: String) -> void:
 	if eat_food(direction):
