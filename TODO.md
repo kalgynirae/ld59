@@ -1,9 +1,9 @@
 NORTH
 * Switch collision.
-* Size of snake at start.
+✔️Size of snake at start.
 
 RIVER
-* Fix bridge/snake collision.
+✔️Fix bridge/snake collision.
 * Make rain particles.
 * Grow flowers.
 

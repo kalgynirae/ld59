@@ -44,10 +44,10 @@ func start_at(loc: Vector2i, dir: String):
 	head.set_direction(dir)
 	head.set_part(Part.HEAD)
 
-func add_part():
+func add_part(loc = null):
 	assert(parts.size() > 0)
 	var dir = parts[-1].direction
-	var newloc = gridlocs[-1] - GridLoc.offset(dir)
+	var newloc = loc if loc != null else gridlocs[-1] - GridLoc.offset(dir)
 	gridlocs.append(newloc)
 	var new = SnakePartScene.instantiate()
 	parts.append(new)
@@ -164,15 +164,12 @@ func die() -> void:
 	parts[0].show_dead()
 
 func detect_self_collision() -> bool:
-	var locs = {}
-	for loc in gridlocs:
-		locs[loc] = null
-	return locs.size() < gridlocs.size()
+	return gridlocs.slice(1).has(gridlocs[0])
 
 func init(startloc: Vector2i, direction: String, length: int = 6) -> void:
 	start_at(startloc, direction)
 	for i in length - 1:
-		add_part()
+		add_part(startloc - GridLoc.offset(direction))
 
 func detect_shape(debug: bool = false) -> bool:
 	var segments = [["s", 1]];

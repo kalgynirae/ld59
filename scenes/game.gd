@@ -122,7 +122,7 @@ func _process(_delta: float) -> void:
 		change_move_speed(-1)
 
 func _ready() -> void:
-	$Map/Snake.init(Vector2i(9, 8), "down", 3)
+	$Map/Snake.init(Vector2i(9, 8), "down", 11)
 	current_direction = "down"
 	change_move_speed(0)
 	save_state()
@@ -223,10 +223,10 @@ func eat_food(direction: String) -> bool:
 
 func has_collided_with_bridge() -> bool:
 	var loc: Vector2i = $Map/Snake.gridlocs[0]
-	var bridge_pos = Vector2i($Map/river/Bridge.position) / 16
+	var bridge_loc = GridLoc.from_position($Map/river/Bridge.position)
 	var cur_water_level = $Map/river/Bridge.bridge_level
 	var safe_water_level: bool = cur_water_level == Bridge.BridgeLevel.BRAND_NEW or cur_water_level == Bridge.BridgeLevel.REPAIRED
-	return !safe_water_level and loc.y == bridge_pos.y and loc.x == bridge_pos.x + 1
+	return not safe_water_level and loc.y == bridge_loc.y and loc.x == bridge_loc.x + 1
 
 func move_snake(direction: String) -> void:
 	if eat_food(direction):

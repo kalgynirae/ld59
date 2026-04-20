@@ -14,7 +14,8 @@ enum BridgeLevel {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Sprite.region_enabled = true
-	set_water_level(bridge_level)
+	set_water_level(BridgeLevel.BROKEN)
 
 func set_water_level(level: BridgeLevel) -> void:
+	bridge_level = level
 	$Sprite.region_rect = Rect2(0, level * 48, 80, 48)
