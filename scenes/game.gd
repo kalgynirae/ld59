@@ -18,7 +18,6 @@ var current_direction: String = ""
 var current_move_speed: int = 1
 var current_screen_coords: Vector2i = Vector2i(0, 0)
 var current_hp: int = 5
-var saved_food_state: Dictionary[Node, bool] = {}
 var saved_snake_state = null
 var active_shape: Shape = Shape.None
 var desert_harmful: bool = true
@@ -112,10 +111,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("move_up"):
 		if $Map/Snake.head_direction() != "down":
 			current_direction = "up"
-	if Input.is_action_just_pressed("extend"):
-		$Map/Snake.extend($Map/Snake.head_direction())
-		if change_screen():
-			save_state()
+	#if Input.is_action_just_pressed("extend"):
+		#$Map/Snake.extend($Map/Snake.head_direction())
+		#if change_screen():
+			#save_state()
 	if Input.is_action_just_pressed("die"):
 		set_mode(Mode.Dead)
 	if Input.is_action_just_pressed("speed_up"):
@@ -131,17 +130,10 @@ func _ready() -> void:
 	set_mode(Mode.Running)
 
 func save_state() -> void:
-	saved_food_state = {}
-	for food in $Map/food.get_children():
-		saved_food_state[food] = food.save_state()
-	saved_snake_state = [$Map/Snake.save_state(), current_direction]
+	saved_snake_state = [$Map/Snake.gridlocs[0], $Map/Snake.head_direction()]
 
 func restore_state() -> void:
-	for food in $Map/food.get_children():
-		food.restore_state(saved_food_state[food])
-
-	$Map/Snake.restore_state(saved_snake_state[0])
-	$Map/Snake.set_power_level(count_power_sources())
+	$Map/Snake.rebuild_snake(saved_snake_state[0], saved_snake_state[1])
 	current_direction = saved_snake_state[1]
 
 func resurrect() -> void:

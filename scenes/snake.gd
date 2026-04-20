@@ -38,6 +38,14 @@ func restore_state(state):
 		parts.pop_back().queue_free()
 	sync_snake_parts(state[2], true)
 
+func rebuild_snake(loc: Vector2i, dir: String):
+	var length = gridlocs.size()
+	gridlocs.clear()
+	for part in parts:
+		part.queue_free()
+	parts.clear()
+	init(loc, dir, length)
+
 func start_at(loc: Vector2i, dir: String):
 	gridlocs.append(loc)
 	var head = SnakePartScene.instantiate()
