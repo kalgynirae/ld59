@@ -29,31 +29,29 @@ enum Mode {
 }
 
 func set_mode(mode: Mode) -> bool:
-	var allowed = false
+	var allowed = true
 	match [current_mode, mode]:
 		[Mode.Init, Mode.Running]:
-			allowed = true
 			$MoveTimer.start()
 		[Mode.Running, Mode.CameraMoving]:
-			allowed = true
+			pass
 		[Mode.CameraMoving, Mode.Running]:
-			allowed = true
+			pass
 		[Mode.RiverFilling, Mode.Running]:
-			allowed = true
+			pass
 		[Mode.Running, Mode.RiverFilling]:
-			allowed = true
+			pass
 		[Mode.Running, Mode.Dead]:
-			allowed = true
 			$MoveTimer.stop()
 			$Map/Snake.die()
 			$Camera/Panel.display_death_message(DeathPanel.DeathType.EAT_SELF)
 			$ResurrectTimer.start()
 		[Mode.Dead, Mode.Resurrecting]:
 			$Camera/Panel.hide_message()
-			allowed = true
 		[Mode.Resurrecting, Mode.Running]:
-			allowed = true
 			$MoveTimer.start()
+		_:
+			allowed = false
 	if allowed:
 		current_mode = mode
 	else:
