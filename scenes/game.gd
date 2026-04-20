@@ -17,6 +17,7 @@ var current_mode: Mode = Mode.Init
 var current_direction: String = ""
 var current_move_speed: int = 1
 var current_screen_coords: Vector2i = Vector2i(0, 0)
+var current_hp: int = 5
 var saved_food_state: Dictionary[Node, bool] = {}
 var saved_snake_state = null
 var active_shape: Shape = Shape.None
@@ -160,6 +161,11 @@ func on_move_timer_timeout() -> void:
 func on_hurt_timer_timeout() -> void:
 	if detect_desert():
 		$Map/Snake.hurt()
+		current_hp -= 1
+		if current_hp == 0:
+			set_mode(Mode.Dead)
+	else:
+		current_hp = 5
 
 func change_move_speed(change: int) -> void:
 	if change > 0 and current_move_speed < 3 or change < 0 and current_move_speed > 0:

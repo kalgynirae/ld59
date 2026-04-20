@@ -18,12 +18,12 @@ TOWER
 
 EVERYWHERE
 * Death skeleton.
-* Require power source for shapes.
+✔️Require power source for shapes.
 * Shape effect.
 ✔️Banana eating while eating banana.
 
 DESERT
-* Desert kill you.
+✔️Desert kill you.
 * Box explosion.
 * Rain.
 ✔️Shrink desert (to make room for cloud).
