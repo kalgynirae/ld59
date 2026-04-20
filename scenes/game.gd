@@ -128,7 +128,7 @@ enum Objects {
 }
 
 func get_tilemap_data(pos: Vector2i):
-	var decorations_data = $Map/Decorations.get_cell_tile_data(pos)
+	var decorations_data = $Map/Ground/Decorations.get_cell_tile_data(pos)
 	if decorations_data:
 		return decorations_data.get_custom_data("interact")
 	var ground_data = $Map/Ground.get_cell_tile_data(pos)
