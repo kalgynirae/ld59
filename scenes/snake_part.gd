@@ -73,6 +73,9 @@ func move_to(loc: Vector2i) -> void:
 func show_dead() -> void:
 	$Dead.visible = true
 
+func hide_dead() -> void:
+	$Dead.visible = false
+
 enum Turn {
 	None,
 	Right,

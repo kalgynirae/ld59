@@ -25,15 +25,15 @@ func head_direction() -> String:
 	return parts[0].direction
 
 func save_state():
-	return [active_shape, gridlocs.duplicate(), parts.duplicate(), head_direction()]
+	return [active_shape, gridlocs.duplicate(), head_direction()]
 
 func restore_state(state):
+	parts[0].hide_dead()
 	active_shape = state[0]
 	gridlocs = state[1].duplicate()
-	parts = state[2].duplicate()
 	for i in range(gridlocs.size(), parts.size()):
-		parts.pop_back().free()
-	sync_snake_parts(state[3], true)
+		parts.pop_back().queue_free()
+	sync_snake_parts(state[2], true)
 
 func start_at(loc: Vector2i, dir: String):
 	gridlocs.append(loc)
