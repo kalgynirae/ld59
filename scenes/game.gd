@@ -32,6 +32,7 @@ func set_mode(mode: Mode) -> bool:
 			allowed = true
 			$MoveTimer.stop()
 			$Map/Snake.die()
+			$Camera/Panel.display_death_message(DeathPanel.DeathType.EAT_SELF)
 	if allowed:
 		current_mode = mode
 	else:
