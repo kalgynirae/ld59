@@ -1870,6 +1870,9 @@ powered = true
 position = Vector2(-432, 192)
 powered = true
 
+[node name="power_source8" parent="power" unique_id=1764298661 instance=ExtResource("17_m335s")]
+position = Vector2(240, -48)
+
 [node name="home_boxes" type="Node2D" parent="." unique_id=1989798781]
 
 [node name="Box2" parent="home_boxes" unique_id=929127210 instance=ExtResource("13_p7tei")]

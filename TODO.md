@@ -1,8 +1,8 @@
 NORTH
 ✔️Switch collision.
 ✔️Size of snake at start.
-* Switch reset issue (if you die in the middle)
-  * Add a power source!
+✔️Switch reset issue (if you die in the middle)
+  ✔️Add a power source!
 
 RIVER
 ✔️Fix bridge/snake collision.
