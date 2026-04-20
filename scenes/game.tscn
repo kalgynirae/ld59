@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://8qlcklp0mepa" path="res://scenes/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://b0p014y6ptsoa" path="res://images/death_frame.png" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://cp5a18xxxl35v" path="res://fonts/NicerNightie.ttf" id="5_iywne"]
+[ext_resource type="Shader" uid="uid://bx7ghn05gbmta" path="res://scenes/desert.gdshader" id="5_p57ef"]
 
 [sub_resource type="GDScript" id="GDScript_lnu2h"]
 script/source = "extends Node2D
@@ -33,6 +34,13 @@ initial_velocity_min = 70.81
 initial_velocity_max = 99.59
 gravity = Vector3(0, 0, 0)
 color = Color(1, 0.3529412, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
+shader = ExtResource("5_p57ef")
+shader_parameter/strength = 0.005
+shader_parameter/speed = Vector2(0.1, 0.05)
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_iywne"]
 
 [node name="Game" type="Node2D" unique_id=1500510972]
 script = ExtResource("1_yqjtg")
@@ -100,6 +108,15 @@ amount = 9
 lifetime = 4.0
 randomness = 0.54
 process_material = SubResource("ParticleProcessMaterial_yqjtg")
+
+[node name="NotWorkingHeatEffect" type="Sprite2D" parent="." unique_id=488040770]
+visible = false
+material = SubResource("ShaderMaterial_u5sy4")
+position = Vector2(-328, 0)
+texture = SubResource("Texture2DRD_iywne")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 204, 256)
 
 [connection signal="timeout" from="MoveTimer" to="." method="on_move_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="on_hurt_timer_timeout"]
