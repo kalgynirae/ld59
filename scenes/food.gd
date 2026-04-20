@@ -5,3 +5,12 @@ func _ready() -> void:
 
 func eat():
 	$Sprite.visible = false
+
+func save_state():
+	return $Sprite.visible
+	
+func restore_state(state):
+	$Sprite.visible = state
+
+func uneaten() -> bool:
+	return $Sprite.visible

@@ -15,6 +15,7 @@ var current_mode: Mode = Mode.Init
 var current_direction: String = ""
 var current_move_speed: int = 2
 var current_screen_coords: Vector2i = Vector2i(0, 0)
+var saved_food_state: Dictionary[Node, bool] = {}
 var saved_snake_state = null
 
 enum Mode {
@@ -81,7 +82,7 @@ func change_screen() -> bool:
 		return true
 	return false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("move_right"):
 		if $Map/Snake.head_direction() != "left":
 			current_direction = "right"
@@ -97,7 +98,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("extend"):
 		$Map/Snake.extend($Map/Snake.head_direction())
 		if change_screen():
-			save_snake()
+			save_state()
 	if Input.is_action_just_pressed("die"):
 		set_mode(Mode.Dead)
 	if Input.is_action_just_pressed("speed_up"):
@@ -109,24 +110,27 @@ func _ready() -> void:
 	$Map/Snake.init(Vector2i(9, 7), "down", 3)
 	current_direction = "down"
 	change_move_speed(0)
-	save_snake()
+	save_state()
 	set_mode(Mode.Running)
 
-func save_snake() -> void:
+func save_state() -> void:
+	saved_food_state = {}
+	for food in $Map/food.get_children():
+		saved_food_state[food] = food.save_state()
 	saved_snake_state = [$Map/Snake.save_state(), current_direction]
 
-func restore_snake() -> void:
-	if saved_snake_state:
-		$Map/Snake.restore_state(saved_snake_state[0])
-		$Map/Snake.set_power_level(count_power_sources())
-		current_direction = saved_snake_state[1]
-	else:
-		print("Cannot restore snake because saved state is null :(")
+func restore_state() -> void:
+	for food in $Map/food.get_children():
+		food.restore_state(saved_food_state[food])
+
+	$Map/Snake.restore_state(saved_snake_state[0])
+	$Map/Snake.set_power_level(count_power_sources())
+	current_direction = saved_snake_state[1]
 
 func on_resurrect_timer_timeout() -> void:
 	set_mode(Mode.Resurrecting)
 	print("Restoring snake")
-	restore_snake()
+	restore_state()
 	await get_tree().create_timer(1.0).timeout
 	set_mode(Mode.Running)
 
@@ -139,7 +143,7 @@ func on_move_timer_timeout() -> void:
 	elif current_direction != "" and current_move_speed > 0:
 		move_snake(current_direction)
 		if change_screen():
-			save_snake()
+			save_state()
 
 func on_hurt_timer_timeout() -> void:
 	if detect_desert():
@@ -177,15 +181,19 @@ func count_power_sources() -> int:
 			count += 1
 	return count
 
-func handle_touching_food():
-	var snake_head: Vector2i = $Map/Snake.gridlocs[0]
-	for food_node in $Map/food_nodes.get_children():
-		# Convert from snake space into world space
-		if Vector2i(food_node.position) / 16 == snake_head:
-			food_node.eat()
+func eat_food(direction: String) -> bool:
+	var head_loc = $Map/Snake.gridlocs[0] + GridLoc.offset(direction)
+	for food in $Map/food.get_children():
+		if food.uneaten() and GridLoc.from_position(food.position) == head_loc:
+			food.eat()
+			return true
+	return false
 
 func move_snake(direction: String) -> void:
-	$Map/Snake.move(direction)
+	if eat_food(direction):
+		$Map/Snake.extend(direction)
+	else:
+		$Map/Snake.move(direction)
 	if $Map/Snake.detect_self_collision() or detect_obstacles():
 		set_mode(Mode.Dead)
 		return
@@ -204,7 +212,6 @@ func move_snake(direction: String) -> void:
 
 	$Map/Snake.set_power_level(count_power_sources())
 
-	handle_touching_food()
 
 func flip_switches():
 	match current_screen_coords:

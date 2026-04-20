@@ -725,38 +725,50 @@ desert = true
 position = Vector2(-256, 224)
 desert = true
 
-[node name="food_nodes" type="Node2D" parent="." unique_id=1012694226]
+[node name="food" type="Node2D" parent="." unique_id=1012694226]
 script = SubResource("GDScript_p7tei")
 
-[node name="Food" parent="food_nodes" unique_id=848746391 instance=ExtResource("17_c70he")]
+[node name="Food" parent="food" unique_id=848746391 instance=ExtResource("17_c70he")]
 position = Vector2(592, 48)
 
-[node name="Food2" parent="food_nodes" unique_id=1344537515 instance=ExtResource("17_c70he")]
+[node name="Food2" parent="food" unique_id=1344537515 instance=ExtResource("17_c70he")]
 position = Vector2(592, 64)
 
-[node name="Food3" parent="food_nodes" unique_id=399046075 instance=ExtResource("17_c70he")]
+[node name="Food3" parent="food" unique_id=399046075 instance=ExtResource("17_c70he")]
 position = Vector2(592, 80)
 
-[node name="Food4" parent="food_nodes" unique_id=1210885538 instance=ExtResource("17_c70he")]
+[node name="Food4" parent="food" unique_id=1210885538 instance=ExtResource("17_c70he")]
 position = Vector2(592, 176)
 
-[node name="Food5" parent="food_nodes" unique_id=855596940 instance=ExtResource("17_c70he")]
+[node name="Food5" parent="food" unique_id=855596940 instance=ExtResource("17_c70he")]
 position = Vector2(592, 192)
 
-[node name="Food6" parent="food_nodes" unique_id=1372955525 instance=ExtResource("17_c70he")]
+[node name="Food6" parent="food" unique_id=1372955525 instance=ExtResource("17_c70he")]
 position = Vector2(592, 208)
 
-[node name="Food7" parent="food_nodes" unique_id=2087248251 instance=ExtResource("17_c70he")]
+[node name="Food7" parent="food" unique_id=2087248251 instance=ExtResource("17_c70he")]
 position = Vector2(224, -160)
 
-[node name="Food8" parent="food_nodes" unique_id=940243539 instance=ExtResource("17_c70he")]
+[node name="Food8" parent="food" unique_id=940243539 instance=ExtResource("17_c70he")]
 position = Vector2(241, -160)
 
-[node name="Food9" parent="food_nodes" unique_id=511800015 instance=ExtResource("17_c70he")]
+[node name="Food9" parent="food" unique_id=511800015 instance=ExtResource("17_c70he")]
 position = Vector2(240, -160)
 
-[node name="Food10" parent="food_nodes" unique_id=1089518837 instance=ExtResource("17_c70he")]
+[node name="Food10" parent="food" unique_id=1089518837 instance=ExtResource("17_c70he")]
 position = Vector2(256, -160)
+
+[node name="Food11" parent="food" unique_id=270560177 instance=ExtResource("17_c70he")]
+position = Vector2(96, 432)
+
+[node name="Food12" parent="food" unique_id=1715658580 instance=ExtResource("17_c70he")]
+position = Vector2(96, 448)
+
+[node name="Food13" parent="food" unique_id=1839779420 instance=ExtResource("17_c70he")]
+position = Vector2(224, 304)
+
+[node name="Food14" parent="food" unique_id=921627449 instance=ExtResource("17_c70he")]
+position = Vector2(224, 320)
 
 [node name="UpperSwitches" type="Node2D" parent="." unique_id=2099462057]
 
@@ -1107,20 +1119,6 @@ color2 = true
 [node name="switch98" parent="UpperSwitches" unique_id=669109363 instance=ExtResource("5_2klcf")]
 position = Vector2(288, -96)
 color2 = true
-
-[node name="flowerpatch_food" type="Node2D" parent="." unique_id=968876199]
-
-[node name="Food" parent="flowerpatch_food" unique_id=270560177 instance=ExtResource("17_c70he")]
-position = Vector2(96, 432)
-
-[node name="Food2" parent="flowerpatch_food" unique_id=1715658580 instance=ExtResource("17_c70he")]
-position = Vector2(96, 448)
-
-[node name="Food3" parent="flowerpatch_food" unique_id=1839779420 instance=ExtResource("17_c70he")]
-position = Vector2(224, 304)
-
-[node name="Food4" parent="flowerpatch_food" unique_id=921627449 instance=ExtResource("17_c70he")]
-position = Vector2(224, 320)
 
 [node name="flowerpatch_boxes" type="Node2D" parent="." unique_id=636182001]
 
