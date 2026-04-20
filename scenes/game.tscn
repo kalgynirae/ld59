@@ -31,13 +31,13 @@ color = Color(1, 1, 1, 0.6901961)
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(96, 1, 1)
-angle_min = -572.9
-angle_max = 85.10001
-direction = Vector3(-2, 5, 0)
+direction = Vector3(-1, 5, 0)
 spread = 8.098
 initial_velocity_min = 70.81
 initial_velocity_max = 99.59
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
 color = Color(1, 0.3529412, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
@@ -108,9 +108,9 @@ one_shot = true
 
 [node name="Heat" type="GPUParticles2D" parent="." unique_id=1693132144]
 unique_name_in_owner = true
-position = Vector2(-192, -32)
-amount = 9
-lifetime = 4.0
+position = Vector2(-208, -32)
+amount = 13
+lifetime = 3.5
 randomness = 0.54
 process_material = SubResource("ParticleProcessMaterial_yqjtg")
 

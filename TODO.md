@@ -27,6 +27,7 @@ EVERYWHERE
 ✔️Banana eating while eating banana.
 * Sound effects!
 * Respawn snake in a collapsed form.
+* Music!
 
 DESERT
 ✔️Desert kill you.
