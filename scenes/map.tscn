@@ -1132,6 +1132,12 @@ position = Vector2(592, 208)
 [node name="Food7" parent="food" unique_id=2087248251 instance=ExtResource("17_c70he")]
 position = Vector2(192, -176)
 
+[node name="Food16" parent="food" unique_id=838279121 instance=ExtResource("17_c70he")]
+position = Vector2(192, -240)
+
+[node name="Food17" parent="food" unique_id=363305455 instance=ExtResource("17_c70he")]
+position = Vector2(176, -240)
+
 [node name="Food8" parent="food" unique_id=940243539 instance=ExtResource("17_c70he")]
 position = Vector2(208, -176)
 
@@ -1147,11 +1153,32 @@ position = Vector2(256, -176)
 [node name="Food11" parent="food" unique_id=270560177 instance=ExtResource("17_c70he")]
 position = Vector2(96, 432)
 
+[node name="Food18" parent="food" unique_id=1866613114 instance=ExtResource("17_c70he")]
+position = Vector2(80, 432)
+
+[node name="Food19" parent="food" unique_id=3381607 instance=ExtResource("17_c70he")]
+position = Vector2(80, 448)
+
 [node name="Food12" parent="food" unique_id=1715658580 instance=ExtResource("17_c70he")]
 position = Vector2(96, 448)
 
 [node name="Food13" parent="food" unique_id=1839779420 instance=ExtResource("17_c70he")]
 position = Vector2(224, 304)
+
+[node name="Food20" parent="food" unique_id=81987639 instance=ExtResource("17_c70he")]
+position = Vector2(208, 304)
+
+[node name="Food22" parent="food" unique_id=1053871579 instance=ExtResource("17_c70he")]
+position = Vector2(256, 176)
+
+[node name="Food23" parent="food" unique_id=767943834 instance=ExtResource("17_c70he")]
+position = Vector2(160, 32)
+
+[node name="Food24" parent="food" unique_id=1334502124 instance=ExtResource("17_c70he")]
+position = Vector2(32, 96)
+
+[node name="Food21" parent="food" unique_id=1066051750 instance=ExtResource("17_c70he")]
+position = Vector2(208, 320)
 
 [node name="Food14" parent="food" unique_id=921627449 instance=ExtResource("17_c70he")]
 position = Vector2(224, 320)
@@ -1196,14 +1223,6 @@ color2 = true
 
 [node name="switch10" parent="UpperSwitches" unique_id=1255781472 instance=ExtResource("5_2klcf")]
 position = Vector2(160, -240)
-color2 = true
-
-[node name="switch11" parent="UpperSwitches" unique_id=1851152225 instance=ExtResource("5_2klcf")]
-position = Vector2(176, -240)
-color2 = true
-
-[node name="switch12" parent="UpperSwitches" unique_id=1390339097 instance=ExtResource("5_2klcf")]
-position = Vector2(192, -240)
 color2 = true
 
 [node name="switch13" parent="UpperSwitches" unique_id=60592915 instance=ExtResource("5_2klcf")]
