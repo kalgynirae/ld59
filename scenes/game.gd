@@ -4,6 +4,13 @@ const SCREEN_TILE_WIDTH = 20
 const SCREEN_TILE_HEIGHT = 16
 const VIEWPORT_PIXELS: Vector2i = Vector2(320, 256)
 
+const HOME = Vector2i(0, 0)
+const DESERT = Vector2i(-1, 0)
+const TOWER = Vector2i(-2, 0)
+const SOUTH = Vector2i(0, 1)
+const RIVER = Vector2i(1, 0)
+const NORTH = Vector2i(0, -1)
+
 var current_mode: Mode = Mode.Init
 var current_direction: String = ""
 var current_move_speed: int = 2
@@ -181,8 +188,7 @@ func move_snake(direction: String) -> void:
 			Snake.Shape.Wave:
 				flip_switches()
 			Snake.Shape.Square:
-				for box in $Map/desert_boxes.get_children():
-					box.visible = false
+				break_boxes()
 			Snake.Shape.Cloud:
 				$Map/river.fill()
 
@@ -191,5 +197,16 @@ func move_snake(direction: String) -> void:
 	handle_touching_food()
 
 func flip_switches():
-	for switch in find_children("switch*"):
-		switch.toggle()
+	match current_screen_coords:
+		NORTH:
+			for switch in $Map/UpperSwitches.get_children():
+				switch.toggle()
+
+func break_boxes():
+	match current_screen_coords:
+		DESERT:
+			for box in $Map/desert_boxes.get_children():
+				box.break_()
+		SOUTH:
+			for box in $Map/flowerpatch_boxes.get_children():
+				box.break_()

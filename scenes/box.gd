@@ -6,3 +6,6 @@ func _ready() -> void:
 	if desert:
 		$Regular.visible = false
 		$Desert.visible = true
+
+func break_() -> void:
+	visible = false
