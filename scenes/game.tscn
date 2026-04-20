@@ -101,7 +101,7 @@ autowrap_mode = 3
 unique_name_in_owner = true
 offset_right = 320.0
 offset_bottom = 256.0
-color = Color(0, 0, 0, 0.5058824)
+color = Color(0, 0, 0, 0)
 
 [node name="MoveTimer" type="Timer" parent="." unique_id=2062584357]
 wait_time = 0.2
