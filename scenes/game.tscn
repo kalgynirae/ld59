@@ -73,7 +73,8 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Rain" type="GPUParticles2D" parent="Camera" unique_id=930629755]
-position = Vector2(480, 128)
+unique_name_in_owner = true
+position = Vector2(160, 128)
 emitting = false
 amount = 128
 lifetime = 0.5

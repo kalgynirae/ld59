@@ -1,5 +1,7 @@
 extends Node2D
 
+const Shape = Snake.Shape
+
 const SCREEN_TILE_WIDTH = 20
 const SCREEN_TILE_HEIGHT = 16
 const VIEWPORT_PIXELS: Vector2i = Vector2(320, 256)
@@ -17,13 +19,15 @@ var current_move_speed: int = 2
 var current_screen_coords: Vector2i = Vector2i(0, 0)
 var saved_food_state: Dictionary[Node, bool] = {}
 var saved_snake_state = null
+var active_shape: Shape = Shape.None
 
 enum Mode {
 	Init,
 	Menu,
 	Running,
 	CameraMoving,
-	RiverFilling,
+	Transmitting,
+	Raining,
 	SquareDrawn,
 	WaveDrawn,
 	CloudDrawn,
@@ -41,9 +45,11 @@ func set_mode(mode: Mode) -> bool:
 			pass
 		[Mode.CameraMoving, Mode.Running]:
 			pass
-		[Mode.RiverFilling, Mode.Running]:
-			pass
-		[Mode.Running, Mode.RiverFilling]:
+		[Mode.Running, Mode.Transmitting]:
+			transmit()
+		[Mode.Transmitting, Mode.Raining]:
+			rain()
+		[Mode.Raining, Mode.Running]:
 			pass
 		[Mode.SquareDrawn, Mode.Running]:
 			pass
@@ -73,6 +79,25 @@ func set_mode(mode: Mode) -> bool:
 	else:
 		print("Mode transition blocked: %s -> %s" % [Mode.keys()[current_mode], Mode.keys()[mode]])
 	return allowed
+
+func transmit() -> void:
+	print("transmit")
+	await $Map/Snake.flash_n(2)
+	match active_shape:
+		Shape.Cloud:
+			set_mode(Mode.Raining)
+		_:
+			print("shape not handled yet: %s" % Shape.keys()[active_shape])
+
+func rain() -> void:
+	%Rain.emitting = true
+	%Rain.amount = 64
+	await get_tree().create_timer(0.5)
+	%Rain.amount = 128
+	await get_tree().create_timer(1.0)
+	await $Map/river.fill()
+	%Rain.emitting = false
+	set_mode(Mode.Running)
 
 enum Maps {
 	Start,
@@ -230,7 +255,8 @@ func move_snake(direction: String) -> void:
 		return
 
 	if $Map/Snake.detect_shape():
-		match $Map/Snake.active_shape:
+		active_shape = $Map/Snake.active_shape
+		match active_shape:
 			Snake.Shape.Square:
 				set_mode(Mode.SquareDrawn)
 				await $Map/Snake.flash_n(2)
@@ -238,8 +264,7 @@ func move_snake(direction: String) -> void:
 				set_mode(Mode.WaveDrawn)
 				await $Map/Snake.flash_n(2)
 			Snake.Shape.Cloud:
-				set_mode(Mode.CloudDrawn)
-				await $Map/Snake.flash_n(2)
+				set_mode(Mode.Transmitting)
 
 	match current_mode:
 		Mode.SquareDrawn:
@@ -248,10 +273,7 @@ func move_snake(direction: String) -> void:
 		Mode.WaveDrawn:
 			flip_switches()
 			set_mode(Mode.Running)
-		Mode.CloudDrawn:
-			set_mode(Mode.RiverFilling)
-			await $Map/river.fill()
-			set_mode(Mode.Running)
+
 
 	$Map/Snake.set_power_level(count_power_sources())
 
