@@ -66,6 +66,9 @@ wait_time = 0.2
 [node name="HurtTimer" type="Timer" parent="." unique_id=1507968008]
 autostart = true
 
+[node name="ResurrectTimer" type="Timer" parent="." unique_id=2035495250]
+one_shot = true
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1693132144]
 position = Vector2(-192, 0)
 amount = 9
@@ -76,3 +79,4 @@ process_material = SubResource("ParticleProcessMaterial_yqjtg")
 
 [connection signal="timeout" from="MoveTimer" to="." method="on_move_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="on_hurt_timer_timeout"]
+[connection signal="timeout" from="ResurrectTimer" to="." method="on_resurrect_timer_timeout"]

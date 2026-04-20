@@ -8,6 +8,7 @@ var current_mode: Mode = Mode.Init
 var current_direction: String = ""
 var current_move_speed: int = 2
 var current_screen_coords: Vector2i = Vector2i(0, 0)
+var saved_snake_state = null
 
 enum Mode {
 	Init,
@@ -16,6 +17,7 @@ enum Mode {
 	CameraMoving,
 	Shape,
 	Dead,
+	Resurrecting,
 }
 
 func set_mode(mode: Mode) -> bool:
@@ -33,10 +35,17 @@ func set_mode(mode: Mode) -> bool:
 			$MoveTimer.stop()
 			$Map/Snake.die()
 			$Camera/Panel.display_death_message(DeathPanel.DeathType.EAT_SELF)
+			$ResurrectTimer.start()
+		[Mode.Dead, Mode.Resurrecting]:
+			$Camera/Panel.hide_message()
+			allowed = true
+		[Mode.Resurrecting, Mode.Running]:
+			allowed = true
+			$MoveTimer.start()
 	if allowed:
 		current_mode = mode
 	else:
-		print("Mode transition blocked: %s -> %s" % [current_mode, mode])
+		print("Mode transition blocked: %s -> %s" % [Mode.keys()[current_mode], Mode.keys()[mode]])
 	return allowed
 
 enum Maps {
@@ -47,7 +56,7 @@ enum Maps {
 	Box,
 }
 
-func update_camera() -> void:
+func change_screen() -> bool:
 	var snake_loc: Vector2i = $Map/Snake.gridlocs[0]
 	# Note: Integer division rounds toward 0, so we can't use it here
 	var snake_screen_coords = Vector2i(
@@ -56,7 +65,11 @@ func update_camera() -> void:
 	)
 	if snake_screen_coords != current_screen_coords:
 		current_screen_coords = snake_screen_coords
-		move_camera(current_screen_coords * VIEWPORT_PIXELS)
+		var new_position = current_screen_coords * VIEWPORT_PIXELS
+		$Camera.position = new_position
+		set_mode(Mode.CameraMoving)
+		return true
+	return false
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_right"):
@@ -73,9 +86,8 @@ func _process(delta: float) -> void:
 			current_direction = "up"
 	if Input.is_action_just_pressed("extend"):
 		$Map/Snake.extend($Map/Snake.head_direction())
-		update_camera()
-	if Input.is_action_just_pressed("retract"):
-		$Map/Snake.retract()
+		if change_screen():
+			save_snake()
 	if Input.is_action_just_pressed("die"):
 		set_mode(Mode.Dead)
 	if Input.is_action_just_pressed("speed_up"):
@@ -83,15 +95,27 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("speed_down"):
 		change_move_speed(-1)
 
-func move_camera(position: Vector2) -> void:
-	if $Camera.position != position:
-		$Camera.position = position
-		set_mode(Mode.CameraMoving)
-
 func _ready() -> void:
 	$Map/Snake.init(Vector2i(9, 7), "down", 3)
 	current_direction = "down"
 	change_move_speed(0)
+	set_mode(Mode.Running)
+
+func save_snake() -> void:
+	saved_snake_state = [$Map/Snake.save_state(), current_direction]
+
+func restore_snake() -> void:
+	if saved_snake_state:
+		$Map/Snake.restore_state(saved_snake_state[0])
+		current_direction = saved_snake_state[1]
+	else:
+		print("Cannot restore snake because saved state is null :(")
+
+func on_resurrect_timer_timeout() -> void:
+	set_mode(Mode.Resurrecting)
+	print("Restoring snake")
+	restore_snake()
+	await get_tree().create_timer(1.0).timeout
 	set_mode(Mode.Running)
 
 func on_move_timer_timeout() -> void:
@@ -99,7 +123,8 @@ func on_move_timer_timeout() -> void:
 		set_mode(Mode.Running)
 	elif current_direction != "" and current_move_speed > 0:
 		move_snake(current_direction)
-		update_camera()
+		if change_screen():
+			save_snake()
 
 func on_hurt_timer_timeout() -> void:
 	if detect_desert():

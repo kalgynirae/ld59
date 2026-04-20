@@ -24,6 +24,17 @@ enum Shape {
 func head_direction() -> String:
 	return parts[0].direction
 
+func save_state():
+	return [active_shape, gridlocs.duplicate(), parts.duplicate(), head_direction()]
+
+func restore_state(state):
+	active_shape = state[0]
+	gridlocs = state[1].duplicate()
+	parts = state[2].duplicate()
+	for i in range(gridlocs.size(), parts.size()):
+		parts.pop_back().free()
+	sync_snake_parts(state[3], true)
+
 func start_at(loc: Vector2i, dir: String):
 	gridlocs.append(loc)
 	var head = SnakePartScene.instantiate()
@@ -51,31 +62,30 @@ func extend(direction: String):
 	add_part()
 	move(direction)
 
-func retract():
-	if parts.size() > 4:
-		gridlocs.pop_back()
-		parts.pop_back().queue_free()
-		update_tail()
-
 func move(direction: String):
 	assert(parts.size() > 0)
 	var newloc = gridlocs[0] + GridLoc.offset(direction)
 	gridlocs.insert(0, newloc)
 	gridlocs.pop_back()
 	parts.insert(0, parts.pop_back())
+	sync_snake_parts(direction, false)
 
+func sync_snake_parts(head_direction: String, full: bool):
+	assert(parts.size() > 2, "Snakes of size < 3 are not supported")
 	# parts[0] is the new head
 	parts[0].move_to(gridlocs[0])
 	parts[0].set_part(Part.HEAD)
-	parts[0].set_direction(direction)
+	parts[0].set_direction(head_direction)
 
 	# parts[1] May need to change shape
-	if parts.size() > 2:
-		var part = parts[1]
-		var head = gridlocs[0]
-		var loc = gridlocs[1]
-		var after = gridlocs[2]
-		if head.x < loc.x:
+	var indices = range(1, parts.size() - 1) if full else [1]
+	for i in indices:
+		var part = parts[i]
+		var before = gridlocs[i - 1]
+		var loc = gridlocs[i]
+		var after = gridlocs[i + 1]
+		part.move_to(loc)
+		if before.x < loc.x:
 			part.set_direction("left")
 			if loc.x < after.x:
 				# TODO: body alternation
@@ -84,7 +94,7 @@ func move(direction: String):
 				part.set_part(Part.CORNER, true)
 			elif loc.y > after.y:
 				part.set_part(Part.CORNER, false)
-		elif head.x > loc.x:
+		elif before.x > loc.x:
 			part.set_direction("right")
 			if loc.x > after.x:
 				# TODO: body alternation
@@ -93,7 +103,7 @@ func move(direction: String):
 				part.set_part(Part.CORNER, false)
 			elif loc.y > after.y:
 				part.set_part(Part.CORNER, true)
-		elif head.y < loc.y:
+		elif before.y < loc.y:
 			part.set_direction("up")
 			if loc.y < after.y:
 				# TODO: body alternation
@@ -102,7 +112,7 @@ func move(direction: String):
 				part.set_part(Part.CORNER, false)
 			elif loc.x > after.x:
 				part.set_part(Part.CORNER, true)
-		elif head.y > loc.y:
+		elif before.y > loc.y:
 			part.set_direction("down")
 			if loc.y > after.y:
 				# TODO: body alternation
@@ -111,15 +121,25 @@ func move(direction: String):
 				part.set_part(Part.CORNER, true)
 			elif loc.x > after.x:
 				part.set_part(Part.CORNER, false)
-	update_tail()
+
+	var tailpart = parts[-1]
+	var tail = gridlocs[-1]
+	tailpart.move_to(tail)
+	tailpart.set_part(Part.TAIL)
+	var before = gridlocs[-2]
+	if before.x < tail.x:
+		tailpart.set_direction("left")
+	elif before.x > tail.x:
+		tailpart.set_direction("right")
+	elif before.y < tail.y:
+		tailpart.set_direction("up")
+	else:
+		tailpart.set_direction("down")
 
 func set_power_level(level: SnakePart.PowerLevel):
 	for part in parts:
 		part.set_power_level(level)
 
-func update_tail() -> void:
-	if parts.size() > 1:
-		parts[-1].set_part(Part.TAIL)
 
 # Modulates the color a bit and
 func hurt():

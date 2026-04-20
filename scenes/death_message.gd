@@ -23,5 +23,8 @@ func display_death_message(death_type: DeathType) -> void:
 	visible = true
 	$Label.text = message_for(death_type)
 
+func hide_message() -> void:
+	visible = false
+
 func _ready() -> void:
 	visible = false
