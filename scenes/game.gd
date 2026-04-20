@@ -122,7 +122,7 @@ func _process(_delta: float) -> void:
 		change_move_speed(-1)
 
 func _ready() -> void:
-	$Map/Snake.init(Vector2i(9, 7), "down", 3)
+	$Map/Snake.init(Vector2i(9, 8), "down", 3)
 	current_direction = "down"
 	change_move_speed(0)
 	save_state()
