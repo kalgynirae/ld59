@@ -29,7 +29,8 @@ func save_state():
 	return [active_shape, gridlocs.duplicate(), head_direction()]
 
 func restore_state(state):
-	parts[0].hide_dead()
+	for part in parts:
+		part.hide_dead()
 	active_shape = state[0]
 	gridlocs = state[1].duplicate()
 	for i in range(gridlocs.size(), parts.size()):
@@ -153,7 +154,8 @@ func hurt():
 		part.modulate_reset()
 
 func die() -> void:
-	parts[0].show_dead()
+	for part in parts:
+		part.show_dead()
 
 func detect_self_collision() -> bool:
 	return gridlocs.slice(1).has(gridlocs[0])

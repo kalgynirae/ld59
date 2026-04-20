@@ -14,7 +14,7 @@ enum PowerLevel {
 	SLIGHTLY_CHARGED,
 	CHARGED,
 	VERY_CHARGED,
-	SUPERCHARGED
+	SUPERCHARGED,
 }
 
 var current_part: Part = Part.HEAD
@@ -23,7 +23,9 @@ var direction: String = "up"
 
 # Helper method to separate out the logic that chooses what sprite to show
 func set_current_sprite(part: Part, level: PowerLevel):
-	$Sprite.region_rect = Rect2(level * 16, part * 16, 16, 16)
+	$Sprite.region_rect.position.x = 16 + level * 16
+	$Sprite.region_rect.position.y = part * 16
+	$Dead.region_rect.position.y = part * 16
 
 func set_power_level(level: PowerLevel):
 	set_current_sprite(current_part, level)
@@ -71,9 +73,13 @@ func move_to(loc: Vector2i) -> void:
 	position = loc * 16
 
 func show_dead() -> void:
+	$Sprite.visible = false
 	$Dead.visible = true
+	$Dead.flip_h = $Sprite.flip_h
+	$Dead.rotation_degrees = $Sprite.rotation_degrees
 
 func hide_dead() -> void:
+	$Sprite.visible = true
 	$Dead.visible = false
 
 enum Turn {

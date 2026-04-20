@@ -14,11 +14,11 @@ HOME
 ✔️House collision.
 
 TOWER
-* Implement tower-powered power source.
+✔️Implement tower-powered power source.
 ✔️Tower shape.
 
 EVERYWHERE
-* Death skeleton.
+✔️Death skeleton.
 ✔️Require power source for shapes.
 * Shape effect.
 ✔️Banana eating while eating banana.
