@@ -22,6 +22,7 @@ enum Mode {
 	Menu,
 	Running,
 	CameraMoving,
+	RiverFilling,
 	Shape,
 	Dead,
 	Resurrecting,
@@ -36,6 +37,10 @@ func set_mode(mode: Mode) -> bool:
 		[Mode.Running, Mode.CameraMoving]:
 			allowed = true
 		[Mode.CameraMoving, Mode.Running]:
+			allowed = true
+		[Mode.RiverFilling, Mode.Running]:
+			allowed = true
+		[Mode.Running, Mode.RiverFilling]:
 			allowed = true
 		[Mode.Running, Mode.Dead]:
 			allowed = true
@@ -127,6 +132,9 @@ func on_resurrect_timer_timeout() -> void:
 	set_mode(Mode.Running)
 
 func on_move_timer_timeout() -> void:
+	if current_mode == Mode.RiverFilling:
+		return
+	
 	if current_mode == Mode.CameraMoving:
 		set_mode(Mode.Running)
 	elif current_direction != "" and current_move_speed > 0:
@@ -190,7 +198,10 @@ func move_snake(direction: String) -> void:
 			Snake.Shape.Square:
 				break_boxes()
 			Snake.Shape.Cloud:
-				$Map/river.fill()
+				$Map/Snake.flash_n(2)
+				set_mode(Mode.RiverFilling)
+				await $Map/river.fill()
+				set_mode(Mode.Running)
 
 	$Map/Snake.set_power_level(count_power_sources())
 

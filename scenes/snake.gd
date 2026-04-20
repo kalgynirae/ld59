@@ -140,6 +140,15 @@ func set_power_level(level: SnakePart.PowerLevel):
 	for part in parts:
 		part.set_power_level(level)
 
+## "flashes" or modulates the snake between two states of charge, n times
+## Please note that this function is asynchronus, i.e. treat this as if it runs as a background process
+## To wait for its completion instead, use `await`
+func flash_n(n: int) -> void:
+	for i in range(n):
+		set_power_level(SnakePart.PowerLevel.SLIGHTLY_CHARGED)
+		await get_tree().create_timer(0.25).timeout
+		set_power_level(SnakePart.PowerLevel.SUPERCHARGED)
+		await get_tree().create_timer(0.25).timeout
 
 # Modulates the color a bit and
 func hurt():

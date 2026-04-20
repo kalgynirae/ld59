@@ -1186,6 +1186,7 @@ position = Vector2(240, 336)
 
 [node name="river" type="Node2D" parent="." unique_id=704935125]
 script = ExtResource("18_m335s")
+fill_level_interval_seconds = 1.25
 
 [node name="RiverTile" parent="river" unique_id=1072026978 instance=ExtResource("19_6k6j1")]
 position = Vector2(528, 0)
