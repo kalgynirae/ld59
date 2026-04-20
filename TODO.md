@@ -15,7 +15,7 @@ HOME
 
 TOWER
 * Implement tower-powered power source.
-* Tower shape.
+✔️Tower shape.
 
 EVERYWHERE
 * Death skeleton.

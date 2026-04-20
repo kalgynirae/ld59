@@ -187,6 +187,8 @@ func detect_shape(debug: bool = false) -> bool:
 			detected_shape = Shape.Cloud
 		elif segments_match(segments, WAVE, debug):
 			detected_shape = Shape.Wave
+		elif segments_match(segments, TOWER, debug):
+			detected_shape = Shape.Tower
 		else:
 			detected_shape = Shape.None
 
@@ -197,7 +199,8 @@ func detect_shape(debug: bool = false) -> bool:
 	return false
 
 var SQUARE = reverse_and_mirror([
-	[["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 2]],
+	#[["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 2]],
+	[["s", 1], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1]],
 	[["s", 1], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 3]],
 	[["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2], ["r", 1], ["s", 2]],
 	[["s", 2], ["r", 1], ["s", 3], ["r", 1], ["s", 3], ["r", 1], ["s", 4]],
@@ -210,9 +213,15 @@ var CLOUD = reverse_and_mirror([
 ])
 
 var WAVE = reverse_and_mirror([
-	[["s", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1]],
+	[["s", 1], ["l", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["l", 1], ["s", 1], ["l", 1], ["r", 1], ["s", 1]],
 ])
 
+var TOWER = reverse_and_mirror([
+	[["s", 1], ["r", 1], ["l", 1], ["s", 1], ["r", 1], ["l", 1], ["s", 1], ["r", 1], ["r", 1], ["s", 1], ["l", 1], ["r", 1], ["s", 1], ["l", 1], ["r", 1], ["s", 1]],
+	[["s", 1], ["r", 1], ["l", 1], ["s", 1], ["r", 1], ["l", 1], ["s", 1], ["r", 1], ["s", 1], ["r", 1], ["s", 1], ["l", 1], ["r", 1], ["s", 1], ["l", 1], ["r", 1], ["s", 1]],
+	[["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2]],
+	[["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["l", 1], ["s", 2], ["r", 1], ["s", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2], ["l", 1], ["r", 1], ["s", 2]],
+])
 var match_info = null
 
 func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:

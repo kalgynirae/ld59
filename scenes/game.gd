@@ -62,6 +62,10 @@ func set_mode(mode: Mode) -> bool:
 			flip_switches()
 		[Mode.FlippingSwitches, Mode.Running]:
 			pass
+		[Mode.Transmitting, Mode.ActivatingTower]:
+			activate_tower()
+		[Mode.ActivatingTower, Mode.Running]:
+			pass
 		[Mode.Running, Mode.Dead]:
 			$MoveTimer.stop()
 			$Map/Snake.die()
@@ -207,13 +211,12 @@ func detect_desert() -> bool:
 	return tile_data and tile_data.get_custom_data("desert")
 
 func count_power_sources() -> int:
-	var count = 0
 	for ps in find_children("power_source*"):
 		if not ps.powered:
 			continue
 		if $Map/Snake.gridlocs.has(GridLoc.from_position(ps.position)):
-			count += 1
-	return count
+			return 2
+	return 0
 
 func eat_food(direction: String) -> bool:
 	var head_loc = $Map/Snake.gridlocs[0] + GridLoc.offset(direction)
@@ -235,6 +238,7 @@ func move_snake(direction: String) -> void:
 		$Map/Snake.extend(direction)
 	else:
 		$Map/Snake.move(direction)
+	$Map/Snake.set_power_level(count_power_sources())
 	if $Map/Snake.detect_self_collision() or detect_obstacles() or has_collided_with_bridge() or detect_boxes() or detect_switches():
 		set_mode(Mode.Dead)
 		return
@@ -242,7 +246,6 @@ func move_snake(direction: String) -> void:
 		active_shape = $Map/Snake.active_shape
 		if active_shape != Shape.None:
 			set_mode(Mode.Transmitting)
-	$Map/Snake.set_power_level(count_power_sources())
 
 func transmit() -> void:
 	await $Map/Snake.transmit()
@@ -253,6 +256,8 @@ func transmit() -> void:
 			set_mode(Mode.FlippingSwitches)
 		Shape.Square:
 			set_mode(Mode.BreakingBoxes)
+		Shape.Tower:
+			set_mode(Mode.ActivatingTower)
 		_:
 			print("shape not handled yet: %s" % Shape.keys()[active_shape])
 
@@ -297,6 +302,13 @@ func resurrect_plants(plants):
 	for plant in plants:
 		await get_tree().create_timer(0.02).timeout
 		plant.growth_stage -= 1
+
+func activate_tower():
+	await get_tree().create_timer(1.0).timeout
+	for p in $Map/power.get_children():
+		if p.towered:
+			p.power_on()
+	set_mode(Mode.Running)
 
 func show_message(msg: String) -> void:
 	%Message.text = msg
