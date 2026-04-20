@@ -226,6 +226,7 @@ func eat_food(direction: String) -> bool:
 	for food in $Map/food.get_children():
 		if food.uneaten() and GridLoc.from_position(food.position) == head_loc:
 			food.eat()
+			$SoundEat.playing = true
 			return true
 	return false
 
@@ -265,6 +266,7 @@ func transmit() -> void:
 			print("shape not handled yet: %s" % Shape.keys()[active_shape])
 
 func rain() -> void:
+	$SoundRain.playing = true
 	%Rain.emitting = true
 	%Rain.amount = 64
 	await get_tree().create_timer(0.5).timeout
@@ -292,12 +294,15 @@ func flip_switches():
 func break_boxes():
 	match current_screen_coords:
 		DESERT:
+			$SoundExplosion.playing = true
 			for box in $Map/desert_boxes.get_children():
 				box.explode()
 		SOUTH:
+			$SoundExplosion.playing = true
 			for box in $Map/flowerpatch_boxes.get_children():
 				box.explode()
 		HOME:
+			$SoundExplosion.playing = true
 			for box in $Map/home_boxes.get_children():
 				box.explode()
 	await get_tree().create_timer(1.0).timeout
@@ -316,7 +321,7 @@ func activate_tower():
 	for p in $Map/power.get_children():
 		if p.towered:
 			p.power_on()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	set_mode(Mode.Running)
 
 func show_message(msg: String) -> void:

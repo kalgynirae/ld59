@@ -315,4 +315,6 @@ func transmit() -> void:
 		for i in range(offset, min(parts.size(), length + offset)):
 			parts[i].set_power_level(SnakePart.PowerLevel.SUPERCHARGED)
 		await get_tree().create_timer(0.25).timeout
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.25).timeout
+	for i in range(offset, min(parts.size(), length + offset)):
+		parts[i].set_power_level(SnakePart.PowerLevel.CHARGED)

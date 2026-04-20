@@ -2,6 +2,7 @@ NORTH
 ✔️Switch collision.
 ✔️Size of snake at start.
 * Switch reset issue (if you die in the middle)
+  * Add a power source!
 
 RIVER
 ✔️Fix bridge/snake collision.
@@ -25,6 +26,7 @@ EVERYWHERE
 * Shape effect.
 ✔️Banana eating while eating banana.
 * Sound effects!
+* Respawn snake in a collapsed form.
 
 DESERT
 ✔️Desert kill you.
