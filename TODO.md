@@ -9,13 +9,15 @@ RIVER
 ✔️Grow flowers.
 
 HOME
-* Finish final puzzle.
+✔️Finish final puzzle.
 ✔️Fix house fence squarishness.
 ✔️House collision.
+* Make the snake have wings.
 
 TOWER
 ✔️Implement tower-powered power source.
 ✔️Tower shape.
+✔️Animate tower powering on.
 
 EVERYWHERE
 ✔️Death skeleton.

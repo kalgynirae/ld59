@@ -310,10 +310,13 @@ func resurrect_plants(plants):
 		plant.growth_stage -= 1
 
 func activate_tower():
+	$Map/TowerSparks.emitting = true
 	await get_tree().create_timer(1.0).timeout
+	$Map/WireSparks.emitting = true
 	for p in $Map/power.get_children():
 		if p.towered:
 			p.power_on()
+	await get_tree().create_timer(1.0).timeout
 	set_mode(Mode.Running)
 
 func show_message(msg: String) -> void:

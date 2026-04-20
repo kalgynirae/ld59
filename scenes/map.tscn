@@ -685,6 +685,28 @@ sources/12 = SubResource("TileSetAtlasSource_mkblt")
 script/source = "extends Node
 "
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5u2yt"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 70.500015
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 71.86
+initial_velocity_max = 112.88
+gravity = Vector3(0, 150, 0)
+color = Color(1, 1, 0.58431375, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30iet"]
+particle_flag_disable_z = true
+direction = Vector3(1, 0.08, 0)
+spread = 0.0
+initial_velocity_min = 130.0
+initial_velocity_max = 130.0
+gravity = Vector3(0, -38, 0)
+damping_min = 28.000002
+damping_max = 28.000002
+color = Color(0.8666667, 1, 0.69803923, 1)
+
 [node name="map" type="Node2D" unique_id=1460035702]
 texture_filter = 1
 metadata/_edit_vertical_guides_ = [656.0, -320.0, -640.0]
@@ -1900,3 +1922,21 @@ offset = Vector2(0, 1)
 [node name="TowerWires" type="Sprite2D" parent="." unique_id=801654929]
 position = Vector2(-480, 127)
 texture = ExtResource("25_5u2yt")
+
+[node name="TowerSparks" type="GPUParticles2D" parent="." unique_id=1814071185]
+position = Vector2(-496, 24)
+emitting = false
+amount = 64
+lifetime = 2.5
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_5u2yt")
+
+[node name="WireSparks" type="GPUParticles2D" parent="." unique_id=1753206902]
+position = Vector2(-480, 48)
+emitting = false
+amount = 3
+lifetime = 1.5
+explosiveness = 0.38
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_30iet")
