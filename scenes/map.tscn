@@ -1779,7 +1779,7 @@ position = Vector2(128, 352)
 powered = true
 
 [node name="power_source6" parent="power" unique_id=1402195629 instance=ExtResource("17_m335s")]
-position = Vector2(384, 112)
+position = Vector2(368, 112)
 powered = true
 
 [node name="HouseDoorway" type="Sprite2D" parent="." unique_id=784486344]

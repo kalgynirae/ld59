@@ -11,3 +11,4 @@ func _ready() -> void:
 
 func power_on():
 	$Sprite.region_rect.position.x = 16
+	$Particles.emitting = true
