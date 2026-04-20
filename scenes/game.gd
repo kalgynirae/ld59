@@ -124,13 +124,10 @@ func change_move_speed(change: int) -> void:
 enum Objects {
 	PLANT = 1,
 	POWER_SOURCE = 2,
-	FENCE = 3,
+	OBSTACLE = 3,
 }
 
 func get_tilemap_data(pos: Vector2i):
-	var decorations_data = $Map/Decorations.get_cell_tile_data(pos)
-	if decorations_data:
-		return decorations_data.get_custom_data("interact")
 	var ground_data = $Map/Ground.get_cell_tile_data(pos)
 	if ground_data:
 		return ground_data.get_custom_data("interact")
@@ -155,7 +152,7 @@ func handle_touching_food():
 
 func move_snake(direction: String) -> void:
 	$Map/Snake.move(direction)
-	if $Map/Snake.detect_self_collision() or is_touching(Objects.FENCE):
+	if $Map/Snake.detect_self_collision() or is_touching(Objects.OBSTACLE):
 		set_mode(Mode.Dead)
 		return
 
