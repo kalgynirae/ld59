@@ -24,6 +24,9 @@ enum Mode {
 	Running,
 	CameraMoving,
 	RiverFilling,
+	SquareDrawn,
+	WaveDrawn,
+	CloudDrawn,
 	Shape,
 	Dead,
 	Resurrecting,
@@ -41,6 +44,18 @@ func set_mode(mode: Mode) -> bool:
 		[Mode.RiverFilling, Mode.Running]:
 			pass
 		[Mode.Running, Mode.RiverFilling]:
+			pass
+		[Mode.SquareDrawn, Mode.Running]:
+			pass
+		[Mode.Running, Mode.SquareDrawn]:
+			pass
+		[Mode.CloudDrawn, Mode.Running]:
+			pass
+		[Mode.Running, Mode.CloudDrawn]:
+			pass
+		[Mode.WaveDrawn, Mode.Running]:
+			pass
+		[Mode.Running, Mode.WaveDrawn]:
 			pass
 		[Mode.Running, Mode.Dead]:
 			$MoveTimer.stop()
@@ -135,8 +150,15 @@ func on_resurrect_timer_timeout() -> void:
 	set_mode(Mode.Running)
 
 func on_move_timer_timeout() -> void:
-	if current_mode == Mode.RiverFilling:
-		return
+	match current_mode:
+		Mode.RiverFilling:
+			return
+		Mode.SquareDrawn:
+			return
+		Mode.WaveDrawn:
+			return
+		Mode.CloudDrawn:
+			return
 	
 	if current_mode == Mode.CameraMoving:
 		set_mode(Mode.Running)
@@ -200,15 +222,27 @@ func move_snake(direction: String) -> void:
 
 	if $Map/Snake.detect_shape():
 		match $Map/Snake.active_shape:
-			Snake.Shape.Wave:
-				flip_switches()
 			Snake.Shape.Square:
-				break_boxes()
+				set_mode(Mode.SquareDrawn)
+				await $Map/Snake.flash_n(2)
+			Snake.Shape.Wave:
+				set_mode(Mode.WaveDrawn)
+				await $Map/Snake.flash_n(2)
 			Snake.Shape.Cloud:
-				$Map/Snake.flash_n(2)
-				set_mode(Mode.RiverFilling)
-				await $Map/river.fill()
-				set_mode(Mode.Running)
+				set_mode(Mode.CloudDrawn)
+				await $Map/Snake.flash_n(2)
+
+	match current_mode:
+		Mode.SquareDrawn:
+			break_boxes()
+			set_mode(Mode.Running)
+		Mode.WaveDrawn:
+			flip_switches()
+			set_mode(Mode.Running)
+		Mode.CloudDrawn:
+			set_mode(Mode.RiverFilling)
+			await $Map/river.fill()
+			set_mode(Mode.Running)
 
 	$Map/Snake.set_power_level(count_power_sources())
 
