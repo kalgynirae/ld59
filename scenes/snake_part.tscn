@@ -21,3 +21,8 @@ position = Vector2(8, 8)
 texture = ExtResource("3_r7yk6")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="WingTimer" type="Timer" parent="." unique_id=1396358562]
+wait_time = 0.3
+
+[connection signal="timeout" from="WingTimer" to="." method="_on_wing_timer_timeout"]

@@ -23,10 +23,10 @@ TOWER
 EVERYWHERE
 ✔️Death skeleton.
 ✔️Require power source for shapes.
-* Shape effect.
+= Shape effect.
 ✔️Banana eating while eating banana.
+✔️Respawn snake in a collapsed form.
 * Sound effects!
-* Respawn snake in a collapsed form.
 * Music!
 
 DESERT

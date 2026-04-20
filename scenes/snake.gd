@@ -326,3 +326,8 @@ func transmit() -> void:
 	await get_tree().create_timer(0.25).timeout
 	for i in range(offset, min(parts.size(), length + offset)):
 		parts[i].set_power_level(SnakePart.PowerLevel.CHARGED)
+
+func grow_wings() -> void:
+	for part in parts:
+		part.set_power_level(SnakePart.PowerLevel.WINGS)
+		part.flap_wings()

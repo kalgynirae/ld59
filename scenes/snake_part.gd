@@ -10,6 +10,7 @@ enum Part {
 }
 
 enum PowerLevel {
+	WINGS,
 	NORMAL,
 	SLIGHTLY_CHARGED,
 	CHARGED,
@@ -23,7 +24,7 @@ var direction: String = "up"
 
 # Helper method to separate out the logic that chooses what sprite to show
 func set_current_sprite(part: Part, level: PowerLevel):
-	$Sprite.region_rect.position.x = 16 + level * 16
+	$Sprite.region_rect.position.x = level * 16
 	$Sprite.region_rect.position.y = part * 16
 	$Dead.region_rect.position.y = part * 16
 
@@ -95,3 +96,13 @@ func turn() -> Turn:
 		else:
 			return Turn.Left
 	return Turn.None
+
+func flap_wings() -> void:
+	$WingTimer.start()
+
+func _on_wing_timer_timeout() -> void:
+	power_level = PowerLevel.WINGS
+	if current_part == Part.BODY_1:
+		set_part(Part.BODY_2)
+	elif current_part == Part.BODY_2:
+		set_part(Part.BODY_1)

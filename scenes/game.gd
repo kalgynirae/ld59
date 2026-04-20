@@ -2,6 +2,8 @@ extends Node2D
 
 const Shape = Snake.Shape
 
+const CHEATING = true
+
 const SCREEN_TILE_WIDTH = 20
 const SCREEN_TILE_HEIGHT = 16
 const VIEWPORT_PIXELS: Vector2i = Vector2(320, 256)
@@ -35,6 +37,7 @@ enum Mode {
 	Shape,
 	Dead,
 	Resurrecting,
+	Winging,
 }
 
 func set_mode(mode: Mode) -> bool:
@@ -74,6 +77,8 @@ func set_mode(mode: Mode) -> bool:
 			hide_message()
 		[Mode.Resurrecting, Mode.Running]:
 			$MoveTimer.start()
+		[Mode.Transmitting, Mode.Winging]:
+			wing_snake()
 		_:
 			allowed = false
 	if allowed:
@@ -111,16 +116,25 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("move_up"):
 		if $Map/Snake.head_direction() != "down":
 			current_direction = "up"
-	#if Input.is_action_just_pressed("extend"):
-		#$Map/Snake.extend($Map/Snake.head_direction())
-		#if change_screen():
-			#save_state()
 	if Input.is_action_just_pressed("die"):
 		set_mode(Mode.Dead)
 	if Input.is_action_just_pressed("speed_up"):
 		change_move_speed(1)
 	if Input.is_action_just_pressed("speed_down"):
 		change_move_speed(-1)
+	if CHEATING:
+		if Input.is_action_just_pressed("extend"):
+			$Map/Snake.extend($Map/Snake.head_direction())
+			if change_screen():
+				save_state()
+		if Input.is_action_just_pressed("boxes"):
+			break_boxes()
+		if Input.is_action_just_pressed("rain"):
+			rain()
+		if Input.is_action_just_pressed("tower"):
+			activate_tower()
+		if Input.is_action_just_pressed("switches"):
+			flip_switches()
 
 func _ready() -> void:
 	$Map/Snake.init(Vector2i(9, 8), "down", 11)
@@ -205,13 +219,13 @@ func detect_desert() -> bool:
 	var tile_data = $Map/Ground.get_cell_tile_data(loc)
 	return tile_data and tile_data.get_custom_data("desert")
 
-func count_power_sources() -> int:
+func count_power_sources() -> SnakePart.PowerLevel:
 	for ps in find_children("power_source*"):
 		if not ps.powered:
 			continue
 		if $Map/Snake.gridlocs.has(GridLoc.from_position(ps.position)):
-			return 2
-	return 0
+			return SnakePart.PowerLevel.CHARGED
+	return SnakePart.PowerLevel.NORMAL
 
 func eat_food(direction: String) -> bool:
 	var head_loc = $Map/Snake.gridlocs[0] + GridLoc.offset(direction)
@@ -254,6 +268,8 @@ func transmit() -> void:
 			set_mode(Mode.BreakingBoxes)
 		Shape.Tower:
 			set_mode(Mode.ActivatingTower)
+		Shape.Wings:
+			set_mode(Mode.Winging)
 		_:
 			print("shape not handled yet: %s" % Shape.keys()[active_shape])
 
@@ -284,19 +300,19 @@ func flip_switches():
 	set_mode(Mode.Running)
 
 func break_boxes():
+	var any_exploded = false
 	match current_screen_coords:
 		DESERT:
-			$SoundExplosion.playing = true
 			for box in $Map/desert_boxes.get_children():
-				box.explode()
+				any_exploded = box.explode() or any_exploded
 		SOUTH:
-			$SoundExplosion.playing = true
 			for box in $Map/flowerpatch_boxes.get_children():
-				box.explode()
+				any_exploded = box.explode() or any_exploded
 		HOME:
-			$SoundExplosion.playing = true
 			for box in $Map/home_boxes.get_children():
-				box.explode()
+				any_exploded = box.explode() or any_exploded
+	if any_exploded:
+		$SoundExplosion.playing = true
 	await get_tree().create_timer(1.0).timeout
 	set_mode(Mode.Running)
 
@@ -322,3 +338,26 @@ func show_message(msg: String) -> void:
 
 func hide_message() -> void:
 	%MessageFrame.visible = false
+
+func wing_snake() -> void:
+	$Map/Snake.grow_wings()
+	await get_tree().create_timer(2.0).timeout
+	for i in 12:
+		await get_tree().create_timer(0.1).timeout
+		$Map/Snake.position.y -= 1
+	await get_tree().create_timer(0.8).timeout
+	for i in 20:
+		await get_tree().create_timer(0.08).timeout
+		$Map/Snake.position.y -= 1.5
+		$Map/Snake.position.x += 0.1
+	for i in 60:
+		await get_tree().create_timer(0.06).timeout
+		$Map/Snake.position.y -= 2
+		$Map/Snake.position.x += 0.5
+	for i in 80:
+		await get_tree().create_timer(0.04).timeout
+		$Map/Snake.position.y -= 2.2
+		$Map/Snake.position.x += 0.8
+	for i in 100:
+		await get_tree().create_timer(0.02).timeout
+		%Curtain.color.a += 0.01

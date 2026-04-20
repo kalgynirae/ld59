@@ -9,16 +9,22 @@ func _ready() -> void:
 		$Desert.visible = true
 		$Explosion.region_rect.position.y = 48
 
-func explode() -> void:
+func explode() -> bool:
+	if broken:
+		return false
 	broken = true
 	if desert:
 		$Desert.visible = false
 	else:
 		$Regular.visible = false
 	$Explosion.visible = true
+	animate_breaking()
+	return true
+
+func animate_breaking():
 	for i in 4:
 		await get_tree().create_timer(0.1).timeout
 		$Explosion.region_rect.position.x = min(192, $Explosion.region_rect.position.x + 48)
-
+	
 func unbroken() -> bool:
 	return not broken
