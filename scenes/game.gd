@@ -107,6 +107,7 @@ func save_snake() -> void:
 func restore_snake() -> void:
 	if saved_snake_state:
 		$Map/Snake.restore_state(saved_snake_state[0])
+		$Map/Snake.set_power_level(count_power_sources())
 		current_direction = saved_snake_state[1]
 	else:
 		print("Cannot restore snake because saved state is null :(")
