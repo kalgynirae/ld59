@@ -30,15 +30,16 @@ enum Mode {
 	CameraMoving,
 	Transmitting,
 	Raining,
-	SquareDrawn,
-	WaveDrawn,
-	CloudDrawn,
+	BreakingBoxes,
+	FlippingSwitches,
+	ActivatingTower,
 	Shape,
 	Dead,
 	Resurrecting,
 }
 
 func set_mode(mode: Mode) -> bool:
+	print("set_mode(%s)" % Mode.keys()[mode])
 	var allowed = true
 	match [current_mode, mode]:
 		[Mode.Init, Mode.Running]:
@@ -53,17 +54,13 @@ func set_mode(mode: Mode) -> bool:
 			rain()
 		[Mode.Raining, Mode.Running]:
 			pass
-		[Mode.SquareDrawn, Mode.Running]:
+		[Mode.Transmitting, Mode.BreakingBoxes]:
+			break_boxes()
+		[Mode.BreakingBoxes, Mode.Running]:
 			pass
-		[Mode.Running, Mode.SquareDrawn]:
-			pass
-		[Mode.CloudDrawn, Mode.Running]:
-			pass
-		[Mode.Running, Mode.CloudDrawn]:
-			pass
-		[Mode.WaveDrawn, Mode.Running]:
-			pass
-		[Mode.Running, Mode.WaveDrawn]:
+		[Mode.Transmitting, Mode.FlippingSwitches]:
+			flip_switches()
+		[Mode.FlippingSwitches, Mode.Running]:
 			pass
 		[Mode.Running, Mode.Dead]:
 			$MoveTimer.stop()
@@ -77,6 +74,7 @@ func set_mode(mode: Mode) -> bool:
 		_:
 			allowed = false
 	if allowed:
+		print("committing mode change %s -> %s" % [Mode.keys()[current_mode], Mode.keys()[mode]])
 		current_mode = mode
 	else:
 		print("Mode transition blocked: %s -> %s" % [Mode.keys()[current_mode], Mode.keys()[mode]])
@@ -240,35 +238,23 @@ func move_snake(direction: String) -> void:
 	if $Map/Snake.detect_self_collision() or detect_obstacles() or has_collided_with_bridge() or detect_boxes() or detect_switches():
 		set_mode(Mode.Dead)
 		return
-
 	if $Map/Snake.detect_shape():
 		active_shape = $Map/Snake.active_shape
-		match active_shape:
-			Snake.Shape.Square:
-				set_mode(Mode.SquareDrawn)
-				await $Map/Snake.flash_n(2)
-			Snake.Shape.Wave:
-				set_mode(Mode.WaveDrawn)
-				await $Map/Snake.flash_n(2)
-			Snake.Shape.Cloud:
-				set_mode(Mode.Transmitting)
-
-	match current_mode:
-		Mode.SquareDrawn:
-			break_boxes()
-			set_mode(Mode.Running)
-		Mode.WaveDrawn:
-			flip_switches()
-			set_mode(Mode.Running)
-
+		if active_shape != Shape.None:
+			set_mode(Mode.Transmitting)
 	$Map/Snake.set_power_level(count_power_sources())
 
 func transmit() -> void:
-	print("transmit")
-	await $Map/Snake.flash_n(2)
 	match active_shape:
 		Shape.Cloud:
+			await $Map/Snake.flash_n(2)
 			set_mode(Mode.Raining)
+		Shape.Wave:
+			await $Map/Snake.flash_n(2)
+			set_mode(Mode.FlippingSwitches)
+		Shape.Square:
+			await $Map/Snake.flash_n(2)
+			set_mode(Mode.BreakingBoxes)
 		_:
 			print("shape not handled yet: %s" % Shape.keys()[active_shape])
 
@@ -294,15 +280,19 @@ func flip_switches():
 		NORTH:
 			for switch in $Map/UpperSwitches.get_children():
 				switch.toggle()
+	await get_tree().create_timer(1.0).timeout
+	set_mode(Mode.Running)
 
 func break_boxes():
 	match current_screen_coords:
 		DESERT:
 			for box in $Map/desert_boxes.get_children():
-				box.break_()
+				box.explode()
 		SOUTH:
 			for box in $Map/flowerpatch_boxes.get_children():
-				box.break_()
+				box.explode()
+	await get_tree().create_timer(1.0).timeout
+	set_mode(Mode.Running)
 
 func resurrect_plants(plants):
 	plants.shuffle()
