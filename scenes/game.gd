@@ -223,15 +223,9 @@ func eat_food(direction: String) -> bool:
 
 func has_collided_with_bridge() -> bool:
 	var loc: Vector2i = $Map/Snake.gridlocs[0]
-	
 	var bridge_pos = Vector2i($Map/river/Bridge.position) / 16
-	
 	var cur_water_level = $Map/river/Bridge.bridge_level
-	# TODO: Find out why the bridge still kills you
 	var safe_water_level: bool = cur_water_level == Bridge.BridgeLevel.BRAND_NEW or cur_water_level == Bridge.BridgeLevel.REPAIRED
-	
-	# Account for the bridge being three tiles long
-	# I don't know why the snake is one less
 	return !safe_water_level and loc.y == bridge_pos.y and loc.x == bridge_pos.x + 1
 
 func move_snake(direction: String) -> void:

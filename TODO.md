@@ -9,8 +9,8 @@ RIVER
 
 HOME
 * Finish final puzzle.
-* Fix house fence squarishness.
-* House collision.
+✔️Fix house fence squarishness.
+✔️House collision.
 
 TOWER
 * Implement tower-powered power source.
