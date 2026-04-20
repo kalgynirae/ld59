@@ -4,8 +4,8 @@ NORTH
 
 RIVER
 ✔️Fix bridge/snake collision.
-* Make rain particles.
-* Grow flowers.
+✔️Make rain particles.
+✔️Grow flowers.
 
 HOME
 * Finish final puzzle.

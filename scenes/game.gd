@@ -80,33 +80,6 @@ func set_mode(mode: Mode) -> bool:
 		print("Mode transition blocked: %s -> %s" % [Mode.keys()[current_mode], Mode.keys()[mode]])
 	return allowed
 
-func transmit() -> void:
-	print("transmit")
-	await $Map/Snake.flash_n(2)
-	match active_shape:
-		Shape.Cloud:
-			set_mode(Mode.Raining)
-		_:
-			print("shape not handled yet: %s" % Shape.keys()[active_shape])
-
-func rain() -> void:
-	%Rain.emitting = true
-	%Rain.amount = 64
-	await get_tree().create_timer(0.5)
-	%Rain.amount = 128
-	await get_tree().create_timer(1.0)
-	await $Map/river.fill()
-	%Rain.emitting = false
-	set_mode(Mode.Running)
-
-enum Maps {
-	Start,
-	Desert,
-	Rain,
-	Switch,
-	Box,
-}
-
 func change_screen() -> bool:
 	var snake_loc: Vector2i = $Map/Snake.gridlocs[0]
 	# Note: Integer division rounds toward 0, so we can't use it here
@@ -274,9 +247,29 @@ func move_snake(direction: String) -> void:
 			flip_switches()
 			set_mode(Mode.Running)
 
-
 	$Map/Snake.set_power_level(count_power_sources())
 
+func transmit() -> void:
+	print("transmit")
+	await $Map/Snake.flash_n(2)
+	match active_shape:
+		Shape.Cloud:
+			set_mode(Mode.Raining)
+		_:
+			print("shape not handled yet: %s" % Shape.keys()[active_shape])
+
+func rain() -> void:
+	%Rain.emitting = true
+	%Rain.amount = 64
+	await get_tree().create_timer(0.5).timeout
+	%Rain.amount = 192
+	match current_screen_coords:
+		RIVER:
+			$Map/river.fill()
+			resurrect_plants($Map/river_plants.get_children())
+			await get_tree().create_timer(4.0).timeout
+	%Rain.emitting = false
+	set_mode(Mode.Running)
 
 func flip_switches():
 	match current_screen_coords:
@@ -292,3 +285,9 @@ func break_boxes():
 		SOUTH:
 			for box in $Map/flowerpatch_boxes.get_children():
 				box.break_()
+
+func resurrect_plants(plants):
+	plants.shuffle()
+	for plant in plants:
+		await get_tree().create_timer(0.02).timeout
+		plant.growth_stage -= 1

@@ -233,7 +233,7 @@ func segments_match(segments: Array, patterns: Array, debug: bool) -> bool:
 		if pattern.size() > segments.size():
 			if debug: print("    oh wait, too small")
 			continue
-		for offset in (segments.size() - pattern.size()) + 1:
+		for offset in min(2, (segments.size() - pattern.size()) + 1):
 			if debug: print("    offset %s" % offset)
 			var pattern_matched = true
 			for i in pattern.size():

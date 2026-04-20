@@ -697,87 +697,87 @@ tile_set = SubResource("TileSet_2lpho")
 
 [node name="Plant" parent="river_plants" unique_id=688351892 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant2" parent="river_plants" unique_id=1581032798 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant3" parent="river_plants" unique_id=95386067 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant4" parent="river_plants" unique_id=2078749127 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant5" parent="river_plants" unique_id=1999406552 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant6" parent="river_plants" unique_id=1091302406 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant7" parent="river_plants" unique_id=1913607429 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant8" parent="river_plants" unique_id=3208207 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant9" parent="river_plants" unique_id=980784891 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 32)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant10" parent="river_plants" unique_id=1841164514 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant11" parent="river_plants" unique_id=598180402 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant12" parent="river_plants" unique_id=1366277270 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant13" parent="river_plants" unique_id=45998528 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant14" parent="river_plants" unique_id=538229615 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant15" parent="river_plants" unique_id=659414917 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant16" parent="river_plants" unique_id=1803777869 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant17" parent="river_plants" unique_id=1851509764 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant18" parent="river_plants" unique_id=248425278 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 48)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant19" parent="river_plants" unique_id=502165829 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 64)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant20" parent="river_plants" unique_id=1539511027 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 64)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant21" parent="river_plants" unique_id=253738165 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 64)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant22" parent="river_plants" unique_id=804109996 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 64)
@@ -790,23 +790,23 @@ position = Vector2(432, 64)
 
 [node name="Plant25" parent="river_plants" unique_id=1920389859 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 64)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant26" parent="river_plants" unique_id=485520339 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 64)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant27" parent="river_plants" unique_id=1784689789 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 64)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant28" parent="river_plants" unique_id=442090005 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 80)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant29" parent="river_plants" unique_id=1323422820 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 80)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant30" parent="river_plants" unique_id=1701031591 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 80)
@@ -816,7 +816,7 @@ position = Vector2(400, 80)
 
 [node name="Plant32" parent="river_plants" unique_id=141693878 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 80)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant33" parent="river_plants" unique_id=1777391954 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 80)
@@ -826,15 +826,15 @@ position = Vector2(448, 80)
 
 [node name="Plant35" parent="river_plants" unique_id=1059380892 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 80)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant36" parent="river_plants" unique_id=173345207 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 80)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant37" parent="river_plants" unique_id=1404877520 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 96)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant38" parent="river_plants" unique_id=427429122 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 96)
@@ -844,15 +844,15 @@ position = Vector2(384, 96)
 
 [node name="Plant40" parent="river_plants" unique_id=984999510 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 96)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant41" parent="river_plants" unique_id=1659295745 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 96)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant42" parent="river_plants" unique_id=1962137631 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 96)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant43" parent="river_plants" unique_id=524461245 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 96)
@@ -862,14 +862,15 @@ position = Vector2(464, 96)
 
 [node name="Plant45" parent="river_plants" unique_id=1483636435 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 96)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant46" parent="river_plants" unique_id=1143315878 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 112)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant47" parent="river_plants" unique_id=1864879746 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 112)
+growth_stage = 1
 
 [node name="Plant48" parent="river_plants" unique_id=11287112 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 112)
@@ -891,187 +892,187 @@ position = Vector2(464, 112)
 
 [node name="Plant54" parent="river_plants" unique_id=1657960967 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 112)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant55" parent="river_plants" unique_id=1907177986 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant56" parent="river_plants" unique_id=1212064455 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant57" parent="river_plants" unique_id=1894343609 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant58" parent="river_plants" unique_id=25017021 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant59" parent="river_plants" unique_id=2080035080 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant60" parent="river_plants" unique_id=304468319 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant61" parent="river_plants" unique_id=704344213 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant62" parent="river_plants" unique_id=1770186846 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant63" parent="river_plants" unique_id=2014720404 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 128)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant64" parent="river_plants" unique_id=186464602 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant65" parent="river_plants" unique_id=439410356 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant66" parent="river_plants" unique_id=579801426 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant67" parent="river_plants" unique_id=1092013236 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant68" parent="river_plants" unique_id=1920928559 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant69" parent="river_plants" unique_id=1089381028 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant70" parent="river_plants" unique_id=2080013501 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant71" parent="river_plants" unique_id=1445520365 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant72" parent="river_plants" unique_id=170146597 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 224)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant73" parent="river_plants" unique_id=1221636814 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant74" parent="river_plants" unique_id=1547477235 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant75" parent="river_plants" unique_id=386842020 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant76" parent="river_plants" unique_id=385981543 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant77" parent="river_plants" unique_id=97619176 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant78" parent="river_plants" unique_id=1820003355 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant79" parent="river_plants" unique_id=89192060 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant80" parent="river_plants" unique_id=1538188492 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant81" parent="river_plants" unique_id=525687321 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 208)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant82" parent="river_plants" unique_id=1061805806 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant83" parent="river_plants" unique_id=1145959641 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant84" parent="river_plants" unique_id=165133588 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant85" parent="river_plants" unique_id=415719948 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant86" parent="river_plants" unique_id=2119783651 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant87" parent="river_plants" unique_id=852253543 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant88" parent="river_plants" unique_id=1581520145 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant89" parent="river_plants" unique_id=2129264806 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant90" parent="river_plants" unique_id=1219901823 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 192)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant91" parent="river_plants" unique_id=1417106047 instance=ExtResource("13_gw3fx")]
 position = Vector2(352, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant92" parent="river_plants" unique_id=2117479153 instance=ExtResource("13_gw3fx")]
 position = Vector2(368, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant93" parent="river_plants" unique_id=308773229 instance=ExtResource("13_gw3fx")]
 position = Vector2(384, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant94" parent="river_plants" unique_id=1611379563 instance=ExtResource("13_gw3fx")]
 position = Vector2(400, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant95" parent="river_plants" unique_id=1947600439 instance=ExtResource("13_gw3fx")]
 position = Vector2(416, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant96" parent="river_plants" unique_id=536091873 instance=ExtResource("13_gw3fx")]
 position = Vector2(432, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant97" parent="river_plants" unique_id=1954156530 instance=ExtResource("13_gw3fx")]
 position = Vector2(448, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant98" parent="river_plants" unique_id=1724962525 instance=ExtResource("13_gw3fx")]
 position = Vector2(464, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="Plant99" parent="river_plants" unique_id=1561345083 instance=ExtResource("13_gw3fx")]
 position = Vector2(480, 176)
-growth_stage = 0
+growth_stage = 1
 
 [node name="desert_boxes" type="Node2D" parent="." unique_id=756684892]
 
@@ -1569,7 +1570,6 @@ position = Vector2(240, 336)
 
 [node name="river" type="Node2D" parent="." unique_id=704935125]
 script = ExtResource("18_m335s")
-fill_level_interval_seconds = 1.25
 
 [node name="RiverTile" parent="river" unique_id=1072026978 instance=ExtResource("19_6k6j1")]
 position = Vector2(528, 0)
