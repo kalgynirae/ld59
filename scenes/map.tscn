@@ -746,6 +746,18 @@ position = Vector2(592, 192)
 [node name="Food6" parent="food_nodes" unique_id=1372955525 instance=ExtResource("17_c70he")]
 position = Vector2(592, 208)
 
+[node name="Food7" parent="food_nodes" unique_id=2087248251 instance=ExtResource("17_c70he")]
+position = Vector2(224, -160)
+
+[node name="Food8" parent="food_nodes" unique_id=940243539 instance=ExtResource("17_c70he")]
+position = Vector2(241, -160)
+
+[node name="Food9" parent="food_nodes" unique_id=511800015 instance=ExtResource("17_c70he")]
+position = Vector2(240, -160)
+
+[node name="Food10" parent="food_nodes" unique_id=1089518837 instance=ExtResource("17_c70he")]
+position = Vector2(256, -160)
+
 [node name="UpperSwitches" type="Node2D" parent="." unique_id=2099462057]
 
 [node name="switch1" parent="UpperSwitches" unique_id=1728679507 instance=ExtResource("5_2klcf")]
