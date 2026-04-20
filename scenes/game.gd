@@ -65,10 +65,10 @@ func set_mode(mode: Mode) -> bool:
 		[Mode.Running, Mode.Dead]:
 			$MoveTimer.stop()
 			$Map/Snake.die()
-			$Camera/Panel.display_death_message(DeathPanel.DeathType.EAT_SELF)
-			$ResurrectTimer.start()
+			show_message("Snake has perished.")
+			resurrect()
 		[Mode.Dead, Mode.Resurrecting]:
-			$Camera/Panel.hide_message()
+			hide_message()
 		[Mode.Resurrecting, Mode.Running]:
 			$MoveTimer.start()
 		_:
@@ -140,11 +140,11 @@ func restore_state() -> void:
 	$Map/Snake.set_power_level(count_power_sources())
 	current_direction = saved_snake_state[1]
 
-func on_resurrect_timer_timeout() -> void:
+func resurrect() -> void:
+	await get_tree().create_timer(2.0).timeout
 	set_mode(Mode.Resurrecting)
-	print("Restoring snake")
 	restore_state()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	set_mode(Mode.Running)
 
 func on_move_timer_timeout() -> void:
@@ -297,3 +297,10 @@ func resurrect_plants(plants):
 	for plant in plants:
 		await get_tree().create_timer(0.02).timeout
 		plant.growth_stage -= 1
+
+func show_message(msg: String) -> void:
+	%Message.text = msg
+	%MessageFrame.visible = true
+
+func hide_message() -> void:
+	%MessageFrame.visible = false

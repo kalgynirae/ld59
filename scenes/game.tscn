@@ -2,17 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://duxa8pgyfq7m" path="res://scenes/map.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://8qlcklp0mepa" path="res://scenes/game.gd" id="1_yqjtg"]
-[ext_resource type="Script" uid="uid://mjum6adanovt" path="res://scenes/death_message.gd" id="3_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://b0p014y6ptsoa" path="res://images/death_frame.png" id="4_lbhrr"]
+[ext_resource type="FontFile" uid="uid://cp5a18xxxl35v" path="res://fonts/NicerNightie.ttf" id="5_iywne"]
 
 [sub_resource type="GDScript" id="GDScript_lnu2h"]
 script/source = "extends Node2D
 "
-
-[sub_resource type="SystemFont" id="SystemFont_lbhrr"]
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_iywne"]
-font = SubResource("SystemFont_lbhrr")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lbhrr"]
 particle_flag_disable_z = true
@@ -40,7 +35,6 @@ gravity = Vector3(0, 0, 0)
 color = Color(1, 0.3529412, 0, 1)
 
 [node name="Game" type="Node2D" unique_id=1500510972]
-texture_filter = 1
 script = ExtResource("1_yqjtg")
 
 [node name="Map" parent="." unique_id=1460035702 instance=ExtResource("1_uwrxv")]
@@ -49,26 +43,9 @@ metadata/_edit_horizontal_guides_ = [-240.0, 512.0]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1453900181]
 anchor_mode = 0
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
-
-[node name="Panel" type="Panel" parent="Camera" unique_id=894262728]
-offset_left = 16.0
-offset_top = 144.0
-offset_right = 304.0
-offset_bottom = 176.0
-script = ExtResource("3_lbhrr")
-
-[node name="Label" type="Label" parent="Camera/Panel" unique_id=1294002607]
-texture_filter = 1
-layout_mode = 0
-offset_right = 288.0
-offset_bottom = 32.0
-text = "Hello! snake"
-label_settings = SubResource("LabelSettings_iywne")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="Rain" type="GPUParticles2D" parent="Camera" unique_id=930629755]
 unique_name_in_owner = true
@@ -78,6 +55,34 @@ amount = 128
 lifetime = 0.5
 visibility_rect = Rect2(-160, -128, 320, 256)
 process_material = SubResource("ParticleProcessMaterial_lbhrr")
+
+[node name="MessageFrame" type="Node2D" parent="Camera" unique_id=1744662908]
+unique_name_in_owner = true
+visible = false
+position = Vector2(64, 104)
+scale = Vector2(0.5, 0.5)
+
+[node name="Frame" type="Sprite2D" parent="Camera/MessageFrame" unique_id=1095813905]
+texture_filter = 1
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lbhrr")
+centered = false
+offset = Vector2(0, 8)
+
+[node name="Message" type="Label" parent="Camera/MessageFrame" unique_id=1294002607]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 352.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_iywne")
+theme_override_font_sizes/font_size = 36
+text = "Hello! snake"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="MoveTimer" type="Timer" parent="." unique_id=2062584357]
 wait_time = 0.2

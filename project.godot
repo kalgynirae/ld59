@@ -21,9 +21,10 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=256
+window/size/viewport_width=640
+window/size/viewport_height=512
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [input]
 
