@@ -21,6 +21,7 @@ var current_hp: int = 5
 var saved_food_state: Dictionary[Node, bool] = {}
 var saved_snake_state = null
 var active_shape: Shape = Shape.None
+var desert_harmful: bool = true
 
 enum Mode {
 	Init,
@@ -159,7 +160,7 @@ func on_move_timer_timeout() -> void:
 					save_state()
 
 func on_hurt_timer_timeout() -> void:
-	if detect_desert():
+	if desert_harmful and detect_desert():
 		$Map/Snake.hurt()
 		current_hp -= 1
 		if current_hp == 0:
@@ -274,6 +275,10 @@ func rain() -> void:
 			$Map/river.fill()
 			resurrect_plants($Map/river_plants.get_children())
 			await get_tree().create_timer(4.0).timeout
+		DESERT:
+			desert_harmful = false
+			%Heat.emitting = false
+			await get_tree().create_timer(3.0).timeout
 	%Rain.emitting = false
 	set_mode(Mode.Running)
 
