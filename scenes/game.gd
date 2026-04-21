@@ -2,7 +2,7 @@ extends Node2D
 
 const Shape = Snake.Shape
 
-const CHEATING = true
+const CHEATING = false
 
 const SCREEN_TILE_WIDTH = 20
 const SCREEN_TILE_HEIGHT = 16
@@ -118,7 +118,9 @@ func _process(_delta: float) -> void:
 		if $Map/Snake.head_direction() != "right":
 			current_direction = "left"
 	if Input.is_action_just_pressed("move_down"):
-		if $Map/Snake.head_direction() != "up":
+		if current_mode == Mode.Init:
+			start()
+		elif $Map/Snake.head_direction() != "up":
 			current_direction = "down"
 	if Input.is_action_just_pressed("move_up"):
 		if $Map/Snake.head_direction() != "down":
@@ -148,7 +150,10 @@ func _ready() -> void:
 	current_direction = "down"
 	change_move_speed(0)
 	save_state()
+
+func start() -> void:
 	set_mode(Mode.Running)
+	%StartFrame.visible = false
 
 func save_state() -> void:
 	saved_snake_state = [$Map/Snake.gridlocs[0], $Map/Snake.head_direction()]
