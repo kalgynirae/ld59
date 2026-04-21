@@ -106,6 +106,19 @@ offset_right = 320.0
 offset_bottom = 256.0
 color = Color(0, 0, 0, 0)
 
+[node name="Credits" type="Label" parent="Camera/Curtain" unique_id=1346802320]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 256.0
+text = "Thanks for playing!
+
+Art & Music: itisthelaw
+Programming: kalgynirae & ????"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MoveTimer" type="Timer" parent="." unique_id=2062584357]
 wait_time = 0.2
 
@@ -136,6 +149,7 @@ region_rect = Rect2(0, 0, 204, 256)
 stream = ExtResource("6_kvuet")
 volume_db = -12.0
 autoplay = true
+playback_type = 1
 
 [node name="SoundBuzz" type="AudioStreamPlayer" parent="." unique_id=987920220]
 stream = ExtResource("6_kvpfn")

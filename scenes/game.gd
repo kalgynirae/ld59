@@ -356,6 +356,7 @@ func hide_message() -> void:
 	%MessageFrame.visible = false
 
 func wing_snake() -> void:
+	$Music.stop()
 	$Map/Snake.grow_wings()
 	await get_tree().create_timer(2.0).timeout
 	for i in 12:
@@ -377,6 +378,7 @@ func wing_snake() -> void:
 	for i in 100:
 		await get_tree().create_timer(0.02).timeout
 		%Curtain.color.a += 0.01
+	%Credits.visible = true
 
 func _on_sound_wind_finished() -> void:
 	$SoundWind.play(1.15)
