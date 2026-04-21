@@ -123,6 +123,7 @@ vertical_alignment = 1
 wait_time = 0.2
 
 [node name="HurtTimer" type="Timer" parent="." unique_id=1507968008]
+wait_time = 0.75
 autostart = true
 
 [node name="ResurrectTimer" type="Timer" parent="." unique_id=2035495250]

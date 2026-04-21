@@ -19,7 +19,7 @@ var current_mode: Mode = Mode.Init
 var current_direction: String = ""
 var current_move_speed: int = 1
 var current_screen_coords: Vector2i = Vector2i(0, 0)
-var current_hp: int = 5
+var current_hp: int = 3
 var saved_snake_state = null
 var active_shape: Shape = Shape.None
 var desert_harmful: bool = true
@@ -357,6 +357,7 @@ func hide_message() -> void:
 
 func wing_snake() -> void:
 	$Music.stop()
+	$SoundBuzz.stop()
 	$Map/Snake.grow_wings()
 	await get_tree().create_timer(2.0).timeout
 	for i in 12:
