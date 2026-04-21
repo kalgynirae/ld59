@@ -27,7 +27,7 @@ EVERYWHERE
 ✔️Banana eating while eating banana.
 ✔️Respawn snake in a collapsed form.
 ✔️Sound effects!
-  * Except for electricity
+  ✔️Except for electricity
 * Music!
 
 DESERT

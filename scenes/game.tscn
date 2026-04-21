@@ -5,10 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://b0p014y6ptsoa" path="res://images/death_frame.png" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://cp5a18xxxl35v" path="res://fonts/NicerNightie.ttf" id="5_iywne"]
 [ext_resource type="Shader" uid="uid://bx7ghn05gbmta" path="res://scenes/desert.gdshader" id="5_p57ef"]
+[ext_resource type="AudioStream" uid="uid://cv6w8my310hp3" path="res://sounds/buzz.wav" id="6_kvpfn"]
+[ext_resource type="AudioStream" uid="uid://bhxlk3xrqh886" path="res://sounds/music.mp3" id="6_kvuet"]
 [ext_resource type="AudioStream" uid="uid://cij4rv74c6bny" path="res://sounds/eat.wav" id="6_vtaks"]
 [ext_resource type="AudioStream" uid="uid://dnc25vjlher5v" path="res://sounds/explosion.wav" id="7_kvpfn"]
 [ext_resource type="AudioStream" uid="uid://b7o3cjf6u6jxc" path="res://sounds/rain.wav" id="8_dinhu"]
 [ext_resource type="AudioStream" uid="uid://caachhgxtt33c" path="res://sounds/snake.wav" id="9_kvuet"]
+[ext_resource type="AudioStream" uid="uid://cyfcnolvvf3oo" path="res://sounds/signal.wav" id="10_dinhu"]
 [ext_resource type="AudioStream" uid="uid://diy5f72t5fr5q" path="res://sounds/wind.wav" id="10_trtic"]
 
 [sub_resource type="GDScript" id="GDScript_lnu2h"]
@@ -130,23 +133,35 @@ region_enabled = true
 region_rect = Rect2(0, 0, 204, 256)
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=320226715]
+stream = ExtResource("6_kvuet")
 volume_db = -12.0
 autoplay = true
+
+[node name="SoundBuzz" type="AudioStreamPlayer" parent="." unique_id=987920220]
+stream = ExtResource("6_kvpfn")
+volume_db = -1.441
 
 [node name="SoundEat" type="AudioStreamPlayer" parent="." unique_id=1304794641]
 stream = ExtResource("6_vtaks")
 
 [node name="SoundExplosion" type="AudioStreamPlayer" parent="." unique_id=1173227347]
 stream = ExtResource("7_kvpfn")
+volume_db = -12.345
 
 [node name="SoundRain" type="AudioStreamPlayer" parent="." unique_id=342798736]
 stream = ExtResource("8_dinhu")
+volume_db = 1.355
+
+[node name="SoundSignal" type="AudioStreamPlayer" parent="." unique_id=412862011]
+stream = ExtResource("10_dinhu")
+volume_db = -7.208
 
 [node name="SoundSnake" type="AudioStreamPlayer" parent="." unique_id=1260288739]
 stream = ExtResource("9_kvuet")
 
 [node name="SoundWind" type="AudioStreamPlayer" parent="." unique_id=749028118]
 stream = ExtResource("10_trtic")
+volume_db = -9.505
 
 [connection signal="timeout" from="MoveTimer" to="." method="on_move_timer_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="on_hurt_timer_timeout"]

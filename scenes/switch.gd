@@ -16,8 +16,9 @@ func lower() -> void:
 func raise() -> void:
 	$Sprite.region_rect.position.x = 0
 
-func toggle() -> void:
+func toggle() -> bool:
 	if is_raised():
 		lower()
 	else:
 		raise()
+	return true

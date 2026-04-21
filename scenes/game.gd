@@ -231,7 +231,10 @@ func count_power_sources() -> SnakePart.PowerLevel:
 		if not ps.powered:
 			continue
 		if $Map/Snake.gridlocs.has(GridLoc.from_position(ps.position)):
+			if not $SoundBuzz.playing:
+				$SoundBuzz.play()
 			return SnakePart.PowerLevel.CHARGED
+	$SoundBuzz.playing = false
 	return SnakePart.PowerLevel.NORMAL
 
 func eat_food(direction: String) -> bool:
@@ -265,6 +268,7 @@ func move_snake(direction: String) -> void:
 			set_mode(Mode.Transmitting)
 
 func transmit() -> void:
+	$SoundSignal.play()
 	await $Map/Snake.transmit()
 	match active_shape:
 		Shape.Cloud:
@@ -296,15 +300,18 @@ func rain() -> void:
 			desert_harmful = false
 			%Heat.emitting = false
 			await get_tree().create_timer(3.0).timeout
-			$Music.paused = false
+			$Music.stream_paused = false
 	%Rain.emitting = false
 	set_mode(Mode.Running)
 
 func flip_switches():
+	var any_flipped = false
 	match current_screen_coords:
 		NORTH:
 			for switch in $Map/UpperSwitches.get_children():
-				switch.toggle()
+				any_flipped = switch.toggle() or any_flipped
+	if any_flipped:
+		$SoundExplosion.play()
 	await get_tree().create_timer(1.0).timeout
 	set_mode(Mode.Running)
 
@@ -321,7 +328,7 @@ func break_boxes():
 			for box in $Map/home_boxes.get_children():
 				any_exploded = box.explode() or any_exploded
 	if any_exploded:
-		$SoundExplosion.playing = true
+		$SoundExplosion.play()
 	await get_tree().create_timer(1.0).timeout
 	set_mode(Mode.Running)
 
