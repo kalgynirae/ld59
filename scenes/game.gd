@@ -337,6 +337,7 @@ func resurrect_plants(plants):
 	for plant in plants:
 		await get_tree().create_timer(0.02).timeout
 		plant.growth_stage -= 1
+		plant.growth_stage = max(0, plant.growth_stage)
 
 func activate_tower():
 	$Map/TowerSparks.emitting = true
